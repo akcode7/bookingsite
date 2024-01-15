@@ -5,27 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Hero Section with Image Slide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="src/output.css" rel="stylesheet">
 </head>
 <body>
 
-    <div class="relative overflow-hidden">
+    <!-- header starts php -->
+<header class="text-gray-500 body-font hidden lg:block">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <a href="index.php" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0 align-middle">
+        <img src="assets/images/logo-transparent.png"  class="w-56 text-white p-2 z-10" alt="" srcset="">
+      </a>
+      <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center z-10">
+        <a href="index.php" class="mr-5 font-bold">Home</a>
+        <a href="about.php" class="mr-5 font-bold">About</a>
+        <a href="services.php" href="services.html" class="mr-5 font-bold">Services</a>
+        <a href="contact.php" class="mr-5 font-bold">Contact</a>
+      </nav>
+      <button class="inline-flex items-center text-white font-bold bg-[#5E17EB] border-0 py-5 px-12 focus:outline-none hover:bg-gray-700 rounded-xl text-base mt-4 md:mt-0 z-10">Let’s Talk 👋</button>
+    </div>
+  </header>
+  <!-- mobile header -->
+<div class="lg:hidden">
+
+<!-- header menu btm starts -->
+<div class="grid grid-cols-2">
+<div>
+  <a href="index.php">
+    <img src="assets/images/logo-transparent.png"  class="w-56 text-white p-6" alt="" srcset="">
+  </a>
+</div>
+<div>
+  <i class="absolute right-10 top-10 fa fa-bars text-2xl mobile-menu-button z-10"></i>
+</div>
+</div>
+<!-- header menu btn ends-->
+<div class="container  right-0 top-0 z-10 bg-black h-screen hidden mobile-menu w-10/12" style="position:fixed; overflow-y: scroll;">
+<div class="flex pl-10 mb-20">
+  <img src="assets/images/LinQ_whitetxt.png" class="w-7/12 mt-5" alt="">
+  <i class="fa fa-times text-white mt-10 right-10 absolute text-xl hover:text-red-500 mobile-menu-close-btn"></i>
+</div>
+<div class="mb-10 w-11/12 pl-6">
+  <nav class="text-white w-11/12 ">
+      <ul class="divide-y divide-gray-600">
+          <a href="index.php"><li class="py-3 hover:text-yellow-300 text-lg font-semibold"> Home</li></a>
+          <a href="about.php"><li class="py-3 hover:text-yellow-300 text-lg font-semibold">About</li></a>
+          <a href="services.php"><li class="py-3 hover:text-yellow-300 text-lg font-semibold">Services</li></a>
+          <a href="contact.php"> <li class="py-3 hover:text-yellow-300 text-lg font-semibold">Contact</li></a>
+      </ul>
+    </nav>
+</div>
+<div class="pl-6">
+  <ul>
+  <h1 class="text-yellow-300 font-bold mb-6">Contact Us</h1>
+  <li class="text-white font-semibold"><i class="fa-solid fa-location-pin text-yellow-300 mb-4 mr-2"></i></i>Location</li>
+  <li class="text-white font-semibold"><i class="fa-solid fa-phone text-yellow-300 mb-4 mr-2"></i></i>+1 23344 67687</li>
+  <li class="text-white font-semibold"><i class="fa-solid fa-envelope text-yellow-300 mb-4 mr-2"></i></i>support@admin.com</li>
+ </ul>
+ <button class="inline-flex items-center text-white font-bold bg-[#5E17EB] border-0 py-3 px-12 focus:outline-none hover:bg-gray-700 rounded-xl text-base mt-4 md:mt-0">Let’s Talk 👋
+  
+ </button>
+</div>
+
+</div>
+
+
+
+</div>
+<!-- mobile header ends -->
+<!-- header ends -->
+
+
+
+
+<div class="relative overflow-hidden">
         <!-- Image Slider -->
         <div id="imageSlider" class="w-full h-screen">
-            <div class="absolute w-full h-full opacity-50 bg-black"></div>
+            <div class="absolute w-full h-full opacity-50  bg-black"></div>
             <img class="object-cover w-full h-full" src="images/herobg1.jpg" alt="Image 1">
         </div>
-    
+    <div class="grid grid-cols-2 absolute inset-0 justify-around items-center text-white">
         <!-- Hero Content -->
-        <div class="absolute inset-0 flex justify-around items-center text-white">
-            <div class="text-left">
+            <div class="text-left pl-12">
                 <p class="text-2xl mb-5">Book Your car now</p>
                 <h1 class="text-8xl font-bold mb-4">CAR RENTAL</h1>
            
             </div>
             
 
-   <div class="w-full justify-end max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
+   <div class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
        <form class="space-y-6" action="#">
         <h5 class="text-xl font-medium text-gray-900 ">Book A cab Now</h5>
         <div>
@@ -48,12 +116,14 @@
 </div>
 
         </div>
+        </div>
     </div>
 
     <div class="text-center pt-10">
         <p class="font-medium pb-2" >Find The best rental car</p>
         <h1 class="text-4xl font-bold ">Welcome to CarRental</h1>
     </div>
+
 
 <!-- <=== imgbox ====> -->
 <div class="flex justify-center py-12">
@@ -385,7 +455,7 @@
 
 
 
-<div class="container mx-auto my-12 py-8 px-24 bg-left-bottom bg-no-repeat bg-[url('/images/carimgtest.jpg')]">
+<div class="container mx-auto mt-12 py-8 px-24 bg-left-bottom bg-no-repeat bg-[url('/images/carimgtest.jpg')]">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
     
       <div>
@@ -403,6 +473,63 @@
       
     </div>
   </div>
+
+<!-- <=======footer starts======>
+    <========================> -->
+
+  <footer class="mx-auto">
+    <section class="bg-[#292930] pt-24 pb-20">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-6">
+        <div class="p-0 md:p-6 md:col-span-2">
+            <img src="assets/images/logo-transparent.png" alt="Logo" class="w-52">
+            <p class="text-gray-300 font-medium pt-4">abccarcompany offers a complete drive solutions through our Managed website</p>
+            <div class="flex gap-4 pt-7 pb-6">
+            <i class="fa-brands fa-instagram text-gray-400 p-4 bg-gray-800 rounded-full hover:bg-teal-500 hover:text-white transition duration-700 ease-linear"></i>
+            <i class="fa-brands fa-facebook-f text-gray-400 p-4 bg-gray-800 rounded-full hover:bg-teal-500 hover:text-white transition duration-700 ease-linear"></i>
+            <i class="fa-brands fa-linkedin-in text-gray-400 p-4 bg-gray-800 rounded-full hover:bg-teal-500 hover:text-white transition duration-700 ease-linear"></i>
+            </div>
+        </div>
+        <div class="md:col-span-1">
+            <h3 class="text-start text-xl font-semibold text-white tracking-wider pt-6">Useful Links</h3>
+            <ul class="pt-8 text-gray-300 font-semibold">
+            <li class="pb-3 hover:text-yellow-300"><a href="#">Home</a></li>
+            <li class="pb-3 hover:text-yellow-300"><a href="#">About Us</a></li>
+            <li class="pb-3 hover:text-yellow-300"><a href="#">Contact</a></li>
+            <li class="pb-3 hover:text-yellow-300"><a href="#">Services</a></li>
+            <li class="pb-3 hover:text-yellow-300"><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="md:col-span-1 pr-0 md:pr-2">
+            <h3 class="text-start text-xl font-semibold text-white tracking-wider pt-6">Our Services</h3>
+            <ul class="pt-8 text-gray-300 font-semibold">
+            <li class="pb-3 hover:text-yellow-300"><a href="#">Web Development</a></li>
+            <li class="pb-3 hover:text-yellow-300"><a href="#">Mobile Apps Development</a></li>
+            <li class="pb-3 hover:text-yellow-300"><a href="#">IT Services Support</a></li>
+            <li class="pb-3 hover:text-yellow-300"><a href="#">Blockchain Development</a></li>
+            <li class="pb-3 hover:text-yellow-300"><a href="#">NFT</a></li>
+            </ul>
+        </div>
+        <div class="md:col-span-2 pl-0 md:pl-2">
+            <h3 class="text-start text-xl font-semibold text-white tracking-wider pt-6">Subscribe Newsletter</h3>
+            <p class="text-gray-300 font-medium pt-6">Drop your email address below to receive occasional updates.</p>
+            <form>   
+            <div class="relative pt-8">
+                <input type="search" id="default-search" class="block w-full p-6 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-teal-500 focus:text-teal-400" placeholder="Enter your mail" required>
+                <button type="submit" class="text-white absolute right-3 bottom-2.5 bg-yellow-500 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-4 transition duration-700">Submit</button>
+            </div>
+            </form>
+        </div>
+        </div>
+        <hr class="border border-gray-700">
+        
+    </div>
+    </section>
+</footer>
+
+<!-- ====footer ends====>
+======================= -->
+<script src="assets/js/main.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="script.js"></script>
