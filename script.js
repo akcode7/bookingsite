@@ -12,3 +12,12 @@ menu.classList.toggle("hidden");
 });
 
 // header mobile menu ends
+
+// dropdowntoggle checkout
+
+function toggledropdown(){
+   let dropdown = document.querySelector('#dropdownbtn #dropdown');
+   dropdown.classList.toggle('hidden')
+}
+
+// dropdowntoggle checkout

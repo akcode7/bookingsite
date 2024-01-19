@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Hero Section with Image Slide</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link href="src/output.css" rel="stylesheet" />
+  </head>
+  <body>
+    <section class="h-screen w-full flex flex-col ">
+      <div class="h-screen md:grid grid-cols-8">
+<div class="flex sm:col-span-5 sm:block md:block bg-gray-200 lg:block xl:block 2xl:block">
+ <!-- booking detail card 1 starts -->
+
+<div class="mx-auto my-7 px-5">
+
+    <div class="mx-auto w-11/12  md:grid shadow-lg grid-cols-10 bg-white border border-gray-400 rounded-lg py-5 px-2">
+        <div class="col-span-2 px-2">
+            <img src="icon/suvcar.png" class="rounded-lg w-11/12" alt="">
+        </div>
+    
+        <div class="col-span-5 p-2">
+          <h1 class="text-xl font-bold">
+            Innova <!-- car name -->
+          </h1>
+    
+          <ul class="list-disc md:flex gap-8 pt-2 pl-6 md:pl-0">
+            <li class="md:list-none">Hatch Back</li>
+            <li>AC</li>
+            <li>4 Seats</li> 
+          </ul>
+    
+          <h1 class="text-xl font-bold pt-2">
+           Lucknow to Kanpur
+          </h1>
+          <span>1h 28min </span>
+        
+          <ul class="pt-2 border-dashed border-b-2 border-gray-400">
+           
+            <li class="flex items-center">
+              <svg class="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+               </svg>
+               138 kms included. After that ₹23.0/km
+          </li>
+    
+        <li class="flex items-center pb-2">
+          <svg class="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+           </svg>
+           Cancellation Free till 6 hours of departure
+      </li>
+          </ul>
+          <span class="flex py-2">
+            <img src="icon/discounticon.png"/>
+            <h1 class="font-bold text-[#FF3726] py-2 pl-2">Cheapest Price Garanteed</h1>
+          
+      </span>
+    
+        </div>
+    
+<div class=" col-span-3 mx-auto p-3">
+          <h1 class="font-bold text-4xl pb-3">Rs 1200</h1>
+          <button type="submit" class="text-white bg-[#FF3726] font-medium rounded-lg text-sm px-8 py-2 text-center  ">Book Now</button>
+</div>
+      
+</div>
+</div>
+<!-- booking detail card 1 ends -->
+<!-- driver detail starts -->
+<div class="mx-auto my-7 px-5">
+    <div class="mx-auto w-11/12 shadow-lg bg-white border border-gray-400 rounded-lg py-5 px-5">
+        <h1 class="text-xl font-semibold">Driver and Taxi details</h1>
+        <p class="pt-1">
+            Taxi and driver information will be provided up to 30 minutes before the scheduled departure.</p>
+
+    </div>
+
+</div>
+
+<!-- driver details end -->
+
+<!-- pickup and dropoff address starts -->
+
+<div class="mx-auto my-7 px-5 cursor-pointer" id="dropdownbtn">
+    <div id="butn" onclick="toggledropdown()" class="mx-auto w-11/12 shadow-lg  bg-white border border-gray-400 rounded-lg py-5 px-5">
+       <div class="text-xl font-semibold flex justify-between items-center">Pick-Up And Drop-Off Location 
+       <i class="fa fa-angle-down px-4 text-2xl"></i>
+      </div>
+    </div>
+
+
+
+  <div id="dropdown" class="mx-auto w-11/12 bg-white border border-gray-400 rounded-lg py-5 px-6 mt-1 hidden">
+    <form action="">
+      <div>
+        <label
+          for="email"
+          class="block mb-2 text-sm font-medium text-gray-900"
+          >Pick-up Address</label
+        >
+        <input
+          type="email"
+          name="email"
+          id="email"
+          class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-full p-2.5"
+          placeholder="Your exact pick-up address"
+          required=""
+        />
+      </div>
+      <div>
+        <label
+          for="email"
+          class="block mb-2 text-sm font-medium text-gray-900"
+          >Drop-off location</label
+        >
+        <input
+          type="email"
+          name="email"
+          id="email"
+          class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-full p-2.5"
+          placeholder="Your exact drop-off location"
+          required=""
+        />
+      </div>
+    </form>
+</div>
+</div>
+
+<!-- pickup and dropoff address ends -->
+
+<!-- enter user details -->
+<div class="mx-auto my-7 px-5">
+  <div class="mx-auto w-11/12 shadow-lg bg-white border border-gray-400 rounded-lg py-5 px-5">
+    <h1 class="text-xl font-semibold py-2">Enter Traveller Details</h1>
+    
+    <form action="">
+      <div class="flex ">
+      <div class="pb-2 mx-2">
+        <label for="text" class="block  mb-2 text-sm font-medium text-gray-900" >Your Full Name</label>
+        <input type="text" name="fullname" id="fullname" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-80 p-2.5"  placeholder="Enter Full Name"   required=""/>
+      </div>
+      <div class="pb-2 mx-2">
+        <label for="email" class="block mb-2 text-sm font-medium text-gray-900" >Email Id <span class="font-normal">(Confirmation email will be sent here)</span></label> 
+        <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-80 p-2.5" placeholder="Enter email ID"  required="" />
+      </div>
+    </div>
+
+    <div class="mx-2">
+      <h1>Gender</h1>
+    </div>
+    <div class="flex pt-2">
+      <div class="flex items-center me-4  mx-2">
+        <input id="inline-radio" type="radio" value="" name="inline-radio-group" class="w-4 outline-none h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+        <label for="inline-radio" class="ms-2 text-sm font-medium text-gray-900 ">Male</label>
+    </div>
+    <div class="flex items-center me-4 mx-2">
+        <input id="inline-2-radio" type="radio" value="" name="inline-radio-group" class="w-4 outline-none h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+        <label for="inline-2-radio" class="ms-2 text-sm font-medium text-gray-900 ">Female</label>
+    </div>
+    <div class="flex items-center me-4 mx-2">
+        <input checked id="inline-checked-radio" type="radio" value="" name="inline-radio-group" class="w-4 outline-none h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+        <label for="inline-checked-radio" class="ms-2 text-sm font-medium text-gray-900 ">Other</label>
+    </div>
+    
+    </div>
+
+    <div class="py-5 mx-2 ">
+      <label for="number" class="block mb-2 text-sm font-medium text-gray-900" >Phone Number<span class="font-normal">(We will contact you on this number)</span></label> 
+      <input type="number" name="number" id="phnumber" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-80 p-2.5" placeholder="Enter email ID"  required="" />
+    </div>
+    </form>
+  </div>
+
+</div>
+
+<!-- user detail forn ends -->
+
+</div>
+
+        <div class="col-span-3 bg-white md:fixed md:right-10">
+          <div class="flex items-center justify-center h-screen">
+            <div
+              class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
+            >
+              <div
+                class="w-full bg-white rounded-lg shadow border-gray-700 md:mt-0 sm:max-w-md xl:p-0"
+              >
+                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                  <h1
+                    class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl"
+                  >
+                    Sign in to your account
+                  </h1>
+                  <form class="space-y-4 md:space-y-6" action="#">
+                    <div>
+                      <label
+                        for="email"
+                        class="block mb-2 text-sm font-medium text-gray-900"
+                        >Your email</label
+                      >
+                      <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-full p-2.5"
+                        placeholder="name@company.com"
+                        required=""
+                      />
+                    </div>
+                    <div>
+                      <label
+                        for="password"
+                        class="block mb-2 text-sm font-medium text-gray-900"
+                        >Password</label
+                      >
+                      <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        placeholder="••••••••"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                        required=""
+                      />
+                    </div>
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                          <input
+                            id="remember"
+                            aria-describedby="remember"
+                            type="checkbox"
+                            class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-[#ff3726] focus:border-[#ff3726]"
+                            required=""
+                          />
+                        </div>
+                        <div class="ml-3 text-sm">
+                          <label for="remember" class="text-gray-600"
+                            >Remember me</label
+                          >
+                        </div>
+                      </div>
+                      <a
+                        href="#"
+                        class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                        >Forgot password?</a
+                      >
+                    </div>
+                    <button
+                      type="submit"
+                      class="w-64 text-white bg-[#FF3726] font-medium rounded-lg text-sm px-4 py-2 text-center my-6 md:my-4"
+                    >
+                      Sign In
+                    </button>
+                    <p class="text-sm font-light text-gray-600">
+                      Don’t have an account yet?
+                      <a
+                        href="signuppage.html"
+                        class="font-medium text-primary-600 hover:underline text-[#FF3726]"
+                        >Sign up</a
+                      >
+                    </p>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="assets/js/main.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
