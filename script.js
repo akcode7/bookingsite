@@ -17,7 +17,12 @@ menu.classList.toggle("hidden");
 
 function toggledropdown(){
    let dropdown = document.querySelector('#dropdownbtn #dropdown');
-   dropdown.classList.toggle('hidden')
+   dropdown.classList.toggle('hidden');
+}
+
+function toggledropdown2(){
+   let dropdown = document.querySelector('#dropdownbtn2 #dropdown2');
+   dropdown.classList.toggle('hidden');
 }
 
 // dropdowntoggle checkout

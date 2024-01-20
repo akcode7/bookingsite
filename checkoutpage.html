@@ -12,9 +12,75 @@
     <link href="src/output.css" rel="stylesheet" />
   </head>
   <body>
+
+        <!-- header starts php -->
+<header class="text-gray-500 body-font hidden lg:block">
+  <div class="container mx-auto flex flex-wrap flex-col md:flex-row items-center">
+    <a href="index.php" class="flex title-font font-medium items-center text-gray-900 mb-4 ml-5 md:mb-0 align-middle">
+      <img src="icon/logo.png"  class="w-56 z-10" alt="" srcset="">
+    </a>
+    <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center z-10">
+      <a href="index.php" class="mr-5 font-bold">Home</a>
+      <a href="about.php" class="mr-5 font-bold">About</a>
+      <a href="services.php" href="services.html" class="mr-5 font-bold">Services</a>
+      <a href="contact.php" class="mr-5 font-bold">Contact</a>
+    </nav>
+    <button class="mr-5 inline-flex items-center text-white font-bold bg-[#FF3726] border-0 py-5 px-12 focus:outline-none hover:bg-gray-700 rounded-xl text-base md:mt-0 z-10">Search A Ride!</button>
+  </div>
+</header>
+<!-- mobile header -->
+<div class="lg:hidden">
+
+<!-- header menu btm starts -->
+<div class="grid grid-cols-2">
+<div>
+<a href="index.php">
+  <img src="icon/logo.png"  class="w-56 " alt="" srcset="">
+</a>
+</div>
+<div>
+<i class="absolute right-10 top-10 fa fa-bars text-2xl mobile-menu-button z-10"></i>
+</div>
+</div>
+<!-- header menu btn ends-->
+<div class="container  right-0 top-0 z-10 bg-black h-screen hidden mobile-menu w-10/12" style="position:fixed; overflow-y: scroll;">
+<div class="flex pl-10 mb-20">
+<img src="assets/images/LinQ_whitetxt.png" class="w-7/12 mt-5" alt="">
+<i class="fa fa-times text-white mt-10 right-10 absolute text-xl hover:text-red-500 mobile-menu-close-btn"></i>
+</div>
+<div class="mb-10 w-11/12 pl-6">
+<nav class="text-white w-11/12 ">
+    <ul class="divide-y divide-gray-600">
+        <a href="index.php"><li class="py-3 hover:text-yellow-300 text-lg font-semibold"> Home</li></a>
+        <a href="about.php"><li class="py-3 hover:text-yellow-300 text-lg font-semibold">About</li></a>
+        <a href="services.php"><li class="py-3 hover:text-yellow-300 text-lg font-semibold">Services</li></a>
+        <a href="contact.php"> <li class="py-3 hover:text-yellow-300 text-lg font-semibold">Contact</li></a>
+    </ul>
+  </nav>
+</div>
+<div class="pl-6">
+<ul>
+<h1 class="text-yellow-300 font-bold mb-6">Contact Us</h1>
+<li class="text-white font-semibold"><i class="fa-solid fa-location-pin text-[#015A60] mb-4 mr-2"></i></i>Location</li>
+<li class="text-white font-semibold"><i class="fa-solid fa-phone text-[#015A60] mb-4 mr-2"></i></i>+1 1234567</li>
+<li class="text-white font-semibold"><i class="fa-solid fa-envelope text-[#015A60] mb-4 mr-2"></i></i>support@admin.com</li>
+</ul>
+<button class="inline-flex items-center text-white font-bold bg-[#FF3726] border-0 py-3 px-12 focus:outline-none hover:bg-gray-700 rounded-xl text-base mt-4 md:mt-0">Let’s Talk 👋
+
+</button>
+</div>
+
+</div>
+
+
+
+</div>
+<!-- mobile header ends -->
+<!-- header ends -->
+
     <section class="h-screen w-full flex flex-col ">
       <div class="h-screen md:grid grid-cols-8">
-<div class="flex sm:col-span-5 sm:block md:block bg-gray-200 lg:block xl:block 2xl:block">
+<div class="flex sm:col-span-5 sm:block md:block bg-[#eaffeb] lg:block xl:block 2xl:block">
  <!-- booking detail card 1 starts -->
 
 <div class="mx-auto my-7 px-5">
@@ -85,6 +151,86 @@
 
 <!-- driver details end -->
 
+<!-- Included and excluded  starts -->
+
+<div class="mx-auto my-7 px-5 cursor-pointer" id="dropdownbtn2">
+  <div id="butn" onclick="toggledropdown2()" class="mx-auto w-11/12 shadow-lg  bg-white border border-gray-400 rounded-lg py-5 px-5">
+     <div class="text-xl font-semibold flex justify-between items-center">Included & Excluded
+     <i class="fa fa-angle-down px-4 text-2xl"></i>
+    </div>
+  </div>
+
+
+
+<div id="dropdown2" class="mx-auto w-11/12 bg-white border border-gray-400 rounded-lg py-5 px-6 mt-1 hidden">
+  <div class="md:grid grid-cols-2">
+    <div class="col-span-1">
+      <h1 class="font-bold">Included in your fare</h1>
+      <ul class="pt-2 ">
+               
+        <li class="flex items-center pb-1">
+          <svg class="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+           </svg>
+           138 kms included. After that ₹23.0/km
+      </li>
+    
+    
+    
+    <li class="flex items-center pb-1">
+      <svg class="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+       </svg>
+      One pickup and One drop
+    </li>
+    <li class="flex items-center pb-1">
+      <svg class="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+       </svg>
+       Toll Charges
+    </li>
+    
+    <li class="flex items-center pb-2">
+      <svg class="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+       </svg>
+       State Tax
+    </li>
+      </ul>
+    </div>
+    <div class="col-span-1">
+      <h1 class="font-bold">Not included in your fare</h1>
+      <ul class="pt-2 ">
+               
+        <li class="flex items-center pb-1">
+          <svg class="w-3.5 h-3.5 me-2 flex-shrink-0 bg-red-500 rounded-full font-bold p-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="0 0 24 24" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+        
+        
+           <span>Fare after 138km <span> ; 23Rs/km </span></span> 
+      </li>
+
+      <li class="flex items-center pb-1">
+        <svg class="w-3.5 h-3.5 me-2 flex-shrink-0 bg-red-500 rounded-full font-bold p-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="0 0 24 24" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+         Waiting charges 2rs/minute after 45minutes
+    </li>
+    
+    </div>
+  </div>
+ 
+</div>
+
+<!-- included and excluded  ends -->
+
+</div>
+<!-- Included and excluded  ends -->
+
+
 <!-- pickup and dropoff address starts -->
 
 <div class="mx-auto my-7 px-5 cursor-pointer" id="dropdownbtn">
@@ -101,7 +247,7 @@
       <div>
         <label
           for="email"
-          class="block mb-2 text-sm font-medium text-gray-900"
+          class="block mb-2 text-sm font-medium text-gray-900 py-2"
           >Pick-up Address</label
         >
         <input
@@ -116,7 +262,7 @@
       <div>
         <label
           for="email"
-          class="block mb-2 text-sm font-medium text-gray-900"
+          class="block mb-2 text-sm font-medium text-gray-900 py-2"
           >Drop-off location</label
         >
         <input
@@ -172,7 +318,8 @@
 
     <div class="py-5 mx-2 ">
       <label for="number" class="block mb-2 text-sm font-medium text-gray-900" >Phone Number<span class="font-normal">(We will contact you on this number)</span></label> 
-      <input type="number" name="number" id="phnumber" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-80 p-2.5" placeholder="Enter email ID"  required="" />
+      
+      <input pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==12) return false;" type="number" name="number" id="phnumber" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-80 p-2.5" maxlength="12" placeholder="Enter Phone number"  required="" />
     </div>
     </form>
   </div>
@@ -181,98 +328,91 @@
 
 <!-- user detail forn ends -->
 
+<!-- Additional  detail starts -->
+<div class="mx-auto my-7 px-5">
+  <div class="mx-auto w-11/12 shadow-lg bg-white border border-gray-400 rounded-lg py-5 px-5">
+    <h2 class="mb-2 text-lg font-semibold text-gray-900">Additional Information:</h2>
+    <hr class="py-2">
+    <div class="md:grid grid-cols-2">
+      
+      <!-- column 1 -->
+      <div class="col-span-1 px-2">
+       
+        <ul class="max-w-md space-y-1 text-gray-700 list-disc list-inside">
+            <li>
+                AC will be turned off in hilly areas
+            </li>
+            <li > A single pickup, a Single drop-off, and a Single stop for a meal are indluded.
+            </li>
+            <li > Information about the driver will be provided within the 30 minutes leading up to the departure.
+            </li>
+            <li> The car type provides room for two pieces of luggage. However, if the car runs on CNG, the available luggage space will be reduced.
+            </li>
+        </ul>
+      </div>
+      <!-- column 2 -->
+      <div class="col-span-1 px-2">
+      
+        <ul class="max-w-md space-y-1 text-gray-700  list-disc list-inside">
+            <li>
+              The pickup may experience a delay of 30 minutes due to traffic or unforeseen circumstances.
+            </li>
+            <li> The driver will wait for a maximum of 45 minutes from the scheduled pickup time at your designated location.
+            </li>
+           
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
 </div>
 
-        <div class="col-span-3 bg-white md:fixed md:right-10">
+<!-- Additional details end -->
+
+
+</div>
+
+<div class="col-span-3 bg-white md:fixed md:right-10 py-8">
           <div class="flex items-center justify-center h-screen">
-            <div
-              class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
-            >
-              <div
-                class="w-full bg-white rounded-lg shadow border-gray-700 md:mt-0 sm:max-w-md xl:p-0"
-              >
+            <div class="flex flex-col  px-6 py-8 mx-auto md:h-screen lg:py-0">
+              <div class="w-full bg-white rounded-lg shadow border-gray-700 md:mt-0 sm:max-w-md xl:p-0" >
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                  <h1
-                    class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl"
-                  >
-                    Sign in to your account
-                  </h1>
+                  <div class="grid grid-cols-2">
+                    <div class="col-span-1 px-2 text-left">
+                      <h1   class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl" >
+                        Total Amount
+                      </h1>
+                      <p class="font-normal text-sm">inclusive of tolls and taxes</p>
+                    </div>
+                    <div class="col-span-1 px-2 text-right">
+                      <h1   class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl" >
+                       Rs3000
+                      </h1>
+                      <p class="font-normal text-sm text-[#ff3726]">View details</p>
+                    </div>
+                  </div>
+                 
                   <form class="space-y-4 md:space-y-6" action="#">
-                    <div>
-                      <label
-                        for="email"
-                        class="block mb-2 text-sm font-medium text-gray-900"
-                        >Your email</label
-                      >
-                      <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-full p-2.5"
-                        placeholder="name@company.com"
-                        required=""
-                      />
-                    </div>
-                    <div>
-                      <label
-                        for="password"
-                        class="block mb-2 text-sm font-medium text-gray-900"
-                        >Password</label
-                      >
-                      <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        placeholder="••••••••"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                        required=""
-                      />
-                    </div>
-                    <div class="flex items-center justify-between">
-                      <div class="flex items-start">
-                        <div class="flex items-center h-5">
-                          <input
-                            id="remember"
-                            aria-describedby="remember"
-                            type="checkbox"
-                            class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-[#ff3726] focus:border-[#ff3726]"
-                            required=""
-                          />
-                        </div>
-                        <div class="ml-3 text-sm">
-                          <label for="remember" class="text-gray-600"
-                            >Remember me</label
-                          >
-                        </div>
-                      </div>
-                      <a
-                        href="#"
-                        class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
-                        >Forgot password?</a
-                      >
-                    </div>
-                    <button
+                    <div class="justify-center flex">
+
+                      <button
                       type="submit"
-                      class="w-64 text-white bg-[#FF3726] font-medium rounded-lg text-sm px-4 py-2 text-center my-6 md:my-4"
-                    >
-                      Sign In
+                      class="w-64 text-white bg-[#FF3726] font-medium rounded-lg text-sm px-4 py-2 text-center my-6 md:my-4">
+                     Pay in cash
                     </button>
-                    <p class="text-sm font-light text-gray-600">
-                      Don’t have an account yet?
-                      <a
-                        href="signuppage.html"
-                        class="font-medium text-primary-600 hover:underline text-[#FF3726]"
-                        >Sign up</a
-                      >
-                    </p>
+                    </div>
+                 
                   </form>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+  </div>
+  </div>
     </section>
+
+    
 
     <script src="assets/js/main.js"></script>
 
