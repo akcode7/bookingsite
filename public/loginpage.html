@@ -9,7 +9,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <link href="src/output.css" rel="stylesheet" />
+    <link href="../src/output.css" rel="stylesheet">
   </head>
   <body>
     <section class="h-screen w-full flex flex-col">
@@ -18,7 +18,7 @@
           class="hidden sm:col-span-3 sm:block md:block bg-gray-200 lg:block xl:block 2xl:block"
         >
           <div class="flex items-center justify-center h-screen">
-            <img class="w-11/12" src="images/signupbg.png" alt="" />
+            <img class="w-11/12" src="../images/signupbg.png" alt="" />
           </div>
         </div>
 
@@ -34,26 +34,9 @@
                   <h1
                     class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl"
                   >
-                    Create an account
+                    Sign in to your account
                   </h1>
                   <form class="space-y-4 md:space-y-6" action="#">
-                    <div>
-                      <label
-                        for="text"
-                        class="block mb-2 text-sm font-medium text-gray-900"
-                        >Full Name</label
-                      >
-                      <input
-                        type="text"
-                        name="fullname"
-                        id="fullname"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-full p-2.5"
-                        placeholder="Enter your full name"
-                        required=""
-                      />
-                    </div>
-
-                    
                     <div>
                       <label
                         for="email"
@@ -69,7 +52,6 @@
                         required=""
                       />
                     </div>
-
                     <div>
                       <label
                         for="password"
@@ -85,19 +67,41 @@
                         required=""
                       />
                     </div>
-                  
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                          <input
+                            id="remember"
+                            aria-describedby="remember"
+                            type="checkbox"
+                            class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-[#ff3726] focus:border-[#ff3726]"
+                            required=""
+                          />
+                        </div>
+                        <div class="ml-3 text-sm">
+                          <label for="remember" class="text-gray-600"
+                            >Remember me</label
+                          >
+                        </div>
+                      </div>
+                      <a
+                        href="#"
+                        class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                        >Forgot password?</a
+                      >
+                    </div>
                     <button
                       type="submit"
                       class="w-64 text-white bg-[#FF3726] font-medium rounded-lg text-sm px-4 py-2 text-center my-6 md:my-4"
                     >
-                      Sign Up
+                      Sign In
                     </button>
                     <p class="text-sm font-light text-gray-600">
-                      Already have an account?
+                      Don’t have an account yet?
                       <a
-                        href="loginpage.html"
+                        href="signuppage.html"
                         class="font-medium text-primary-600 hover:underline text-[#FF3726]"
-                        >Sign In</a
+                        >Sign up</a
                       >
                     </p>
                   </form>
@@ -109,9 +113,8 @@
       </div>
     </section>
 
-    <script src="assets/js/main.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="script.js"></script>
+    <script src="../public/script.js"></script>
   </body>
 </html>
