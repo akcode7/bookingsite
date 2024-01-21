@@ -6,9 +6,9 @@
 
     <title>Hero Section with Image Slide</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="../src/output.css" rel="stylesheet">
+    <link href="src/output.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" />
+    <!-- <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" /> -->
     <script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
     <script src="https://unpkg.com/flowbite@1.4.3/dist/datepicker.js"></script>
 </head>
@@ -18,7 +18,7 @@
 <header class="text-gray-500 body-font hidden lg:block">
     <div class="container mx-auto flex flex-wrap flex-col md:flex-row items-center">
       <a href="index.php" class="flex title-font font-medium items-center text-gray-900 mb-4 ml-5 md:mb-0 align-middle">
-        <img src="../icon/logo.png"  class="w-56 z-10" alt="" srcset="">
+        <img src="src/icon/logo.png"  class="w-56 z-10" alt="" srcset="">
       </a>
       <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center z-10">
         <a href="index.php" class="mr-5 font-bold">Home</a>
@@ -36,7 +36,7 @@
 <div class="grid grid-cols-2">
 <div>
   <a href="index.php">
-    <img src="../icon/logo.png"  class="w-56 " alt="" srcset="">
+    <img src="src/icon/logo.png"  class="w-56 " alt="" srcset="">
   </a>
 </div>
 <div>
@@ -46,7 +46,7 @@
 <!-- header menu btn ends-->
 <div class="container  right-0 top-0 z-10 bg-black h-screen hidden mobile-menu w-10/12" style="position:fixed; overflow-y: scroll;">
 <div class="flex pl-10 mb-20">
-  <img src="assets/../images/LinQ_whitetxt.png" class="w-7/12 mt-5" alt="">
+  <img src="assets/src/images/LinQ_whitetxt.png" class="w-7/12 mt-5" alt="">
   <i class="fa fa-times text-white mt-10 right-10 absolute text-xl hover:text-red-500 mobile-menu-close-btn"></i>
 </div>
 <div class="mb-10 w-11/12 pl-6">
@@ -86,7 +86,7 @@
         <!-- Image Slider -->
         <div id="imageSlider" class="w-full h-screen">
             <div class="absolute w-full h-full opacity-50  bg-black"></div>
-            <img class="object-cover w-full h-full" src="../images/herobg1.jpg" alt="Image 1">
+            <img class="object-cover w-full h-full" src="src/images/herobg1.jpg" alt="Image 1">
         </div>
 <section class="block md:grid md:grid-cols-2 absolute inset-0 md:justify-around items-center text-white px-4">
         <!-- Hero Content -->
@@ -142,19 +142,19 @@
 <section class="md:grid grid-cols-3 justify-center py-12">
 
     <div class="col-span-1 text-center pt-10 px-10">
-        <img class=" mx-auto" src="../icon/caricon.png" alt="" srcset="">
+        <img class=" mx-auto" src="src/icon/caricon.png" alt="" srcset="">
         <h1 class="text-xl font-bold ">We offer lowest car price</h1>
         <p class="font-medium" >Find The best rental car We offer lowest car price</p>
     </div>
 
     <div class="col-span-1 text-center pt-10 px-10">
-        <img class=" mx-auto" src="../icon/caricon.png" alt="" srcset="">
+        <img class=" mx-auto" src="src/icon/caricon.png" alt="" srcset="">
         <h1 class="text-xl font-bold ">We offer lowest car price</h1>
         <p class="font-medium" >Find The best rental car We offer lowest car price</p>
     </div>
 
     <div class="col-span-1 text-center pt-10 px-10">
-        <img class=" mx-auto" src="../icon/caricon.png" alt="" srcset="">
+        <img class=" mx-auto" src="src/icon/caricon.png" alt="" srcset="">
         <h1 class="text-xl font-bold ">We offer lowest car price</h1>
         <p class="font-medium" >Find The best rental car We offer lowest car price</p>
     </div>
@@ -167,14 +167,14 @@
 
 
 <div class="text-center pt-10 hidden md:block">
-    <img class=" mx-auto w-1/2" src="../images/carimg.png" alt="" srcset="">
+    <img class=" mx-auto w-1/2" src="src/images/carimg.png" alt="" srcset="">
 </div>
 
-<div class="container mx-auto py-8 px-4 md:px-24 bg-center bg-no-repeat bg-[url('/../images/carbg2.jpg')]">
+<div class="container mx-auto py-8 px-4 md:px-24 bg-center bg-no-repeat bg-[url('/src/images/carbg2.jpg')]">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
     
       <div class="mb-4 md:mb-0">
-        <img src="../images/carimg2.png" alt="Image" class="w-9/12 h-auto">
+        <img src="src/images/carimg2.png" alt="Image" class="w-9/12 h-auto">
       </div>
   
       <div>
@@ -205,7 +205,7 @@
 
 <div class="col-span-1 w-full  mt-5 max-w-sm bg-white border border-gray-500 rounded-lg shadow">
     <a href="#">
-        <img class="p-3 rounded-t-lg" src="../images/carimg.png" alt="product image" />
+        <img class="p-3 rounded-t-lg" src="src/images/carimg.png" alt="product image" />
     </a>
     <hr class="w-11/12 h-[1px] mx-auto my-2 bg-gray-500 border-0 rounded ">
     <div class="px-5 pb-5">
@@ -281,7 +281,7 @@
 
 <div class="col-span-1 w-full mt-5 max-w-sm bg-white border border-gray-500 rounded-lg shadow">
     <a href="#">
-        <img class="p-3 rounded-t-lg" src="../images/carimg.png" alt="product image" />
+        <img class="p-3 rounded-t-lg" src="src/images/carimg.png" alt="product image" />
     </a>
     <hr class="w-11/12 h-[1px] mx-auto my-2 bg-gray-500 border-0 rounded ">
     <div class="px-5 pb-5">
@@ -357,7 +357,7 @@
 
 <div class="col-span-1 w-full mt-5 max-w-sm bg-white border border-gray-500 rounded-lg shadow">
     <a href="#">
-        <img class="p-3 rounded-t-lg" src="../images/carimg.png" alt="product image" />
+        <img class="p-3 rounded-t-lg" src="src/images/carimg.png" alt="product image" />
     </a>
     <hr class="w-11/12 h-[1px] mx-auto my-2 bg-gray-500 border-0 rounded ">
     <div class="px-5 pb-5">
@@ -442,25 +442,25 @@
     <div class="col-span-1 text-center pt-10 px-6">
         
         <h1 class="text-xl font-bold text-gray-700 hover:text-white rounded-t-lg bg-gray-200 mb-8 px-24 py-4 hover:bg-[#015A60]">Search</h1>
-        <img class=" mx-auto" src="../icon/searchicon.png" alt="" srcset="">
+        <img class=" mx-auto" src="src/icon/searchicon.png" alt="" srcset="">
     </div>
 
     <div class="col-span-1 text-center pt-10 px-6">
         
         <h1 class="text-xl font-bold text-gray-700 hover:text-white rounded-t-lg bg-gray-200 mb-8 px-24 py-4 hover:bg-[#015A60]">Select</h1>
-        <img class=" mx-auto" src="../icon/selecticon.png" alt="" srcset="">
+        <img class=" mx-auto" src="src/icon/selecticon.png" alt="" srcset="">
     </div>
 
     <div class="col-span-1 text-center pt-10 px-6">
         
         <h1 class="text-xl font-bold text-gray-700 hover:text-white rounded-t-lg bg-gray-200 mb-8 px-24 py-4 hover:bg-[#015A60]">Book</h1>
-        <img class=" mx-auto" src="../icon/bookicon.png" alt="" srcset="">
+        <img class=" mx-auto" src="src/icon/bookicon.png" alt="" srcset="">
     </div>
 
     <div class="col-span-1 text-center pt-10 px-6">
         
         <h1 class="text-xl font-bold text-gray-700 hover:text-white rounded-t-lg bg-gray-200 mb-4 px-24 py-4 hover:bg-[#015A60]">Drive</h1>
-        <img class=" mx-auto" src="../icon/driveicon.png" alt="" srcset="">
+        <img class=" mx-auto" src="src/icon/driveicon.png" alt="" srcset="">
     </div>
 
    
@@ -470,7 +470,7 @@
 
 
 
-<section class="mx-auto mt-12 py-8 px-4 md:px-24  bg-left-bottom bg-no-repeat bg-[url('/../images/carimgtest.jpg')]">
+<section class="mx-auto mt-12 py-8 px-4 md:px-24  bg-left-bottom bg-no-repeat bg-[url('/src/images/carimgtest.jpg')]">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
     
       <div>
@@ -482,7 +482,7 @@
       </div>
 
       <div class="mb-4 md:mb-0">
-        <img src="../images/carimg4.webp" alt="Image" class="w-full md:w-9/12 h-auto">
+        <img src="src/images/carimg4.webp" alt="Image" class="w-full md:w-9/12 h-auto">
       </div>
 
       
@@ -497,7 +497,7 @@
     <div class="container mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-6">
         <div class="p-0 md:p-6 md:col-span-2">
-            <img src="../icon/logo.png" alt="Logo" class="w-52">
+            <img src="src/icon/logo.png" alt="Logo" class="w-52">
             <p class="text-gray-300 font-medium pt-4">abccarcompany offers a complete drive solutions through our Managed website</p>
             <div class="flex gap-4 pt-7 pb-6">
             <i class="fa-brands fa-instagram text-gray-400 p-4 bg-gray-800 rounded-full hover:bg-teal-500 hover:text-white transition duration-700 ease-linear"></i>
@@ -547,6 +547,6 @@
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../public/script.js"></script>
+<script src="src/public/script.js"></script>
 </body>
 </html>

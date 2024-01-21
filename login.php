@@ -1,3 +1,36 @@
+
+<?php
+
+include 'src/config/db_connect.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+
+  $sql = "SELECT * FROM user WHERE email='$email'";
+  $result = mysqli_query($conn, $sql);
+  $num = mysqli_num_rows($result);
+
+  if ($num == 1) {
+      while ($row = mysqli_fetch_assoc($result)) {
+          if ($row['password'] === md5($password)) {
+              session_start();
+              $_SESSION['loggedin'] = true;
+              $_SESSION['username'] = $username;
+              $_SESSION['role'] = $row["role"];
+              header("location: index.php");
+          } else {
+              echo 'error';
+          }
+      }
+  } else {
+      echo "multiply username";
+  }
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,7 +42,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <link href="../src/output.css" rel="stylesheet">
+    <link href="src/output.css" rel="stylesheet">
   </head>
   <body>
     <section class="h-screen w-full flex flex-col">
@@ -18,7 +51,7 @@
           class="hidden sm:col-span-3 sm:block md:block bg-gray-200 lg:block xl:block 2xl:block"
         >
           <div class="flex items-center justify-center h-screen">
-            <img class="w-11/12" src="../images/signupbg.png" alt="" />
+            <img class="w-11/12" src="src/images/signupbg.png" alt="" />
           </div>
         </div>
 
@@ -36,7 +69,7 @@
                   >
                     Sign in to your account
                   </h1>
-                  <form class="space-y-4 md:space-y-6" action="#">
+                  <form class="space-y-4 md:space-y-6" action="" method="POST">
                     <div>
                       <label
                         for="email"

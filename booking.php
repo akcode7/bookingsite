@@ -6,8 +6,8 @@
 
     <title>Hero Section with Image Slide</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="../src/output.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" />
+    <link href="src/output.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" /> -->
     <script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
 <script src="https://unpkg.com/flowbite@1.4.3/dist/datepicker.js"></script>
 </head>
@@ -35,7 +35,7 @@
 <div class="grid grid-cols-2">
 <div>
   <a href="index.php">
-    <img src="../../icon/logo.png"  class="w-56 " alt="" srcset="">
+    <img src="src/icon/logo.png"  class="w-56 " alt="" srcset="">
   </a>
 </div>
 <div>
@@ -127,7 +127,7 @@
 
 <section class="mx-auto w-11/12 md:w-3/5 md:grid shadow-lg grid-cols-10 bg-white border border-gray-400 rounded-lg py-5 px-2">
     <div class="col-span-2">
-        <img src="../icon/suvcar.png" class="p-3" alt="">
+        <img src="src/icon/suvcar.png" class="p-3" alt="">
     </div>
 
     <div class="col-span-5 p-2">
@@ -163,7 +163,7 @@
   </li>
       </ul>
       <span class="flex py-2">
-        <img src="../icon/discounticon.png"/>
+        <img src="src/icon/discounticon.png"/>
         <h1 class="font-bold text-[#FF3726] py-2 pl-2">Cheapest Price Garanteed</h1>
       
   </span>
