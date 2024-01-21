@@ -7,6 +7,9 @@
     <title>Hero Section with Image Slide</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="../src/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" />
+    <script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
+<script src="https://unpkg.com/flowbite@1.4.3/dist/datepicker.js"></script>
 </head>
 <body class="bg-[#EEF4FD]">
 
@@ -74,39 +77,48 @@
 </div>
 <!-- mobile header ends -->
 <!-- header ends -->
-<section class=" px-5 md:px-8 2xl:px-36 py-7 bg-[#FF3726] mx-auto">
-<section class="md:flex  mx-auto">
-  <div class="mx-auto">
-    <h1 class="font-medium pb-3 text-md text-white">Trip Type</h1>
-    <input class="p-1 w-48 rounded-lg" type="text">
+<section class=" px-8 md:px-8 2xl:px-36 py-7 bg-[#FF3726] mx-auto">
+  <form action="">
+<section class="md:flex  mx-auto justify-center items-center">
+<div class="mx-auto">
+<label for="trip" class="block font-medium pb-3 text-md text-white  text-sm  ">Trip Type</label>
+<select id="triptype" class="bg-white font-semibold border  text-gray-900 text-sm rounded-lg  block w-52 px-4 py-2 ">
+  <option selected>One way trip</option>
+  <option value="Roundtrip">Round Trip</option>
+</select>
   </div>
 
   <div class=" mx-auto">
     <h1 class="font-medium pb-3 text-md text-white">PickUp Location</h1>
-    <input class="p-1 w-52 rounded-lg" type="text">
+    <input class="px-4 py-1.5  w-52 rounded-lg" type="text">
   </div>
 
   <div class=" mx-auto">
     <h1 class="font-medium pb-3 text-md text-white">Drop Off Location</h1>
-    <input class="p-1 w-52 rounded-lg" type="text">
+    <input class="px-4 py-1.5  w-52 rounded-lg" type="text">
   </div>
 
   <div class=" mx-auto">
     <h1 class="font-medium pb-3 text-md text-white">Pick Up date</h1>
-    <input class="p-1 w-36 rounded-lg" type="text">
+    
+    <div class="relative">
+      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <svg class="w-5 h-5 text-black " fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+        </svg>
+      </div>
+      <input datepicker="" type="text" class="bg-white border  text-gray-900 sm:text-sm rounded-lg  block w-52 pl-10 px-4 py-2  datepicker-input" placeholder="Select date">
+    </div>
   </div>
 
   
-  <div class=" mx-auto">
-    <h1 class="font-medium pb-3 text-md text-white">Pick Up time</h1>
-    <input class="p-1 w-36 rounded-lg" type="text">
-  </div>
 
   <div class=" mx-auto ">
     <h1 class="font-medium pb-2 text-md text-white">Update</h1>
     <button type="submit" class="bg-white text-[#FF3726] font-medium rounded-lg text-sm px-12 py-2 text-center  ">Search</button>
   </div>
 </section>
+</form>
 </section>
 
 <!-- booking detail card 1 starts -->

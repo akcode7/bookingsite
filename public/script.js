@@ -25,6 +25,8 @@ function toggledropdown2(){
    dropdown.classList.toggle('hidden');
 };
 
+
+
 // dropdowntoggle checkout
 // document.addEventListener('DOMContentLoaded', function () {
 
