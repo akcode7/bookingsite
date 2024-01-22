@@ -9,7 +9,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <link href="../src/output.css" rel="stylesheet">
+    <link href="src/css/output.css" rel="stylesheet">
   </head>
   <body>
     <section class="h-screen w-full flex flex-col">
@@ -18,7 +18,7 @@
           class="hidden sm:col-span-3 sm:block md:block bg-gray-200 lg:block xl:block 2xl:block"
         >
           <div class="flex items-center justify-center h-screen">
-            <img class="w-11/12" src="../images/signupbg.png" alt="" />
+            <img class="w-11/12" src="src/images/signupbg.png" alt="" />
           </div>
         </div>
 

@@ -6,10 +6,9 @@
 
     <title>Hero Section with Image Slide</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="src/output.css" rel="stylesheet">
+    <link href="src/css/output.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" /> -->
-    <script src="https://unpkg.com/flowbite@1.4.3/dist/flowbite.js"></script>
-<script src="https://unpkg.com/flowbite@1.4.3/dist/datepicker.js"></script>
+ 
 </head>
 <body class="bg-[#EEF4FD]">
 
@@ -17,7 +16,7 @@
 <header class="text-gray-500 body-font hidden lg:block bg-white">
     <div class="container mx-auto flex flex-wrap flex-col md:flex-row items-center">
       <a href="index.php" class="flex title-font font-medium items-center text-gray-900 mb-4 ml-5 md:mb-0 align-middle">
-        <img src="../../icon/logo.png"  class="w-56 z-10" alt="" srcset="">
+        <img src="src/icon/logo.png"  class="w-56 z-10" alt="" srcset="">
       </a>
       <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center z-10">
         <a href="index.php" class="mr-5 font-bold">Home</a>
@@ -101,13 +100,9 @@
   <div class=" mx-auto">
     <h1 class="font-medium pb-3 text-md text-white">Pick Up date</h1>
     
-    <div class="relative">
-      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-        <svg class="w-5 h-5 text-black " fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
-        </svg>
-      </div>
-      <input datepicker="" type="text" class="bg-white border  text-gray-900 sm:text-sm rounded-lg  block w-52 pl-10 px-4 py-2  datepicker-input" placeholder="Select date">
+    <div >
+     
+      <input type="date" class="bg-white border  text-gray-900 sm:text-sm rounded-lg  block w-52 pl-10 px-4 py-2  datepicker-input" placeholder="Select date">
     </div>
   </div>
 
@@ -188,7 +183,7 @@
 
   <section class="mx-auto w-11/12 md:w-3/5 md:grid grid-cols-10 bg-white border shadow-lg border-gray-400 rounded-lg py-5 px-2">
       <div class="col-span-2">
-          <img src="../icon/suvcar.png" class="p-3" alt="">
+          <img src="src/icon/suvcar.png" class="p-3" alt="">
       </div>
   
       <div class="col-span-5 p-2">
@@ -301,7 +296,7 @@
   
     
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="../public/script.js"></script>
+        <script src="public/script.js"></script>
 </body>
 </html>
     
