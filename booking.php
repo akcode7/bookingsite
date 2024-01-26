@@ -120,119 +120,84 @@
 
 <section class="mx-auto my-7">
 
-<section class="mx-auto w-11/12 md:w-3/5 md:grid shadow-lg grid-cols-10 bg-white border border-gray-400 rounded-lg py-5 px-2">
-    <div class="col-span-2">
-        <img src="src/icon/suvcar.png" class="p-3" alt="">
-    </div>
+<?php
+include 'src/config/db_connect.php';
 
-    <div class="col-span-5 p-2">
-      <h1 class="text-xl font-bold">
-        Innova <!-- car name -->
-      </h1>
+$query = "SELECT * FROM `carlist`";
+$result = mysqli_query($conn, $query); // Assuming you have a database connection stored in $your_db_connection
 
-      <ul class="list-disc md:flex gap-8 pt-2 pl-6 md:pl-0">
-        <li class="md:list-none">Hatch Back</li>
-        <li>AC</li>
-        <li>4 Seats</li> 
-      </ul>
+while ($row = mysqli_fetch_assoc($result)) {
 
-      <h1 class="text-xl font-bold pt-2">
-       Lucknow to Kanpur
-      </h1>
-      <span>1h 28min </span>
-    
-      <ul class="pt-2 border-dashed border-b-2 border-gray-400">
-       
-        <li class="flex items-center">
-          <svg class="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
-           </svg>
-           138 kms included. After that ₹23.0/km
-      </li>
+?>
 
-    <li class="flex items-center pb-2">
-      <svg class="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
-       </svg>
-       Cancellation Free till 6 hours of departure
-  </li>
-      </ul>
-      <span class="flex py-2">
-        <img src="src/icon/discounticon.png"/>
-        <h1 class="font-bold text-[#FF3726] py-2 pl-2">Cheapest Price Garanteed</h1>
-      
-  </span>
-
-    </div>
-
-    <div class=" col-span-3 mx-auto p-3">
-      <h1 class="font-bold text-4xl pb-3">Rs 1200</h1>
-      <button type="submit" class="text-white bg-[#FF3726] font-medium rounded-lg text-sm px-8 py-2 text-center  ">Book Now</button>
-    </div>
-  
-    </div>
-</section>
-
-</section>
-
-<!-- booking detail card 1 ends -->
-
-<!-- booking detail card 2 starts -->
-
-<section class="mx-auto my-7 ">
-
-  <section class="mx-auto w-11/12 md:w-3/5 md:grid grid-cols-10 bg-white border shadow-lg border-gray-400 rounded-lg py-5 px-2">
+  <section class="mx-auto w-11/12 md:w-3/5 md:grid shadow-lg grid-cols-10 bg-white border border-gray-400 rounded-lg py-5 px-2">
       <div class="col-span-2">
           <img src="src/icon/suvcar.png" class="p-3" alt="">
       </div>
-  
-      <div class="col-span-5 p-2">
+
+      <div class="col-span-5 p-6">
         <h1 class="text-xl font-bold">
-          Innova <!-- car name -->
+          <?php echo $row['car_name']?>
         </h1>
-  
-        <ul class="list-disc md:flex gap-8 pt-2 pl-6 md:pl-0">
-          <li class="md:list-none">Hatch Back</li>
-          <li>AC</li>
-          <li>4 Seats</li> 
+        <div class="pl-5">
+        <ul class="list-disc md:flex gap-8 pt-2 pl-4 md:pl-0">
+          <li>
+            <?php echo $row['car_ac']?> 
+          </li>
+
+          <li>
+            <?php echo $row['car_seat']?>&nbsp; Seats
+          </li> 
         </ul>
-  
-        <h1 class="text-xl font-bold pt-2">
-         Lucknow to Kanpur
+        </div>
+
+        <h1 class="text-md font-semibold pt-2">
+          <?php echo $row['car_pickup']?> <i class="fa fa-arrow-right" aria-hidden="true"></i> <?php echo $row['car_dropoff']?>
         </h1>
-        <span>1h 28min </span>
+        <span>
+          <?php echo $row['car_trtime']?>
+        </span>
       
         <ul class="pt-2 border-dashed border-b-2 border-gray-400">
-         
+        
           <li class="flex items-center">
             <svg class="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
-             </svg>
-             138 kms included. After that ₹23.0/km
+            </svg>
+            <?php echo $row['car_trdistance']?> kms included. After that <?php echo $row['car_extcharges']?>Rs/km
         </li>
-  
+
       <li class="flex items-center pb-2">
         <svg class="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
             <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
-         </svg>
-         Cancellation Free till 6 hours of departure
+        </svg>
+        Cancellation Free till <?php echo $row['car_cancletime']?> hours of departure
     </li>
         </ul>
         <span class="flex py-2">
-          <img src="../icon/discounticon.png"/>
+          <img src="src/icon/discounticon.png"/>
           <h1 class="font-bold text-[#FF3726] py-2 pl-2">Cheapest Price Garanteed</h1>
         
     </span>
-  
+
       </div>
-  
+
       <div class=" col-span-3 mx-auto p-3">
-        <h1 class="font-bold text-4xl pb-3">Rs 1200</h1>
+        <h1 class="font-bold text-4xl pb-3">Rs <?php echo $row['car_amount']?></h1>
         <button type="submit" class="text-white bg-[#FF3726] font-medium rounded-lg text-sm px-8 py-2 text-center  ">Book Now</button>
       </div>
     
       </div>
   </section>
+  <?php
+  }
+  ?>
+
+  </section>
+
+<!-- booking detail card 1 ends -->
+
+<!-- booking detail card 2 starts -->
   
   </section>
 <!-- booking detail card 2 ends -->

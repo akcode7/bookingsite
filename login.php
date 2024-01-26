@@ -16,8 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           if ($row['password'] === md5($password)) {
               session_start();
               $_SESSION['loggedin'] = true;
-              $_SESSION['username'] = $username;
-              $_SESSION['role'] = $row["role"];
+              $_SESSION['email'] = $email;
+             
               header("location: index.php");
           } else {
               echo 'error';

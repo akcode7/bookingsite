@@ -1,4 +1,61 @@
 
+<?php include '../../src/config/db_connect.php';
+
+
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+
+// Process form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+   
+    // Get input data
+    $carname =  $_POST['car_name']; 
+    $carac =  $_POST['car_ac']; 
+    $carseat =  $_POST['car_seat'];
+    $carpickup =  $_POST['car_pickup'];
+    $cardropoff = $_POST['car_dropoff'];
+    $cartrdistance = $_POST['car_trdistance'];
+    $cartrtime = $_POST['car_trtime'];
+    $carexcharge = $_POST['car_extcharge'];
+    $carcancle = $_POST['car_cancel'];
+    $caramount = $_POST['car_amount'];
+    
+  
+
+    // Get the current Indian time
+    $indianTime = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
+    $currentIndianTime = $indianTime->format('Y-m-d H:i:s');
+
+
+    $sql = "INSERT INTO `carlist` (`car_name`, `car_ac`, `car_seat`, `car_pickup`, `car_dropoff`, `car_trdistance`, `car_trtime`, `car_extcharges`, `car_cancletime`, `car_amount`, `car_booktime`) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+    $stmt = $conn->prepare($sql);
+
+    // Bind parameters
+    $stmt->bind_param("ssissssssss", $carname, $carac, $carseat, $carpickup, $cardropoff, $cartrdistance, $cartrtime, $carexcharge, $carcancle, $caramount, $currentIndianTime);
+
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+         // Update the alert message
+        //  $successAlert = str_replace('id="success_msg"></div>', 'id="success_msg">Post added successfully.</div>', $successAlert);
+        // echo $successAlert;
+        echo "inserte succss";
+    } else {
+        // $errorAlert = str_replace('id="error_msg"></div>', 'id="error_msg">Post not added.</div>', $errorAlert);
+        // echo $errorAlert;
+        echo "error";
+    }
+
+    $stmt->close();
+
+}
+
+//connection closed
+$conn->close();
+
+
+?>
 
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
@@ -826,58 +883,70 @@
             <h4 class="mb-4 mt-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
              Add cab booking listing
             </h4>
-            <form action="">
+            <form action="" method="post">
             <div class="px-4 py-3 mb-8 bg-gray-800 rounded-lg shadow-md">
               <label class="block text-sm">
                 <span class="text-white font-bold">Car Company name</span>
-                <input
+                <input name="car_name"
                   class="block w-full mt-2 py-2 px-4 text-sm   focus:outline-none focus:shadow-outline-purple"
                   placeholder="car brand eg. Innova"/>
               </label>
 
               <div class="mt-4 text-sm">
-                <span class="text-gray-700 dark:text-gray-400">
-                  Cab feature
+                <span class="text-white font-bold my-2">
+                  have AC?
                 </span>
-                <div class="flex items-center mb-1">
-                  <input id="checked-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                  <label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">AC</label>
-                </div>
-                <div class="flex items-center  mb-1.5">
-                  <input checked id="checked-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                  <label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">4 seats</label>
-                </div>
-                <div class="flex items-center  mb-1.5">
-                  <input checked id="checked-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                  <label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">6 seats</label>
-                </div>
-                <div class="flex items-center  mb-1.5">
-                  <input checked id="checked-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                  <label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">8 seats</label>
-                </div>
-                <div class="flex items-center  mb-2">
-                  <input checked id="checked-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                  <label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">12 seats</label>
-                </div>
+                <div class="flex items-center my-2">
+                <input name="car_ac" id="ac-yes" type="radio" value="yes" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="yes" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Yes</label>
+              </div>
+              <div class="flex items-center my-2">
+                <input name="car_ac" id="ac-no" type="radio" value="no" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="no" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">No</label>
+              </div>
+
+                <span class="text-white font-bold my-2 ">
+                  Total Seats in Cab?
+                </span>
+                <div class="flex items-center my-2">
+                <input name="car_seat" id="4-seats" type="radio" value="4" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="4-seats" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">4 seats</label>
+              </div>
+
+              <div class="flex items-center mb-1.5">
+                <input name="car_seat" id="6-seats" type="radio" value="6" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="6-seats" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">6 seats</label>
+              </div>
+
+              <div class="flex items-center mb-1.5">
+                <input name="car_seat" id="8-seats" type="radio" value="8" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="8-seats" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">8 seats</label>
+              </div>
+
+              <div class="flex items-center mb-2">
+                <input name="car_seat" id="12-seats" type="radio" value="12" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="12-seats" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">12 seats</label>
+              </div>
+
               </div>
 
               
            <label class="block text-sm mb-3">
                 <span class="text-white font-bold">Pick-up address</span>
-                <input type="text"
+                <input type="text" name="car_pickup"
                   class="block w-full mt-2 py-2 px-4 text-sm   focus:outline-none focus:shadow-outline-purple"
                   placeholder="Pick Up address"/>
               </label>
 
               <label class="block text-sm mb-3">
                 <span class="text-white font-bold">Drop off address</span>
-                <input type="text"
+                <input type="text" name="car_dropoff"
                   class="block w-full mt-2 py-2 px-4 text-sm   focus:outline-none focus:shadow-outline-purple"
                   placeholder="Drop off address"/>
               </label>
               <label class="block text-sm mb-3">
                 <span class="text-white font-bold">Total Distance</span>
-                <input type="number" class="block w-60 mt-2 py-2 px-4 text-sm   focus:outline-none focus:shadow-outline-purple"
+                <input name="car_trdistance" type="text" class="block w-60 mt-2 py-2 px-4 text-sm   focus:outline-none focus:shadow-outline-purple"
                   placeholder="Enter distance in Kilometers"/>
               </label>
 
@@ -885,33 +954,37 @@
 
               <label class="block text-sm mb-3">
                 <span class="text-white font-bold">Total travelling Time</span>
-                <input type="number" class="block w-60 mt-2 py-2 px-4 text-sm   focus:outline-none focus:shadow-outline-purple"
+                <input type="number" name="car_trtime" class="block w-60 mt-2 py-2 px-4 text-sm   focus:outline-none focus:shadow-outline-purple"
                   placeholder="Enter time in Hours"/>
-                  <input type="number" class="block w-60 mt-2 py-2 px-4 text-sm   focus:outline-none focus:shadow-outline-purple"
-                  placeholder="Enter time in minutes"/>
+                 
               </label>
               <label class="block text-sm mb-3">
                 <span class="text-white font-bold">Enter extra charge cost after booking distance Rs/Km</span>
-                <input type="number" class="block w-60 mt-2 py-2 px-4 text-sm   focus:outline-none focus:shadow-outline-purple"
+                <input name="car_extcharge" type="text" class="block w-60 mt-2 py-2 px-4 text-sm   focus:outline-none focus:shadow-outline-purple"
                   placeholder="Enter extra charge eg. 23Rs/km"/>
               </label>
 
               <label class="block text-sm mb-3">
                 <span class="text-white font-bold">Cancellation Free till</span>
-                <input type="number" class="block w-60 mt-2 py-2 px-4 text-sm   focus:outline-none focus:shadow-outline-purple"
+                <input type="text" name="car_cancel" class="block w-60 mt-2 py-2 px-4 text-sm   focus:outline-none focus:shadow-outline-purple"
                   placeholder=" eg. 6 hours of departure"/>
               </label>
 
               <label class="block text-sm mb-3">
                 <span class="text-white font-bold">Enter Booking Price in Rs.</span>
-                <input type="number" class="block w-60 mt-2 py-2 px-4 text-sm   focus:outline-none focus:shadow-outline-purple"
+                <input type="text" name="car_amount" class="block w-60 mt-2 py-2 px-4 text-sm   focus:outline-none focus:shadow-outline-purple"
                   placeholder="Booking amount in Rs"/>
               </label>
          
             
             </div>
 
-         
+            <button
+                      type="submit"
+                      class="w-64 text-white bg-[#FF3726] font-medium rounded-lg text-sm px-4 py-2 text-center my-6 md:my-4"
+                    >
+                      Sign In
+                    </button>
        
 
            

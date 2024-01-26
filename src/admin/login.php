@@ -1,4 +1,5 @@
-<?php include 'public/config/db_connect.php' ;?>
+<?php include '../../src/config/db_connect.php';?>
+
 
 <?php 
 
