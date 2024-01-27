@@ -17,7 +17,7 @@
         
         <div class="border border-black h-screen w-1/2 p-6 ">    
         <div class="flex justify-between items-center content-center">
-            <img src="../../icon/logo.png" class="w-40 h-20" alt="" srcset="">
+            <img src="../src/icon/logo.png" class="w-40 h-20" alt="" srcset="">
             <h1 class="py-1 font-bold text-lg text-center ">Electronic Booking slip</h1>
         </div>
         <hr class="bg-black h-[1.5px] ">

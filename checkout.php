@@ -1,3 +1,59 @@
+<?php include 'src/config/db_connect.php';
+
+
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+
+// Process form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+   
+    // Get input data
+    $pickupadd =  $_POST['pickup_add']; 
+    $dropoffadd =  $_POST['dropoff_add']; 
+    $fullname =  $_POST['full_name'];
+    $email =  $_POST['email_add'];
+    $gender = $_POST['gen_der'];
+    $phonenumber = $_POST['phone_number'];
+   
+    
+  
+
+    // Get the current Indian time
+    $indianTime = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
+    $currentIndianTime = $indianTime->format('Y-m-d H:i:s');
+
+
+    $sql = "INSERT INTO `bookingdetail` (`pickup_add`, `dropoff_add`, `full_name`, `email_id`, `gender`, `phone_number`, `book_time`) VALUES (?,?,?,?,?,?,?);";
+    $stmt = $conn->prepare($sql);
+
+    // Bind parameters
+    $stmt->bind_param("sssssis", $pickupadd, $dropoffadd, $fullname, $email, $gender, $phonenumber, $currentIndianTime);
+
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+         // Update the alert message
+        //  $successAlert = str_replace('id="success_msg"></div>', 'id="success_msg">Post added successfully.</div>', $successAlert);
+        // echo $successAlert;
+        echo "inserte succss";
+    } else {
+        // $errorAlert = str_replace('id="error_msg"></div>', 'id="error_msg">Post not added.</div>', $errorAlert);
+        // echo $errorAlert;
+        echo "error";
+    }
+
+    $stmt->close();
+
+}
+
+//connection closed
+$conn->close();
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,7 +73,7 @@
 <header class="text-gray-500 body-font hidden lg:block">
   <div class="container mx-auto flex flex-wrap flex-col md:flex-row items-center">
     <a href="index.php" class="flex title-font font-medium items-center text-gray-900 mb-4 ml-5 md:mb-0 align-middle">
-      <img src="../icon/logo.png"  class="w-56 z-10" alt="" srcset="">
+      <img src="src/icon/logo.png"  class="w-56 z-10" alt="" srcset="">
     </a>
     <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center z-10">
       <a href="index.php" class="mr-5 font-bold">Home</a>
@@ -35,7 +91,7 @@
 <div class="grid grid-cols-2">
 <div>
 <a href="index.php">
-  <img src="../icon/logo.png"  class="w-56 " alt="" srcset="">
+  <img src="src/icon/logo.png"  class="w-56 " alt="" srcset="">
 </a>
 </div>
 <div>
@@ -87,7 +143,7 @@
 
     <div class="mx-auto w-11/12  md:grid shadow-lg grid-cols-10 bg-white border border-gray-400 rounded-lg py-5 px-2">
         <div class="col-span-2 px-2">
-            <img src="../icon/suvcar.png" class="rounded-lg w-11/12" alt="">
+            <img src="src/icon/suvcar.png" class="rounded-lg w-11/12" alt="">
         </div>
     
         <div class="col-span-5 p-2">
@@ -123,7 +179,7 @@
       </li>
           </ul>
           <span class="flex py-2">
-            <img src="../icon/discounticon.png"/>
+            <img src="src/icon/discounticon.png"/>
             <h1 class="font-bold text-[#FF3726] py-2 pl-2">Cheapest Price Garanteed</h1>
           
       </span>
@@ -243,17 +299,18 @@
 
 
   <div id="dropdown" class="mx-auto w-11/12 bg-white border border-gray-400 rounded-lg py-5 px-6 mt-1 hidden">
-    <form action="">
+    <form action="" method="post">
       <div>
         <label
-          for="email"
+          for="text"
+         
           class="block mb-2 text-sm font-medium text-gray-900 py-2"
           >Pick-up Address</label
         >
         <input
-          type="email"
-          name="email"
-          id="email"
+          type="text"
+          name="pickup_add"
+          id="pick_up"
           class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-full p-2.5"
           placeholder="Your exact pick-up address"
           required=""
@@ -261,20 +318,20 @@
       </div>
       <div>
         <label
-          for="email"
+          for="text"
           class="block mb-2 text-sm font-medium text-gray-900 py-2"
           >Drop-off location</label
         >
         <input
-          type="email"
-          name="email"
-          id="email"
+          type="text"
+          name="dropoff_add"
+          id="drop_off"
           class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-full p-2.5"
           placeholder="Your exact drop-off location"
           required=""
         />
       </div>
-    </form>
+   
 </div>
 </div>
 
@@ -285,15 +342,15 @@
   <div class="mx-auto w-11/12 shadow-lg bg-white border border-gray-400 rounded-lg py-5 px-5">
     <h1 class="text-xl font-semibold py-2">Enter Traveller Details</h1>
     
-    <form action="">
+   
       <div class="flex ">
       <div class="pb-2 mx-2">
         <label for="text" class="block  mb-2 text-sm font-medium text-gray-900" >Your Full Name</label>
-        <input type="text" name="fullname" id="fullname" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-80 p-2.5"  placeholder="Enter Full Name"   required=""/>
+        <input type="text" name="full_name" id="fullname" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-80 p-2.5"  placeholder="Enter Full Name"   required=""/>
       </div>
       <div class="pb-2 mx-2">
         <label for="email" class="block mb-2 text-sm font-medium text-gray-900" >Email Id <span class="font-normal">(Confirmation email will be sent here)</span></label> 
-        <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-80 p-2.5" placeholder="Enter email ID"  required="" />
+        <input type="email" name="email_add" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-80 p-2.5" placeholder="Enter email ID"  required="" />
       </div>
     </div>
 
@@ -302,26 +359,26 @@
     </div>
     <div class="flex pt-2">
       <div class="flex items-center me-4  mx-2">
-        <input id="inline-radio" type="radio" value="" name="inline-radio-group" class="w-4 outline-none h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+        <input id="inline-radio" type="radio" value="male" name="gen_der" class="w-4 outline-none h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
         <label for="inline-radio" class="ms-2 text-sm font-medium text-gray-900 ">Male</label>
     </div>
     <div class="flex items-center me-4 mx-2">
-        <input id="inline-2-radio" type="radio" value="" name="inline-radio-group" class="w-4 outline-none h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+        <input id="inline-2-radio" type="radio" value="female" name="gen_der" class="w-4 outline-none h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
         <label for="inline-2-radio" class="ms-2 text-sm font-medium text-gray-900 ">Female</label>
     </div>
     <div class="flex items-center me-4 mx-2">
-        <input checked id="inline-checked-radio" type="radio" value="" name="inline-radio-group" class="w-4 outline-none h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+        <input checked id="inline-checked-radio" type="radio" value="other" name="gen_der" class="w-4 outline-none h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
         <label for="inline-checked-radio" class="ms-2 text-sm font-medium text-gray-900 ">Other</label>
     </div>
     
     </div>
 
     <div class="py-5 mx-2 ">
-      <label for="number" class="block mb-2 text-sm font-medium text-gray-900" >Phone Number<span class="font-normal">(We will contact you on this number)</span></label> 
+      <label for="number"  class="block mb-2 text-sm font-medium text-gray-900" >Phone Number<span class="font-normal">(We will contact you on this number)</span></label> 
       
-      <input pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==12) return false;" type="number" name="number" id="phnumber" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-80 p-2.5" maxlength="12" placeholder="Enter Phone number"  required="" />
+      <input pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==12) return false;" type="number" name="phone_number" id="phnumber" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-80 p-2.5" maxlength="12" placeholder="Enter Phone number"  required="" />
     </div>
-    </form>
+   
   </div>
 
 </div>
@@ -393,7 +450,7 @@
                     </div>
                   </div>
                  
-                  <form class="space-y-4 md:space-y-6" action="#">
+                  
                     <div class="justify-center flex">
 
                       <button
@@ -417,6 +474,6 @@
  
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../public/script.js"></script>
+    <script src="public/script.js"></script>
   </body>
 </html>
