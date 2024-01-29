@@ -818,7 +818,7 @@
   <?php
 include '../../src/config/db_connect.php';
 
-$query = "SELECT * FROM `carlist`";
+$query = "SELECT * FROM `bookingdetail`";
 $result = mysqli_query($conn, $query); // Assuming you have a database connection stored in $your_db_connection
 
 while ($row = mysqli_fetch_assoc($result)) {
@@ -844,10 +844,10 @@ while ($row = mysqli_fetch_assoc($result)) {
            Total ride distance: <span class="font-bold">138 Km</span>
         </h1>
     <h1 class="text-md font-semibold pt-2">
-          Pick up: <span class="font-bold">529/1090 shivani vihar kalyanpur</span>
+          Pick up: <span class="font-bold"><?php echo $row['pickup_add']?></span>
         </h1>
         <h1 class="text-md font-semibold pt-2">
-          Dropoff: <span class="font-bold">529/1090 shivani vihar kalyanpur</span>
+          Dropoff: <span class="font-bold"><?php echo $row['dropoff_add']?></span>
         </h1>
    
 </div>
