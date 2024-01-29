@@ -1,62 +1,3 @@
-
-<?php include '../../src/config/db_connect.php';
-
-
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
-
-// Process form submission
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-   
-    // Get input data
-    $carname =  $_POST['car_name']; 
-    $carac =  $_POST['car_ac']; 
-    $carseat =  $_POST['car_seat'];
-    $carpickup =  $_POST['car_pickup'];
-    $cardropoff = $_POST['car_dropoff'];
-    $cartrdistance = $_POST['car_trdistance'];
-    $cartrtime = $_POST['car_trtime'];
-    $carexcharge = $_POST['car_extcharge'];
-    $carcancle = $_POST['car_cancel'];
-    $caramount = $_POST['car_amount'];
-    
-  
-
-    // Get the current Indian time
-    $indianTime = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
-    $currentIndianTime = $indianTime->format('Y-m-d H:i:s');
-
-
-    $sql = "INSERT INTO `carlist` (`car_name`, `car_ac`, `car_seat`, `car_pickup`, `car_dropoff`, `car_trdistance`, `car_trtime`, `car_extcharges`, `car_cancletime`, `car_amount`, `car_booktime`) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
-    $stmt = $conn->prepare($sql);
-
-    // Bind parameters
-    $stmt->bind_param("ssissssssss", $carname, $carac, $carseat, $carpickup, $cardropoff, $cartrdistance, $cartrtime, $carexcharge, $carcancle, $caramount, $currentIndianTime);
-
-    $stmt->execute();
-
-    if ($stmt->affected_rows > 0) {
-         // Update the alert message
-        //  $successAlert = str_replace('id="success_msg"></div>', 'id="success_msg">Post added successfully.</div>', $successAlert);
-        // echo $successAlert;
-        echo "inserte succss";
-    } else {
-        // $errorAlert = str_replace('id="error_msg"></div>', 'id="error_msg">Post not added.</div>', $errorAlert);
-        // echo $errorAlert;
-        echo "error";
-    }
-
-    $stmt->close();
-
-}
-
-//connection closed
-$conn->close();
-
-
-?>
-
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
   <head>
@@ -83,7 +24,7 @@ $conn->close();
     >
       <!-- Desktop sidebar -->
       <aside
-        class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0"
+        class="z-20 hidden w-64 h-screen fixed  bg-white dark:bg-gray-800 md:block flex-shrink-0"
       >
         <div class="py-4 text-gray-500 dark:text-gray-400">
           <a href="#">
@@ -616,7 +557,7 @@ $conn->close();
         </div>
       </aside>
       <div class="flex flex-col flex-1">
-        <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
+        <header class="z-10 py-4 w-full fixed bg-gray-800 shadow-md ">
           <div
             class="container flex items-center justify-between h-full px-6 mx-auto text-purple-600 dark:text-purple-300"
           >
@@ -873,8 +814,19 @@ $conn->close();
             </ul>
           </div>
         </header>
-        <main class="h-full pb-16 overflow-y-auto bg-white">
-          <div class="container px-6 my-16 mx-auto flex justify-center items-center">
+  <section class="h-full bg-white py-32">
+  <?php
+include '../../src/config/db_connect.php';
+
+$query = "SELECT * FROM `carlist`";
+$result = mysqli_query($conn, $query); // Assuming you have a database connection stored in $your_db_connection
+
+while ($row = mysqli_fetch_assoc($result)) {
+
+?>
+
+        <main class=" py-2 my-2 mx-auto">
+          <div class="container px-6 my-2 mx-auto flex justify-center items-center">
            
            
         
@@ -889,13 +841,13 @@ $conn->close();
           Car Name : <span class="font-bold">Innova</span>
         </h1>
     <h1 class="text-md font-semibold pt-2">
-          138 Km
+           Total ride distance: <span class="font-bold">138 Km</span>
         </h1>
     <h1 class="text-md font-semibold pt-2">
-          Pick up: <span>529/1090 shivani vihar kalyanpur</span>
+          Pick up: <span class="font-bold">529/1090 shivani vihar kalyanpur</span>
         </h1>
         <h1 class="text-md font-semibold pt-2">
-          Dropoff: <span>529/1090 shivani vihar kalyanpur</span>
+          Dropoff: <span class="font-bold">529/1090 shivani vihar kalyanpur</span>
         </h1>
    
 </div>
@@ -903,6 +855,10 @@ $conn->close();
 
           </div>
         </main>
+<?php
+  }
+?>
+        </section>
       </div>
     </div>
   </body>
