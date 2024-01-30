@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare($sql);
 
     // Bind parameters
-    $stmt->bind_param("sssssis", $pickupadd, $dropoffadd, $fullname, $email, $gender, $phonenumber, $currentIndianTime);
+    $stmt->bind_param("sssssss", $pickupadd, $dropoffadd, $fullname, $email, $gender, $phonenumber, $currentIndianTime);
 
     $stmt->execute();
 

@@ -17,7 +17,7 @@
       <aside class="z-20 flex-shrink-0 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block">
         <div class="py-4 text-gray-500 dark:text-gray-400">
           <a href="#">
-            <img src="public/logo/LRE-04.png" alt="" class="w-40 pl-5">
+            <img src="../icon/logo.png" alt="" class="w-40 pl-5">
           </a>
           <ul class="mt-6">
             <li class="relative px-6 py-3">
@@ -176,7 +176,7 @@
         @keydown.escape="closeSideMenu">
         <div class="py-4 text-gray-500 dark:text-gray-400">
           <a href="#">
-            <img src="public/logo/LRE-04.png" alt="" class="w-40 pl-5">
+            <img src="../icon/logo.png" alt="" class="w-40 pl-5">
           </a>
           <ul class="mt-6">
             <li class="relative px-6 py-3">

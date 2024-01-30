@@ -86,7 +86,7 @@ $conn->close();
       >
         <div class="py-4 text-gray-500 dark:text-gray-400">
           <a href="#">
-            <img src="public/logo/LRE-04.png" alt="" class="w-40 pl-5">
+            <img src="../icon/logo.png" alt="" class="w-40 pl-5">
           </a>
           <ul class="mt-6">
             <li class="relative px-6 py-3">
@@ -364,7 +364,7 @@ $conn->close();
       >
         <div class="py-4 text-gray-500 dark:text-gray-400">
           <a href="#">
-            <img src="public/logo/LRE-04.png" alt="" class="w-40 pl-5">
+            <img src="../icon/logo.png" alt="" class="w-40 pl-5">
           </a>
           <ul class="mt-6">
             <li class="relative px-6 py-3">
@@ -897,11 +897,11 @@ $conn->close();
                   have AC?
                 </span>
                 <div class="flex items-center my-2">
-                <input name="car_ac" id="ac-yes" type="radio" value="yes" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <input name="car_ac" id="ac-yes" type="radio" value="Ac" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                 <label for="yes" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Yes</label>
               </div>
               <div class="flex items-center my-2">
-                <input name="car_ac" id="ac-no" type="radio" value="no" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <input name="car_ac" id="ac-no" type="radio" value="Non-Ac" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                 <label for="no" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">No</label>
               </div>
 
@@ -976,15 +976,16 @@ $conn->close();
                   placeholder="Booking amount in Rs"/>
               </label>
          
-            
-            </div>
-
-            <button
+              <button
                       type="submit"
                       class="w-64 text-white bg-[#FF3726] font-medium rounded-lg text-sm px-4 py-2 text-center my-6 md:my-4"
                     >
-                      Sign In
+                      Save Listing
                     </button>
+            
+            </div>
+
+         
        
 
            

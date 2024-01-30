@@ -130,7 +130,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 ?>
 
-  <section class="mx-auto w-11/12 md:w-3/5 md:grid shadow-lg grid-cols-10 bg-white border border-gray-400 rounded-lg py-5 px-2">
+  <section class="mx-auto w-11/12 md:w-3/5 md:grid shadow-lg grid-cols-10 bg-white border border-gray-400 rounded-lg py-5 px-2 my-5">
       <div class="col-span-2">
           <img src="src/icon/suvcar.png" class="p-3" alt="">
       </div>
@@ -154,8 +154,8 @@ while ($row = mysqli_fetch_assoc($result)) {
         <h1 class="text-md font-semibold pt-2">
           <?php echo $row['car_pickup']?> <i class="fa fa-arrow-right" aria-hidden="true"></i> <?php echo $row['car_dropoff']?>
         </h1>
-        <span>
-          <?php echo $row['car_trtime']?>
+        <span class="mr-0.5">
+          <?php echo $row['car_trtime']?> Hours
         </span>
       
         <ul class="pt-2 border-dashed border-b-2 border-gray-400">
