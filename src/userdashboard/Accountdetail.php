@@ -887,8 +887,8 @@ $conn->close();
             </div>
           <div class="flex flex-col gap-4 border-b py-4 sm:flex-row">
             <p class="shrink-0 w-32 font-medium">Name</p>
-            <input placeholder="First Name" class="mb-2 w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 sm:mr-4 sm:mb-0 focus:ring-1" />
-            <input placeholder="Last Name" class="mb-2 w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1" />
+            <input placeholder="First Name" class=" w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 sm:mr-4 sm:mb-0 focus:ring-1" />
+            <input placeholder="Last Name" class=" w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1" />
           </div>
         <div class="flex flex-col gap-4 border-b py-4 sm:flex-row">
           <p class="shrink-0 w-32 font-medium">Email</p>
