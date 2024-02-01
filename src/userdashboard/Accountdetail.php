@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
+  header("location: login.php");
+  exit;
+}
+?>
+
 
 <?php include '../../src/config/db_connect.php';
 
@@ -15,11 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $carseat =  $_POST['car_seat'];
     $carpickup =  $_POST['car_pickup'];
     $cardropoff = $_POST['car_dropoff'];
-    $cartrdistance = $_POST['car_trdistance'];
-    $cartrtime = $_POST['car_trtime'];
-    $carexcharge = $_POST['car_extcharge'];
-    $carcancle = $_POST['car_cancel'];
-    $caramount = $_POST['car_amount'];
+   
     
   
 
@@ -28,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $currentIndianTime = $indianTime->format('Y-m-d H:i:s');
 
 
-    $sql = "INSERT INTO `carlist` (`car_name`, `car_ac`, `car_seat`, `car_pickup`, `car_dropoff`, `car_trdistance`, `car_trtime`, `car_extcharges`, `car_cancletime`, `car_amount`, `car_booktime`) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+    $sql = "INSERT INTO `carlist` (`car_name`, `car_ac`, `car_seat`, `car_pickup`, `car_dropoff`, `car_trdistance`, `car_trtime`) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
     $stmt = $conn->prepare($sql);
 
     // Bind parameters
@@ -875,7 +879,15 @@ $conn->close();
         <main class="h-full pb-16 overflow-y-auto bg-white">
           <div class="container px-6 mx-auto grid">
            
-           
+          <?php
+            include '../config/db_connect.php';
+
+              $query = "SELECT * FROM `user`";
+              $result = mysqli_query($conn, $query); // Assuming you have a database connection stored in $your_db_connection
+
+              while ($row = mysqli_fetch_assoc($result)) {
+
+?>
           <div class="my-4 max-w-screen-md border px-4 shadow-xl sm:mx-4 sm:rounded-xl sm:px-4 sm:py-4 md:mx-auto">
             <div class="flex flex-col border-b py-4 sm:flex-row sm:items-start">
               <div class="shrink-0 mr-auto sm:py-3">
@@ -887,12 +899,12 @@ $conn->close();
             </div>
           <div class="flex flex-col gap-4 border-b py-4 sm:flex-row">
             <p class="shrink-0 w-32 font-medium">Name</p>
-            <input placeholder="First Name" class=" w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 sm:mr-4 sm:mb-0 focus:ring-1" />
-            <input placeholder="Last Name" class=" w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1" />
+            <input placeholder=" <?php echo $row['fullname']?>" class=" w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 sm:mr-4 sm:mb-0 focus:ring-1" />
+            
           </div>
         <div class="flex flex-col gap-4 border-b py-4 sm:flex-row">
           <p class="shrink-0 w-32 font-medium">Email</p>
-          <input placeholder="your.email@domain.com" class="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1" />
+          <input placeholder="<?php echo $row['email']?>" class="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1" />
         </div>
         <div class="flex flex-col gap-4 py-4  lg:flex-row">
           <div class="shrink-0 w-32  sm:py-4">
@@ -910,7 +922,9 @@ $conn->close();
                 <button class="rounded-lg border-2 border-transparent bg-blue-600 px-4 py-2 font-medium text-white focus:outline-none focus:ring hover:bg-blue-700">Update</button>
               </div>
             </div>
-
+    <?php
+  }
+  ?>
           </div>
         </main>
       </div>

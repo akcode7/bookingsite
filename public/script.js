@@ -27,24 +27,7 @@ function toggledropdown2(){
 
 
 
-// dropdowntoggle checkout
-// document.addEventListener('DOMContentLoaded', function () {
-
-//    document.getElementById('pdfbtn').addEventListener('click', function () {
-//       html2canvas(
-//          document
-//             .querySelector('iframe')
-//             .contentWindow.document.querySelector('#pdfcontent'),
-
-//       ).then((canvas) => {
-//          let base64image = canvas.toDataURL('image/png');
-//          let finalpdf = new jsPDF('p', 'px', [1768, 2500]);
-//          finalpdf.addImage(base64image, 'PNG', 10, 10, 592, 800);
-//          finalpdf.save('bookingslip.pdf');
-//       });
-//    });
-
-// });
+// dropdowntoggle checkout ends
 
 
 

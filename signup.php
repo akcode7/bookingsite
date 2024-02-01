@@ -1,3 +1,36 @@
+
+<?php
+
+include 'src/config/db_connect.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+
+  $sql = "SELECT * FROM user WHERE email='$email'";
+  $result = mysqli_query($conn, $sql);
+  $num = mysqli_num_rows($result);
+
+  if ($num == 1) {
+      while ($row = mysqli_fetch_assoc($result)) {
+          if ($row['password'] === md5($password)) {
+              session_start();
+              $_SESSION['loggedin'] = true;
+              $_SESSION['email'] = $email;
+             
+              header("location: index.php");
+          } else {
+              echo 'error';
+          }
+      }
+  } else {
+      echo "multiply username";
+  }
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>

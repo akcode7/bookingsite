@@ -84,14 +84,14 @@ $conn->close();
       <aside
         class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0"
       >
-        <div class="py-4 text-gray-500 dark:text-gray-400">
+        <div class="py-4 text-gray-500 ">
           <a href="#">
             <img src="../icon/logo.png" alt="" class="w-40 pl-5">
           </a>
           <ul class="mt-6">
             <li class="relative px-6 py-3">
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 "
                 href="index.php"
               >
                 <svg
@@ -119,7 +119,7 @@ $conn->close();
                 aria-hidden="true"
               ></span>
               <a
-                class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800"
                 href="addcabbooking.php"
               >
                 <svg
@@ -141,7 +141,7 @@ $conn->close();
             </li>
             <li class="relative px-6 py-3">
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 "
                 href="cards.php"
               >
                 <svg
@@ -163,7 +163,7 @@ $conn->close();
             </li>
             <li class="relative px-6 py-3">
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 "
                 href="charts.php"
               >
                 <svg
@@ -186,7 +186,7 @@ $conn->close();
             </li>
             <li class="relative px-6 py-3">
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 "
                 href="buttons.php"
               >
                 <svg
@@ -208,7 +208,7 @@ $conn->close();
             </li>
             <li class="relative px-6 py-3">
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 "
                 href="modals.php"
               >
                 <svg
@@ -230,7 +230,7 @@ $conn->close();
             </li>
             <li class="relative px-6 py-3">
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 "
                 href="tables.php"
               >
                 <svg
@@ -250,7 +250,7 @@ $conn->close();
             </li>
             <li class="relative px-6 py-3">
               <button
-                class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 "
                 @click="togglePagesMenu"
                 aria-haspopup="true"
               >
@@ -292,35 +292,35 @@ $conn->close();
                   x-transition:leave="transition-all ease-in-out duration-300"
                   x-transition:leave-start="opacity-100 max-h-xl"
                   x-transition:leave-end="opacity-0 max-h-0"
-                  class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
+                  class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 "
                   aria-label="submenu"
                 >
                   <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 "
                   >
                     <a class="w-full" href="pages/login.php">Login</a>
                   </li>
                   <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 "
                   >
                     <a class="w-full" href="pages/create-account.php">
                       Create account
                     </a>
                   </li>
                   <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 "
                   >
                     <a class="w-full" href="pages/forgot-password.php">
                       Forgot password
                     </a>
                   </li>
                   <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 "
                   >
                     <a class="w-full" href="pages/404.php">404</a>
                   </li>
                   <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 "
                   >
                     <a class="w-full" href="pages/blank.php">Blank</a>
                   </li>
@@ -362,14 +362,14 @@ $conn->close();
         @click.away="closeSideMenu"
         @keydown.escape="closeSideMenu"
       >
-        <div class="py-4 text-gray-500 dark:text-gray-400">
+        <div class="py-4 text-gray-500 ">
           <a href="#">
             <img src="../icon/logo.png" alt="" class="w-40 pl-5">
           </a>
           <ul class="mt-6">
             <li class="relative px-6 py-3">
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 "
                 href="index.php"
               >
                 <svg
@@ -397,7 +397,7 @@ $conn->close();
                 aria-hidden="true"
               ></span>
               <a
-                class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 "
                 href="addcabbooking.php"
               >
                 <svg
@@ -486,7 +486,7 @@ $conn->close();
             </li>
             <li class="relative px-6 py-3">
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 "
                 href="modals.php"
               >
                 <svg
@@ -508,7 +508,7 @@ $conn->close();
             </li>
             <li class="relative px-6 py-3">
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 "
                 href="tables.php"
               >
                 <svg
@@ -528,7 +528,7 @@ $conn->close();
             </li>
             <li class="relative px-6 py-3">
               <button
-                class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800"
                 @click="togglePagesMenu"
                 aria-haspopup="true"
               >
@@ -570,35 +570,35 @@ $conn->close();
                   x-transition:leave="transition-all ease-in-out duration-300"
                   x-transition:leave-start="opacity-100 max-h-xl"
                   x-transition:leave-end="opacity-0 max-h-0"
-                  class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
+                  class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 "
                   aria-label="submenu"
                 >
                   <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 "
                   >
                     <a class="w-full" href="pages/login.php">Login</a>
                   </li>
                   <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 "
                   >
                     <a class="w-full" href="pages/create-account.php">
                       Create account
                     </a>
                   </li>
                   <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 "
                   >
                     <a class="w-full" href="pages/forgot-password.php">
                       Forgot password
                     </a>
                   </li>
                   <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 "
                   >
                     <a class="w-full" href="pages/404.php">404</a>
                   </li>
                   <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 "
                   >
                     <a class="w-full" href="pages/blank.php">Blank</a>
                   </li>

@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               $_SESSION['loggedin'] = true;
               $_SESSION['email'] = $email;
              
-              header("location: index.php");
+              header("location: src/userdashboard/Accountdetail.php");
           } else {
               echo 'error';
           }
@@ -132,7 +132,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <p class="text-sm font-light text-gray-600">
                       Don’t have an account yet?
                       <a
-                        href="signuppage.html"
+                        href="signup.php"
                         class="font-medium text-primary-600 hover:underline text-[#FF3726]"
                         >Sign up</a
                       >

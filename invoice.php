@@ -8,11 +8,15 @@
     <link href="src/css/output.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+   
   
 
 
 </head>
 <body>
+
+
+
     <section id="pdfcontent" class="p-12 mx-auto flex justify-center item-center">
         
         <div class="border border-black h-screen w-1/2 p-6 ">    
@@ -50,15 +54,19 @@
         </div>
 
         <hr class="bg-black h-[1.5px] ">
+        <button id="btn">Generate</button>
     </div>
-
+    
     </section>
+    
+
+   
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
 
 
-<script src="../public/script.js"></script>
+<script type="module" src="./invoicepdf.js"></script>
+
 </body>
 </html>
