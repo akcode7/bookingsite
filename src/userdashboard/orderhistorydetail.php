@@ -280,7 +280,7 @@
       </aside>
       <!-- Mobile sidebar -->
       <!-- Backdrop -->
-      <div
+      <!-- <div
         x-show="isSideMenuOpen"
         x-transition:enter="transition ease-in-out duration-150"
         x-transition:enter-start="opacity-0"
@@ -289,7 +289,7 @@
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
         class="fixed inset-0 z-10 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center"
-      ></div>
+      ></div> -->
       <aside
         class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:hidden"
         x-show="isSideMenuOpen"
@@ -815,7 +815,8 @@
           </div>
         </header>
   <section class="h-full bg-white py-32">
-  <?php
+    
+<?php
 include '../../src/config/db_connect.php';
 
 $query = "SELECT * FROM `bookingdetail`";
@@ -825,8 +826,8 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 ?>
 
-        <main class=" py-2 my-2 mx-auto">
-          <div class="container px-6 my-2 mx-auto flex justify-center items-center">
+  <main class=" py-2 my-2 mx-auto">
+      <div class="container px-6 my-2 mx-auto flex justify-center items-center">
            
            
         

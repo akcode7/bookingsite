@@ -76,8 +76,10 @@
 </div>
 <!-- mobile header ends -->
 <!-- header ends -->
+
+
 <section class=" px-8 md:px-8 2xl:px-36 py-7 bg-[#FF3726] mx-auto">
-  <form action="">
+  <form action="" method="post">
 <section class="md:flex  mx-auto justify-center items-center">
 <div class="mx-auto">
 <label for="trip" class="block font-medium pb-3 text-md text-white  text-sm  ">Trip Type</label>
@@ -89,12 +91,12 @@
 
   <div class=" mx-auto">
     <h1 class="font-medium pb-3 text-md text-white">PickUp Location</h1>
-    <input class="px-4 py-1.5  w-52 rounded-lg" type="text">
+    <input name="pickup" class="px-4 py-1.5  w-52 rounded-lg" type="text">
   </div>
 
   <div class=" mx-auto">
     <h1 class="font-medium pb-3 text-md text-white">Drop Off Location</h1>
-    <input class="px-4 py-1.5  w-52 rounded-lg" type="text">
+    <input name="dropoff" class="px-4 py-1.5  w-52 rounded-lg" type="text">
   </div>
 
   <div class=" mx-auto">
@@ -110,7 +112,7 @@
 
   <div class=" mx-auto ">
     <h1 class="font-medium pb-2 text-md text-white">Update</h1>
-    <button type="submit" class="bg-white text-[#FF3726] font-medium rounded-lg text-sm px-12 py-2 text-center  ">Search</button>
+    <button value="Search" type="submit" class="bg-white text-[#FF3726] font-medium rounded-lg text-sm px-12 py-2 text-center  ">Search</button>
   </div>
 </section>
 </form>
@@ -123,12 +125,19 @@
 <?php
 include 'src/config/db_connect.php';
 
-$query = "SELECT * FROM `carlist`";
-$result = mysqli_query($conn, $query); // Assuming you have a database connection stored in $your_db_connection
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $pickup = $_POST["pickup"];
+    $dropoff = $_POST["dropoff"];
+
+    // Perform a SELECT query based on the pickup and drop-off addresses
+    $sql = "SELECT * FROM carlist WHERE car_pickup = '$pickup' AND car_dropoff = '$dropoff'";
+    $result = $conn->query($sql);
 
 while ($row = mysqli_fetch_assoc($result)) {
 
 ?>
+
+
 
   <section class="mx-auto w-11/12 md:w-3/5 md:grid shadow-lg grid-cols-10 bg-white border border-gray-400 rounded-lg py-5 px-2 my-5">
       <div class="col-span-2">
@@ -190,7 +199,7 @@ while ($row = mysqli_fetch_assoc($result)) {
       </div>
   </section>
   <?php
-  }
+  }}
   ?>
 
   </section>
