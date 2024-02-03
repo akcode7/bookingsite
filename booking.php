@@ -79,7 +79,7 @@
 
 
 <section class=" px-8 md:px-8 2xl:px-36 py-7 bg-[#FF3726] mx-auto">
-  <form action="" method="post">
+  <form action="" method="GET">
 <section class="md:flex  mx-auto justify-center items-center">
 <div class="mx-auto">
 <label for="trip" class="block font-medium pb-3 text-md text-white  text-sm  ">Trip Type</label>
@@ -125,9 +125,9 @@
 <?php
 include 'src/config/db_connect.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $pickup = $_POST["pickup"];
-    $dropoff = $_POST["dropoff"];
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+  $pickup = isset($_GET['pickup']) ? $_GET['pickup'] : '';
+  $dropoff = isset($_GET['dropoff']) ? $_GET['dropoff'] : '';
 
     // Perform a SELECT query based on the pickup and drop-off addresses
     $sql = "SELECT * FROM carlist WHERE car_pickup = '$pickup' AND car_dropoff = '$dropoff'";
@@ -136,7 +136,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 while ($row = mysqli_fetch_assoc($result)) {
 
 ?>
-
 
 
   <section class="mx-auto w-11/12 md:w-3/5 md:grid shadow-lg grid-cols-10 bg-white border border-gray-400 rounded-lg py-5 px-2 my-5">
@@ -193,10 +192,13 @@ while ($row = mysqli_fetch_assoc($result)) {
 
       <div class=" col-span-3 mx-auto p-3">
         <h1 class="font-bold text-4xl pb-3">Rs <?php echo $row['car_amount']?></h1>
-        <button type="submit" class="text-white bg-[#FF3726] font-medium rounded-lg text-sm px-8 py-2 text-center  ">Book Now</button>
+        <a href="checkout.php?pickup=<?php echo urlencode($row['car_pickup']); ?>&dropoff=<?php echo urlencode($row['car_dropoff']); ?>">
+        <button  class="text-white bg-[#FF3726] font-medium rounded-lg text-sm px-8 py-2 text-center  ">Book Now</button>
+</a>
       </div>
     
       </div>
+      
   </section>
   <?php
   }}

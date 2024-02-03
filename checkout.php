@@ -134,10 +134,24 @@ $conn->close();
 <!-- mobile header ends -->
 <!-- header ends -->
 
-    <section class="h-screen w-full flex flex-col ">
-      <div class="h-screen md:grid grid-cols-8">
+<section class="h-screen w-full flex flex-col ">
+<div class="h-screen md:grid grid-cols-8">
 <div class="flex sm:col-span-5 sm:block md:block bg-[#eaffeb] lg:block xl:block 2xl:block">
  <!-- booking detail card 1 starts -->
+ <?php
+include 'src/config/db_connect.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+  $pickup = isset($_GET['pickup']) ? $_GET['pickup'] : '';
+  $dropoff = isset($_GET['dropoff']) ? $_GET['dropoff'] : '';
+
+    // Perform a SELECT query based on the pickup and drop-off addresses
+    $sql = "SELECT * FROM carlist WHERE car_pickup = '$pickup' AND car_dropoff = '$dropoff'";
+    $result = $conn->query($sql);
+
+while ($row = mysqli_fetch_assoc($result)) {
+
+?>
 
 <div class="mx-auto my-7 px-5">
 
@@ -148,19 +162,25 @@ $conn->close();
     
         <div class="col-span-5 p-2">
           <h1 class="text-xl font-bold">
-            Innova <!-- car name -->
+          <?php echo $row['car_name']?>
           </h1>
     
-          <ul class="list-disc md:flex gap-8 pt-2 pl-6 md:pl-0">
-            <li class="md:list-none">Hatch Back</li>
-            <li>AC</li>
-            <li>4 Seats</li> 
-          </ul>
+          <ul class="list-disc md:flex gap-8 pt-2 pl-4 md:pl-0">
+          <li>
+            <?php echo $row['car_ac']?> 
+          </li>
+
+          <li>
+            <?php echo $row['car_seat']?>&nbsp; Seats
+          </li> 
+        </ul>
     
           <h1 class="text-xl font-bold pt-2">
-           Lucknow to Kanpur
+          <?php echo $row['car_pickup']?> <i class="fa fa-arrow-right" aria-hidden="true"></i> <?php echo $row['car_dropoff']?>
           </h1>
-          <span>1h 28min </span>
+          <span class="mr-0.5">
+          <?php echo $row['car_trtime']?> Hours
+        </span>
         
           <ul class="pt-2 border-dashed border-b-2 border-gray-400">
            
@@ -168,14 +188,14 @@ $conn->close();
               <svg class="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                </svg>
-               138 kms included. After that ₹23.0/km
+               <?php echo $row['car_trdistance']?> kms included. After that <?php echo $row['car_extcharges']?>Rs/km
           </li>
     
         <li class="flex items-center pb-2">
           <svg class="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
               <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
            </svg>
-           Cancellation Free till 6 hours of departure
+           Cancellation Free till <?php echo $row['car_cancletime']?> hours of departure
       </li>
           </ul>
           <span class="flex py-2">
@@ -185,12 +205,18 @@ $conn->close();
       </span>
     
         </div>
+
+        <div class=" col-span-3 mx-auto p-3">
+        <h1 class="font-bold text-4xl pb-3">Rs <?php echo $row['car_amount']?></h1>
+        <p>One-way</p>
+        <p>Pickup: 22/01/2023</p>
+        
+      </div>
     
-<div class=" col-span-3 mx-auto p-3">
-          <h1 class="font-bold text-4xl pb-3">Rs 1200</h1>
-          <button type="submit" class="text-white bg-[#FF3726] font-medium rounded-lg text-sm px-8 py-2 text-center  ">Book Now</button>
-</div>
-      
+
+<?php
+  }}
+  ?>
 </div>
 </div>
 <!-- booking detail card 1 ends -->

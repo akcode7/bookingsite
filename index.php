@@ -96,15 +96,15 @@
             
 
    <div class=" col-span-1 w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
-       <form class="space-y-6" action="#">
+       <form class="space-y-6" method="GET" action="booking.php">
         <h5 class="text-xl font-medium text-gray-900 ">Book A cab Now</h5>
         <div>
-            <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Pick-up Location</label>
-            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 " placeholder="pick up location " required>
+            <label  class="block mb-2 text-sm font-medium text-gray-900">Pick-up Location</label>
+            <input type="text" name="pickup" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 " placeholder="pick up location " required>
         </div>
         <div>
-            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Drop Off Location</label>
-            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 " placeholder="drop location" required>
+            <label  class="block mb-2 text-sm font-medium text-gray-900 ">Drop Off Location</label>
+            <input type="text" name="dropoff" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 " placeholder="drop location" required>
         </div>
         <div>
             <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Pick-up date</label>
