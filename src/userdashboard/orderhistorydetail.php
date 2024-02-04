@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+if (isset($_SESSION['email'])) {
+    // Session already exists, user is identified
+    $email = $_SESSION['email'];
+    echo "Welcome back, $email!";
+} else {
+    // No session exists, user needs to log in or register
+    header("location: ../authentication/login.php"); // Replace 'login.php' with the actual login page
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
   <head>

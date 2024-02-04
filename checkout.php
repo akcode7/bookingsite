@@ -16,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $gender = $_POST['gen_der'];
     $phonenumber = $_POST['phone_number'];
    
+   
     
   
 
@@ -36,7 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          // Update the alert message
         //  $successAlert = str_replace('id="success_msg"></div>', 'id="success_msg">Post added successfully.</div>', $successAlert);
         // echo $successAlert;
-        echo "inserte succss";
+      header("Location: invoice.php");
+      exit();
     } else {
         // $errorAlert = str_replace('id="error_msg"></div>', 'id="error_msg">Post not added.</div>', $errorAlert);
         // echo $errorAlert;
@@ -144,6 +146,7 @@ include 'src/config/db_connect.php';
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
   $pickup = isset($_GET['pickup']) ? $_GET['pickup'] : '';
   $dropoff = isset($_GET['dropoff']) ? $_GET['dropoff'] : '';
+  $pickupdate = isset($_GET['pickupdate']) ? $_GET['pickupdate'] : '';
 
     // Perform a SELECT query based on the pickup and drop-off addresses
     $sql = "SELECT * FROM carlist WHERE car_pickup = '$pickup' AND car_dropoff = '$dropoff'";
@@ -209,7 +212,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         <div class=" col-span-3 mx-auto p-3">
         <h1 class="font-bold text-4xl pb-3">Rs <?php echo $row['car_amount']?></h1>
         <p>One-way</p>
-        <p>Pickup: 22/01/2023</p>
+        <p>Pickup: <?php echo $pickupdate; ?></p>
         
       </div>
     

@@ -1,10 +1,18 @@
+
 <?php
 session_start();
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
-  header("location: ../../../../login.php");
-  exit;
+
+if (isset($_SESSION['email'])) {
+    // Session already exists, user is identified
+    $email = $_SESSION['email'];
+    echo "Welcome back, $email!";
+} else {
+    // No session exists, user needs to log in or register
+    header("location: ../authentication/login.php"); // Replace 'login.php' with the actual login page
+    exit();
 }
 ?>
+
 
 
 <?php include '../../src/config/db_connect.php';
@@ -71,7 +79,7 @@ $conn->close();
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../src/css/output.css">
+    <link rel="stylesheet" href="../css/output.css">
     <link rel="stylesheet" href="../../src/admin/public/assets/css/style.css">
     <script
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
@@ -168,7 +176,7 @@ $conn->close();
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="charts.php"
+                href="../../booking.php"
               >
                 <svg
                   class="w-5 h-5"

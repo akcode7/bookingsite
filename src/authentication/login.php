@@ -1,7 +1,6 @@
-
 <?php
 
-include 'src/config/db_connect.php';
+include '../../src/config/db_connect.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $email = $_POST['email'];
@@ -17,8 +16,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               session_start();
               $_SESSION['loggedin'] = true;
               $_SESSION['email'] = $email;
-             
-              header("location: src/userdashboard/Accountdetail.php");
+
+              if ($row['user_role'] !== "administrator") {
+                  header("location: ../userdashboard/accountdetail.php");
+              } else {
+                  header("location: ../admin/addlisting.php");
+              }
           } else {
               echo 'error';
           }
@@ -28,8 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 }
 
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <link href="src/css/output.css" rel="stylesheet">
+    <link href="../css/output.css" rel="stylesheet">
   </head>
   <body>
     <section class="h-screen w-full flex flex-col">
@@ -51,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           class="hidden sm:col-span-3 sm:block md:block bg-gray-200 lg:block xl:block 2xl:block"
         >
           <div class="flex items-center justify-center h-screen">
-            <img class="w-11/12" src="src/images/signupbg.png" alt="" />
+            <img class="w-11/12" src="../images/signupbg.png" alt="" />
           </div>
         </div>
 

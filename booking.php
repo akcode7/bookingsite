@@ -104,7 +104,7 @@
     
     <div >
      
-      <input type="date" class="bg-white border  text-gray-900 sm:text-sm rounded-lg  block w-52 pl-10 px-4 py-2  datepicker-input" placeholder="Select date">
+      <input name="pickupdate" type="date" class="bg-white border  text-gray-900 sm:text-sm rounded-lg  block w-52 pl-10 px-4 py-2  datepicker-input" placeholder="Select date">
     </div>
   </div>
 
@@ -128,6 +128,8 @@ include 'src/config/db_connect.php';
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
   $pickup = isset($_GET['pickup']) ? $_GET['pickup'] : '';
   $dropoff = isset($_GET['dropoff']) ? $_GET['dropoff'] : '';
+  $pickupdate = isset($_GET['pickupdate']) ? $_GET['pickupdate'] : '';
+
 
     // Perform a SELECT query based on the pickup and drop-off addresses
     $sql = "SELECT * FROM carlist WHERE car_pickup = '$pickup' AND car_dropoff = '$dropoff'";
@@ -192,8 +194,8 @@ while ($row = mysqli_fetch_assoc($result)) {
 
       <div class=" col-span-3 mx-auto p-3">
         <h1 class="font-bold text-4xl pb-3">Rs <?php echo $row['car_amount']?></h1>
-        <a href="checkout.php?pickup=<?php echo urlencode($row['car_pickup']); ?>&dropoff=<?php echo urlencode($row['car_dropoff']); ?>">
-        <button  class="text-white bg-[#FF3726] font-medium rounded-lg text-sm px-8 py-2 text-center  ">Book Now</button>
+        <a href="checkout.php?pickup=<?php echo urlencode($row['car_pickup']); ?>&dropoff=<?php echo urlencode($row['car_dropoff']); ?>&pickupdate=<?php echo $pickupdate; ?>">
+    <button class="text-white bg-[#FF3726] font-medium rounded-lg text-sm px-8 py-2 text-center">Book Now</button>
 </a>
       </div>
     

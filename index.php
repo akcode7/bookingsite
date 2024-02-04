@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -107,10 +109,10 @@
             <input type="text" name="dropoff" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 " placeholder="drop location" required>
         </div>
         <div>
-            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Pick-up date</label>
+            <label class="block mb-2 text-sm font-medium text-gray-900 ">Pick-up date</label>
             <div class="relative">
                 
-                <input  type="date" class="bg-white border  text-gray-900 sm:text-sm rounded-lg  block w-full pl-10 px-4 py-2.5 datepicker-input" placeholder="Select date">
+                <input  type="date" name="pickupdate" class="bg-white border  text-gray-900 sm:text-sm rounded-lg  block w-full pl-10 px-4 py-2.5 datepicker-input" placeholder="Select date">
               </div>
         </div>
        
