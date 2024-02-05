@@ -1,10 +1,20 @@
-
 <?php
 session_start();
 
 if (isset($_SESSION['email'])) {
     // Session already exists, user is identified
     $email = $_SESSION['email'];
+
+    // Check if user_role is set in the session
+    if (isset($_SESSION['user_role'])) {
+        if ($_SESSION['user_role'] !== "administrator") {
+            // Redirect to admin dashboard
+            header("location: ../../notfound.php");
+            exit();
+        }
+    }
+
+    // If user_role is not set or is not administrator, you can continue with the welcome message or redirect to another page.
     echo "Welcome back, $email!";
 } else {
     // No session exists, user needs to log in or register
@@ -12,6 +22,7 @@ if (isset($_SESSION['email'])) {
     exit();
 }
 ?>
+
 
 <?php include '../../src/config/db_connect.php';
 

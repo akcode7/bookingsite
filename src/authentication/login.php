@@ -1,4 +1,14 @@
 <?php
+session_start();
+
+// Check if user is already logged in
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+    header("location: ../../index.php"); // Redirect to index.php if already logged in
+    exit();
+}
+?>
+
+<?php
 
 include '../../src/config/db_connect.php';
 
@@ -16,6 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               session_start();
               $_SESSION['loggedin'] = true;
               $_SESSION['email'] = $email;
+              $_SESSION['user_role'] = $row['user_role'];
+             
 
               if ($row['user_role'] !== "administrator") {
                   header("location: ../userdashboard/accountdetail.php");
