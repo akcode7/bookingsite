@@ -1,20 +1,37 @@
-<?php include 'src/config/db_connect.php';
+<?php
+// Start the session
+session_start();
 
+// Check if the user is logged in (you might have a different way to check this)
+if(isset($_SESSION['user_id'])) {
+    // Print the user ID
+    echo "User ID: " . $_SESSION['user_id'];
+    
+} else {
+    // Redirect to the login page or handle the case when the user is not logged in
+   
+}
+?>
+<?php include 'src/config/db_connect.php';
 
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
-
+$userid = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 // Process form submission
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && $userid) {
     
    
     // Get input data
+    $purchaseid = "CAB".rand(1111111,9999999).substr($phone_number,-4);
     $pickupadd =  $_POST['pickup_add']; 
     $dropoffadd =  $_POST['dropoff_add']; 
     $fullname =  $_POST['full_name'];
     $email =  $_POST['email_add'];
     $gender = $_POST['gen_der'];
     $phonenumber = $_POST['phone_number'];
+    $pickupdate = isset($_GET['pickupdate']) ? $_GET['pickupdate'] : '';
+    $formattedDate = date('Y-m-d', strtotime($pickupdate));
+   
    
    
     
@@ -25,19 +42,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $currentIndianTime = $indianTime->format('Y-m-d H:i:s');
 
 
-    $sql = "INSERT INTO `bookingdetail` (`pickup_add`, `dropoff_add`, `full_name`, `email_id`, `gender`, `phone_number`, `book_time`) VALUES (?,?,?,?,?,?,?);";
+    $sql = "INSERT INTO `bookingdetail` (`purchase_id`,`pickup_add`, `dropoff_add`, `full_name`, `email_id`, `gender`, `phone_number`,`pickup_date`,`book_time`,`user_id`) VALUES (?,?,?,?,?,?,?,?,?,?);";
     $stmt = $conn->prepare($sql);
 
     // Bind parameters
-    $stmt->bind_param("sssssss", $pickupadd, $dropoffadd, $fullname, $email, $gender, $phonenumber, $currentIndianTime);
+    $stmt->bind_param("sssssssssi", $purchaseid, $pickupadd, $dropoffadd, $fullname, $email, $gender, $phonenumber, $formattedDate, $currentIndianTime, $userid);
 
     $stmt->execute();
 
+  $sql = "SELECT * FROM bookingdetail WHERE purchase_id='$purchaseid'";
+  $result = mysqli_query($conn, $sql);
+  $num = mysqli_num_rows($result);
+
+  if ($num == 1) {
+      while ($row = mysqli_fetch_assoc($result)) {
+        
+              session_start();
+              $_SESSION['purchase_id'] = $row['purchase_id'];
+          
+      }
+  } else {
+      echo "sessionpurchaseid";
+  }
+
     if ($stmt->affected_rows > 0) {
-         // Update the alert message
-        //  $successAlert = str_replace('id="success_msg"></div>', 'id="success_msg">Post added successfully.</div>', $successAlert);
-        // echo $successAlert;
+     
       header("Location: invoice.php");
+      
       exit();
     } else {
         // $errorAlert = str_replace('id="error_msg"></div>', 'id="error_msg">Post not added.</div>', $errorAlert);
@@ -46,6 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $stmt->close();
+    
 
 }
 
@@ -54,7 +86,6 @@ $conn->close();
 
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -143,10 +174,12 @@ $conn->close();
  <?php
 include 'src/config/db_connect.php';
 
+
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
   $pickup = isset($_GET['pickup']) ? $_GET['pickup'] : '';
   $dropoff = isset($_GET['dropoff']) ? $_GET['dropoff'] : '';
   $pickupdate = isset($_GET['pickupdate']) ? $_GET['pickupdate'] : '';
+  
 
     // Perform a SELECT query based on the pickup and drop-off addresses
     $sql = "SELECT * FROM carlist WHERE car_pickup = '$pickup' AND car_dropoff = '$dropoff'";
@@ -166,6 +199,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         <div class="col-span-5 p-2">
           <h1 class="text-xl font-bold">
           <?php echo $row['car_name']?>
+        
           </h1>
     
           <ul class="list-disc md:flex gap-8 pt-2 pl-4 md:pl-0">
