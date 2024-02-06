@@ -67,6 +67,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['purchase_id'])) {
                     $pick_update = $row['pickup_date']; 
                     $formattedDate = date('d-m-Y', strtotime($pick_update));
                     echo $formattedDate;?></span></h1>
+                    <h1 class="text-gray-700 font-medium pl-3">Trip Type: <span class="pl-1 font-semibold text-black"><?php echo $row['triptype']?></span></h1>
             </div>
         </div>
   

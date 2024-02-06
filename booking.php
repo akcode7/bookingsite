@@ -83,9 +83,9 @@
 <section class="md:flex  mx-auto justify-center items-center">
 <div class="mx-auto">
 <label for="trip" class="block font-medium pb-3 text-md text-white  text-sm  ">Trip Type</label>
-<select id="triptype" class="bg-white font-semibold border  text-gray-900 text-sm rounded-lg  block w-52 px-4 py-2 ">
-  <option selected>One way trip</option>
-  <option value="Roundtrip">Round Trip</option>
+<select id="triptype" name="triptype" class="bg-white font-semibold border  text-gray-900 text-sm rounded-lg  block w-52 px-4 py-2 ">
+  <option  value="Oneway" selected>One way</option>
+  <option  value="Roundtrip">Round Trip</option>
 </select>
   </div>
 
@@ -129,6 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
   $pickup = isset($_GET['pickup']) ? $_GET['pickup'] : '';
   $dropoff = isset($_GET['dropoff']) ? $_GET['dropoff'] : '';
   $pickupdate = isset($_GET['pickupdate']) ? $_GET['pickupdate'] : '';
+  $triptype = isset($_GET['triptype']) ? $_GET['triptype'] : '';
 
 
     // Perform a SELECT query based on the pickup and drop-off addresses
@@ -194,7 +195,9 @@ while ($row = mysqli_fetch_assoc($result)) {
 
       <div class=" col-span-3 mx-auto p-3">
         <h1 class="font-bold text-4xl pb-3">Rs <?php echo $row['car_amount']?></h1>
-        <a href="checkout.php?pickup=<?php echo urlencode($row['car_pickup']); ?>&dropoff=<?php echo urlencode($row['car_dropoff']); ?>&pickupdate=<?php echo $pickupdate; ?>">
+        <p>Trip Type: <?php echo $triptype; ?></p>
+        <p>Pickup: <?php echo $pickupdate; ?></p>
+        <a href="checkout.php?pickup=<?php echo urlencode($row['car_pickup']); ?>&dropoff=<?php echo urlencode($row['car_dropoff']); ?>&pickupdate=<?php echo $pickupdate; ?> &triptype=<?php echo $triptype; ?>">
     <button class="text-white bg-[#FF3726] font-medium rounded-lg text-sm px-8 py-2 text-center">Book Now</button>
 </a>
       </div>

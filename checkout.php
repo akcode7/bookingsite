@@ -1,19 +1,6 @@
-<?php
-// Start the session
-session_start();
 
-// Check if the user is logged in (you might have a different way to check this)
-if(isset($_SESSION['user_id'])) {
-    // Print the user ID
-    echo "User ID: " . $_SESSION['user_id'];
-    
-} else {
-    // Redirect to the login page or handle the case when the user is not logged in
-   
-}
-?>
 <?php include 'src/config/db_connect.php';
-
+session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 $userid = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
@@ -23,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $userid) {
    
     // Get input data
     $purchaseid = "CAB".rand(1111111,9999999).substr($phone_number,-4);
+   
     $pickupadd =  $_POST['pickup_add']; 
     $dropoffadd =  $_POST['dropoff_add']; 
     $fullname =  $_POST['full_name'];
@@ -31,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $userid) {
     $phonenumber = $_POST['phone_number'];
     $pickupdate = isset($_GET['pickupdate']) ? $_GET['pickupdate'] : '';
     $formattedDate = date('Y-m-d', strtotime($pickupdate));
+    $triptype = isset($_GET['triptype']) ? $_GET['triptype'] : '';
    
    
    
@@ -42,11 +31,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $userid) {
     $currentIndianTime = $indianTime->format('Y-m-d H:i:s');
 
 
-    $sql = "INSERT INTO `bookingdetail` (`purchase_id`,`pickup_add`, `dropoff_add`, `full_name`, `email_id`, `gender`, `phone_number`,`pickup_date`,`book_time`,`user_id`) VALUES (?,?,?,?,?,?,?,?,?,?);";
+    $sql = "INSERT INTO `bookingdetail` (`purchase_id`,`pickup_add`, `dropoff_add`, `full_name`, `email_id`, `gender`, `phone_number`,`pickup_date`,`triptype`,`book_time`,`user_id`) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
     $stmt = $conn->prepare($sql);
 
     // Bind parameters
-    $stmt->bind_param("sssssssssi", $purchaseid, $pickupadd, $dropoffadd, $fullname, $email, $gender, $phonenumber, $formattedDate, $currentIndianTime, $userid);
+    $stmt->bind_param("ssssssssssi", $purchaseid, $pickupadd, $dropoffadd, $fullname, $email, $gender, $phonenumber, $formattedDate,$triptype, $currentIndianTime, $userid);
 
     $stmt->execute();
 
@@ -179,6 +168,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
   $pickup = isset($_GET['pickup']) ? $_GET['pickup'] : '';
   $dropoff = isset($_GET['dropoff']) ? $_GET['dropoff'] : '';
   $pickupdate = isset($_GET['pickupdate']) ? $_GET['pickupdate'] : '';
+  $triptype = isset($_GET['triptype']) ? $_GET['triptype'] : '';
   
 
     // Perform a SELECT query based on the pickup and drop-off addresses
@@ -245,8 +235,9 @@ while ($row = mysqli_fetch_assoc($result)) {
 
         <div class=" col-span-3 mx-auto p-3">
         <h1 class="font-bold text-4xl pb-3">Rs <?php echo $row['car_amount']?></h1>
-        <p>One-way</p>
+        <p>Trip Type: <?php echo $triptype; ?></p>
         <p>Pickup: <?php echo $pickupdate; ?></p>
+        
         
       </div>
     
