@@ -20,6 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $userid) {
     $pickupdate = isset($_GET['pickupdate']) ? $_GET['pickupdate'] : '';
     $formattedDate = date('Y-m-d', strtotime($pickupdate));
     $triptype = isset($_GET['triptype']) ? $_GET['triptype'] : '';
+    $carname = isset($_GET['carname']) ? $_GET['carname'] : '';
+    $cardistance = isset($_GET['cartrdistance']) ? $_GET['cartrdistance'] : '';
    
    
    
@@ -31,11 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $userid) {
     $currentIndianTime = $indianTime->format('Y-m-d H:i:s');
 
 
-    $sql = "INSERT INTO `bookingdetail` (`purchase_id`,`pickup_add`, `dropoff_add`, `full_name`, `email_id`, `gender`, `phone_number`,`pickup_date`,`triptype`,`book_time`,`user_id`) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+    $sql = "INSERT INTO `bookingdetail` (`purchase_id`,`pickup_add`, `dropoff_add`, `full_name`, `email_id`, `gender`, `phone_number`,`pickup_date`,`triptype`,`car_name`,`cartr_distance`,`book_time`,`user_id`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
     $stmt = $conn->prepare($sql);
 
     // Bind parameters
-    $stmt->bind_param("ssssssssssi", $purchaseid, $pickupadd, $dropoffadd, $fullname, $email, $gender, $phonenumber, $formattedDate,$triptype, $currentIndianTime, $userid);
+    $stmt->bind_param("ssssssssssssi", $purchaseid, $pickupadd, $dropoffadd, $fullname, $email, $gender, $phonenumber, $formattedDate,$triptype, $carname, $cardistance, $currentIndianTime, $userid);
 
     $stmt->execute();
 

@@ -4,7 +4,7 @@ session_start();
 if (isset($_SESSION['email'])) {
     // Session already exists, user is identified
     $email = $_SESSION['email'];
-    echo "Welcome back, $email!";
+
 } else {
     // No session exists, user needs to log in or register
     header("location: ../authentication/login.php"); // Replace 'login.php' with the actual login page
@@ -838,13 +838,13 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 
     // Perform a SELECT query based on the pickup and drop-off addresses
-   
-    $sql = "SELECT * FROM carlist, bookingdetail WHERE bookingdetail.purchase_id = $purchaseid";
+    $query = "SELECT * FROM `bookingdetail` WHERE purchase_id = '$purchaseid'";
+    $result = mysqli_query($conn, $query); // Assuming you have a database connection stored in $conn
 
-    $result = $conn->query($sql);
-
-while ($row = mysqli_fetch_assoc($result)) {
-
+    // Check if there are any rows returned from the query
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+      
 ?>
 
   <main class=" py-2 my-2 mx-auto">
@@ -857,13 +857,13 @@ while ($row = mysqli_fetch_assoc($result)) {
 
           <div class="w-11/12 max-w-xl p-6 bg-white border border-gray-200 rounded-lg shadow ">
     <a href="#">
-        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 ">Placed on 29/01/2024</h5>
+        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 "><?php echo $row['book_time']?></h5>
     </a>
     <h1 class="text-md font-semibold pt-2">
-          Car Name : <span class="font-bold">Innova</span>
+          Car Name : <span class="font-bold"><?php echo $row['car_name']?></span>
         </h1>
     <h1 class="text-md font-semibold pt-2">
-           Total ride distance: <span class="font-bold">138 Km</span>
+           Total ride distance: <span class="font-bold"><?php echo $row['cartr_distance']?> Km</span>
         </h1>
     <h1 class="text-md font-semibold pt-2">
           Pick up: <span class="font-bold"><?php echo $row['pickup_add']?></span>
@@ -878,7 +878,7 @@ while ($row = mysqli_fetch_assoc($result)) {
           </div>
         </main>
 <?php
-  }}
+  }}}
 ?>
         </section>
       </div>
