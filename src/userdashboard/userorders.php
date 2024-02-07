@@ -898,52 +898,60 @@ $conn->close();
        
    </div>
    <div class="flow-root">
-        <ul role="list" class="divide-y divide-gray-300 ">
-            <li class="py-3 sm:py-4">
-                <div class="flex items-center">
+        <ul role="list" >
+            <li class="py-6 sm:py-4 divide-y divide-gray-300">
+<?php include '../config/db_connect.php';
+
+// Check if the user is logged in
+if (isset($_SESSION['user_id'])) {
+    // Get the user ID from the session
+    $sessionUserId = $_SESSION['user_id'];
+   
+   
+    
+    
+    
+
+    // Query to select user data based on user_id from the session
+    $query = "SELECT * FROM `bookingdetail` WHERE user_id = $sessionUserId";
+    $result = mysqli_query($conn, $query); // Assuming you have a database connection stored in $conn
+
+    // Check if there are any rows returned from the query
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+      
+?>
+                <div class="flex items-center py-6">
                     
                     <div class="flex-1 min-w-0 ms-4">
                         <p class="text-md font-medium text-gray-700 truncate ">
-                           Order Id: <span class="font-bold text-gray-900">ABCDEF123874</span> 
+                           Order Id: <span class="font-bold text-gray-900"><?php echo $row['purchase_id']?></span> 
                            
                         </p>
                         <p class="text-md font-medium text-gray-700 truncate ">
                            Order Status: <span class="font-bold text-gray-900">In progress</span> 
                         </p>
                         <p class="text-md font-medium text-gray-700 truncate ">
-                           Order Date: <span class="font-bold text-gray-900">29/01/2024</span> 
+                           Order Date: <span class="font-bold text-gray-900">  <?php 
+                    $booking_date = $row['book_time'];
+                    $formatbookdate = new DateTime($booking_date);
+                    $formattedbookDate = $formatbookdate->format('d-m-Y H:i:s');
+                    echo $formattedbookDate;?></span> 
                         </p>
                        
                     </div>
                     <div class="inline-flex items-center text-base font-semibold text-gray-900 ">
-                       <a href="./orderhistorydetail.php" class="text-sm font-medium text-blue-600 hover:underline">
+                       <a href="orderhistorydetail.php?purchaseid=<?php echo urlencode($row['purchase_id']); ?>" class="text-sm font-medium text-blue-600 hover:underline">
                         View details</a>
                     </div>
                 </div>
+               
+                <?php
+  }}}
+  ?>
             </li>
            
-            <li class="py-3 sm:py-4">
-                <div class="flex items-center">
-                    
-                    <div class="flex-1 min-w-0 ms-4">
-                        <p class="text-md font-medium text-gray-700 truncate ">
-                           Order Id: <span class="font-bold text-gray-900">ABCDEF123874</span> 
-                           
-                        </p>
-                        <p class="text-md font-medium text-gray-700 truncate ">
-                           Order Status: <span class="font-bold text-gray-900">In progress</span> 
-                        </p>
-                        <p class="text-md font-medium text-gray-700 truncate ">
-                           Order Date: <span class="font-bold text-gray-900">29/01/2024</span> 
-                        </p>
-                       
-                    </div>
-                    <div class="inline-flex items-center text-base font-semibold text-gray-900 ">
-                    <a href="./orderhistorydetail.php" class="text-sm font-medium text-blue-600 hover:underline">
-                        View details</a>
-                    </div>
-                </div>
-            </li>
+           
 
 
         </ul>

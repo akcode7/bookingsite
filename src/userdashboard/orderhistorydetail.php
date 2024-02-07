@@ -830,11 +830,18 @@ if (isset($_SESSION['email'])) {
         </header>
   <section class="h-full bg-white py-32">
     
-<?php
-include '../../src/config/db_connect.php';
+  <?php
+include '../config/db_connect.php';
 
-$query = "SELECT * FROM `bookingdetail`";
-$result = mysqli_query($conn, $query); // Assuming you have a database connection stored in $your_db_connection
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+  $purchaseid = isset($_GET['purchaseid']) ? $_GET['purchaseid'] : '';
+
+
+    // Perform a SELECT query based on the pickup and drop-off addresses
+   
+    $sql = "SELECT * FROM carlist, bookingdetail WHERE bookingdetail.purchase_id = $purchaseid";
+
+    $result = $conn->query($sql);
 
 while ($row = mysqli_fetch_assoc($result)) {
 
@@ -871,7 +878,7 @@ while ($row = mysqli_fetch_assoc($result)) {
           </div>
         </main>
 <?php
-  }
+  }}
 ?>
         </section>
       </div>
