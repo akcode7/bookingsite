@@ -13,6 +13,40 @@ if (isset($_SESSION['email'])) {
 ?>
 
 
+<?php
+include '../config/db_connect.php';
+
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+
+// Process form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get input data
+    $orderstatus = $_POST['order_status'];
+    $sessionuserid = $_SESSION['user_id'];
+
+    // Use prepared statement to prevent SQL injection
+    $sql = "UPDATE `carlist` SET `order_status`=? WHERE `user_id`=?";
+    $stmt = $conn->prepare($sql);
+
+    // Bind parameters
+    $stmt->bind_param("si", $orderstatus, $userid);
+
+    // Execute the statement
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+        echo "update success";
+    } else {
+        echo "update error";
+    }
+
+    $stmt->close();
+}
+
+// Connection closed
+$conn->close();
+?>
 
 
 <!DOCTYPE html>
@@ -836,14 +870,33 @@ if (isset($_SESSION['email'])) {
            
         
 
-<div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8">
+<div class="w-full  p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8">
     <div class="flex items-center justify-between mb-4">
-        <h5 class="text-xl font-bold leading-none text-gray-900">Booking History</h5>
+        <h5 class="text-xl font-bold leading-none text-gray-900">Orders</h5>
        
    </div>
-   <div class="flow-root">
-        <ul role="list" >
-            <li class="py-6 sm:py-4 divide-y divide-gray-300">
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Pickup Address
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Dropoff Address
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Book Time
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Purchase ID
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Action
+                </th>
+            </tr>
+        </thead>
 <?php include '../config/db_connect.php';
 
 // Check if the user is logged in
@@ -865,41 +918,46 @@ if (isset($_SESSION['user_id'])) {
         while ($row = mysqli_fetch_assoc($result)) {
       
 ?>
-                <div class="flex items-center py-6">
-                    
-                    <div class="flex-1 min-w-0 ms-4">
-                        <p class="text-md font-medium text-gray-700 truncate ">
-                           Order Id: <span class="font-bold text-gray-900"><?php echo $row['purchase_id']?></span> 
-                           
-                        </p>
-                        <p class="text-md font-medium text-gray-700 truncate ">
-                           Order Status: <span class="font-bold text-gray-900">In progress</span> 
-                        </p>
-                        <p class="text-md font-medium text-gray-700 truncate ">
-                           Order Date: <span class="font-bold text-gray-900">  <?php 
+        <tbody>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <?php echo $row['pickup_add']?>
+                </th>
+                <td class="px-6 py-4">
+                <?php echo $row['dropoff_add']?>
+                </td>
+                <td class="px-6 py-4">
+                <?php 
                     $booking_date = $row['book_time'];
                     $formatbookdate = new DateTime($booking_date);
                     $formattedbookDate = $formatbookdate->format('d-m-Y H:i:s');
-                    echo $formattedbookDate;?></span> 
-                        </p>
-                       
-                    </div>
-                    <div class="inline-flex items-center text-base font-semibold text-gray-900 ">
-                       <a href="orderhistorydetail.php?purchaseid=<?php echo urlencode($row['purchase_id']); ?>" class="text-sm font-medium text-blue-600 hover:underline">
-                        View details</a>
-                    </div>
-                </div>
-               
-                <?php
+                    echo $formattedbookDate;?>
+                </td>
+                <td class="px-6 py-4">
+                <?php echo $row['purchase_id']?>
+                </td>
+                <td class="px-6 py-4">
+                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                </td>
+            </tr>
+ 
+        </tbody>
+        <?php
   }}}
   ?>
-            </li>
-           
-           
+    </table>
+</div>
 
 
-        </ul>
-   </div>
+
+
+
+
+
+
+                
+               
+ 
 </div>
 
           </div>

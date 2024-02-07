@@ -15,7 +15,7 @@ if (isset($_SESSION['email'])) {
     }
 
     // If user_role is not set or is not administrator, you can continue with the welcome message or redirect to another page.
-    echo "Welcome back, $email!";
+   
 } else {
     // No session exists, user needs to log in or register
     header("location: ../authentication/login.php"); // Replace 'login.php' with the actual login page
