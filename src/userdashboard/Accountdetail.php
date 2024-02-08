@@ -14,60 +14,42 @@ if (isset($_SESSION['email'])) {
 
 
 
-
-
-<?php include '../../src/config/db_connect.php';
-
+<?php
+include '../config/db_connect.php';
 
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
 // Process form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-   
     // Get input data
-    $carname =  $_POST['car_name']; 
-    $carac =  $_POST['car_ac']; 
-    $carseat =  $_POST['car_seat'];
-    $carpickup =  $_POST['car_pickup'];
-    $cardropoff = $_POST['car_dropoff'];
+    $name = $_POST['fullname'];
+    $email = $_POST['email'];
+    $phonenumber = $_POST['phonenumber'];
+    $sessionUserId = $_SESSION['user_id'];
    
-    
-  
 
-    // Get the current Indian time
-    $indianTime = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
-    $currentIndianTime = $indianTime->format('Y-m-d H:i:s');
-
-
-    $sql = "INSERT INTO `carlist` (`car_name`, `car_ac`, `car_seat`, `car_pickup`, `car_dropoff`, `car_trdistance`, `car_trtime`) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+    // Use prepared statement to prevent SQL injection
+    $sql = "UPDATE `user` SET `fullname`=? , `email`=? , `phone_number`=?  WHERE `user_id`= ?";
     $stmt = $conn->prepare($sql);
 
     // Bind parameters
-    $stmt->bind_param("ssissssssss", $carname, $carac, $carseat, $carpickup, $cardropoff, $cartrdistance, $cartrtime, $carexcharge, $carcancle, $caramount, $currentIndianTime);
+    $stmt->bind_param("ssii", $name, $email, $phonenumber, $sessionUserId);
 
+    // Execute the statement
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
-         // Update the alert message
-        //  $successAlert = str_replace('id="success_msg"></div>', 'id="success_msg">Post added successfully.</div>', $successAlert);
-        // echo $successAlert;
-        echo "inserte succss";
+        echo "update success";
     } else {
-        // $errorAlert = str_replace('id="error_msg"></div>', 'id="error_msg">Post not added.</div>', $errorAlert);
-        // echo $errorAlert;
-        echo "error";
+        echo "update error";
     }
 
     $stmt->close();
-
 }
 
-//connection closed
+// Connection closed
 $conn->close();
-
-
 ?>
 
 <!DOCTYPE html>
@@ -886,16 +868,31 @@ $conn->close();
           </div>
         </header>
         <main class="h-full pb-16 overflow-y-auto bg-white">
+        <form action="" method="POST">
           <div class="container px-6 mx-auto grid">
+          
            
-          <?php
-            include '../config/db_connect.php';
+  <?php include '../config/db_connect.php';
 
-              $query = "SELECT * FROM `user`";
-              $result = mysqli_query($conn, $query); // Assuming you have a database connection stored in $your_db_connection
+// Check if the user is logged in
+if (isset($_SESSION['user_id'])) {
+    // Get the user ID from the session
+    $sessionUserId = $_SESSION['user_id'];
+ 
+   
+   
+    
+    
+    
 
-              while ($row = mysqli_fetch_assoc($result)) {
+    // Query to select user data based on user_id from the session
+    $query = "SELECT * FROM `user` WHERE user_id = $sessionUserId";
+    $result = mysqli_query($conn, $query); // Assuming you have a database connection stored in $conn
 
+    // Check if there are any rows returned from the query
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+      
 ?>
           <div class="my-4 max-w-screen-md border px-4 shadow-xl sm:mx-4 sm:rounded-xl sm:px-4 sm:py-4 md:mx-auto">
             <div class="flex flex-col border-b py-4 sm:flex-row sm:items-start">
@@ -903,19 +900,23 @@ $conn->close();
                 <p class="font-medium">Account Details</p>
                 <p class="text-sm text-gray-600">Edit your account details</p>
               </div>
-              <button class="mr-2 hidden rounded-lg border-2 px-4 py-2 font-medium text-gray-500 sm:inline focus:outline-none focus:ring hover:bg-gray-200">Cancel</button>
-              <button class="hidden rounded-lg border-2 border-transparent bg-blue-600 px-4 py-2 font-medium text-white sm:inline focus:outline-none focus:ring hover:bg-blue-700">Save</button>
+
+              <button type="submit" class="hidden rounded-lg border-2 border-transparent bg-blue-600 px-4 py-2 font-medium text-white sm:inline focus:outline-none focus:ring hover:bg-blue-700">Update</button>
             </div>
           <div class="flex flex-col gap-4 border-b py-4 sm:flex-row">
             <p class="shrink-0 w-32 font-medium">Name</p>
-            <input placeholder=" <?php echo $row['fullname']?>" class=" w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 sm:mr-4 sm:mb-0 focus:ring-1" />
+            <input name="fullname" value="<?php echo $row['fullname']?>" placeholder=" <?php echo $row['fullname']?>" class=" w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 sm:mr-4 sm:mb-0 focus:ring-1" />
             
           </div>
         <div class="flex flex-col gap-4 border-b py-4 sm:flex-row">
           <p class="shrink-0 w-32 font-medium">Email</p>
-          <input placeholder="<?php echo $row['email']?>" class="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1" />
+          <input name="email" value="<?php echo $row['email']?>" placeholder="<?php echo $row['email']?>" class="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1" />
         </div>
-        <div class="flex flex-col gap-4 py-4  lg:flex-row">
+        <div class="flex flex-col gap-4 border-b py-4 sm:flex-row">
+          <p class="shrink-0 w-32 font-medium">Phone Number</p>
+          <input name="phonenumber" value="<?php echo $row['phone_number']?>" placeholder="<?php echo $row['phone_number']?>" class="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1" />
+        </div>
+        <!-- <div class="flex flex-col gap-4 py-4  lg:flex-row">
           <div class="shrink-0 w-32  sm:py-4">
             <p class="mb-auto font-medium">Avatar</p>
             <p class="text-sm text-gray-600">Change your avatar</p>
@@ -924,17 +925,16 @@ $conn->close();
             <img src="/images/ddHJYlQqOzyOKm4CSCY8o.png" class="h-16 w-16 rounded-full" />
             <p class="text-sm text-gray-600">Drop your desired image file here to start the upload</p>
             <input type="file" class="max-w-full rounded-lg px-2 font-medium text-blue-600 outline-none ring-blue-600 focus:ring-1" />
-          </div>
+          </div> -->
               </div>
-              <div class="flex justify-end py-4 sm:hidden">
-                <button class="mr-2 rounded-lg border-2 px-4 py-2 font-medium text-gray-500 focus:outline-none focus:ring hover:bg-gray-200">Cancel</button>
-                <button class="rounded-lg border-2 border-transparent bg-blue-600 px-4 py-2 font-medium text-white focus:outline-none focus:ring hover:bg-blue-700">Update</button>
-              </div>
+             
             </div>
     <?php
-  }
+  }}}
   ?>
+  
           </div>
+          </form>
         </main>
       </div>
     </div>

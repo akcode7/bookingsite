@@ -659,10 +659,6 @@ video {
   grid-column: span 5 / span 5;
 }
 
-.col-span-6 {
-  grid-column: span 6 / span 6;
-}
-
 .m-auto {
   margin: auto;
 }
