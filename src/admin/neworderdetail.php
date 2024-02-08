@@ -4,7 +4,7 @@ session_start();
 if (isset($_SESSION['email'])) {
     // Session already exists, user is identified
     $email = $_SESSION['email'];
-   
+
 } else {
     // No session exists, user needs to log in or register
     header("location: ../authentication/login.php"); // Replace 'login.php' with the actual login page
@@ -12,9 +12,40 @@ if (isset($_SESSION['email'])) {
 }
 ?>
 
+<?php
+include '../config/db_connect.php';
 
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
 
+// Process form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get input data
+    $orderstatus = $_POST['orderstatus'];
+    $purchaseid = isset($_GET['purchaseid']) ? $_GET['purchaseid'] : '';
 
+    // Use prepared statement to prevent SQL injection
+    $sql = "UPDATE `bookingdetail` SET `order_status`=? WHERE `purchase_id`= ?";
+    $stmt = $conn->prepare($sql);
+
+    // Bind parameters
+    $stmt->bind_param("ss", $orderstatus, $purchaseid);
+
+    // Execute the statement
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+        echo "update success";
+    } else {
+        echo "update error";
+    }
+
+    $stmt->close();
+}
+
+// Connection closed
+$conn->close();
+?>
 
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
@@ -28,6 +59,7 @@ if (isset($_SESSION['email'])) {
     />
     <link rel="stylesheet" href="../../src/css/output.css">
     <link rel="stylesheet" href="../../src/admin/public/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
       defer
@@ -41,7 +73,7 @@ if (isset($_SESSION['email'])) {
     >
       <!-- Desktop sidebar -->
       <aside
-        class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0"
+        class="z-20 hidden w-64 h-screen fixed  bg-white dark:bg-gray-800 md:block flex-shrink-0"
       >
         <div class="py-4 text-gray-500 dark:text-gray-400">
           <a href="#">
@@ -574,7 +606,7 @@ if (isset($_SESSION['email'])) {
         </div>
       </aside>
       <div class="flex flex-col flex-1">
-        <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
+        <header class="z-10 py-4 w-full fixed bg-gray-800 shadow-md ">
           <div
             class="container flex items-center justify-between h-full px-6 mx-auto text-purple-600 dark:text-purple-300"
           >
@@ -600,7 +632,7 @@ if (isset($_SESSION['email'])) {
             <!-- Search input -->
             <div class="flex justify-center flex-1 lg:mr-32">
               <div
-                class="relative w-full max-w-xl mr-6 "
+                class="relative w-full max-w-xl mr-6 focus-within:text-purple-500"
               >
                 <div class="absolute inset-y-0 flex items-center pl-2">
                   <svg
@@ -831,53 +863,18 @@ if (isset($_SESSION['email'])) {
             </ul>
           </div>
         </header>
-        <main class="h-full pb-16 overflow-y-auto bg-white">
-          <div class="container px-6 my-16 mx-auto flex justify-center items-center">
-           
-           
-        
-
-<div class="w-full  p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8">
-    <div class="flex items-center justify-between mb-4">
-        <h5 class="text-xl font-bold leading-none text-gray-900">Orders</h5>
-       
-   </div>
-<form action="" method="POST">
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    Pickup Address
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Dropoff Address
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Book Time
-                </th>
-                <th scope="col" class="px-6 py-3">
-                  Purchase ID
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Action
-                </th>
-            </tr>
-        </thead>
-<?php include '../config/db_connect.php';
-
-// Check if the user is logged in
-if (isset($_SESSION['user_id'])) {
-    // Get the user ID from the session
- 
-   
-   
+  <section class="h-full bg-white py-32">
+  <form  method="POST">
     
-    
-    
+  <?php
+include '../config/db_connect.php';
 
-    // Query to select user data based on user_id from the session
-    $query = "SELECT * FROM `bookingdetail` ORDER BY `book_time` DESC";
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+  $purchaseid = isset($_GET['purchaseid']) ? $_GET['purchaseid'] : '';
+
+
+    // Perform a SELECT query based on the pickup and drop-off addresses
+    $query = "SELECT * FROM `bookingdetail` WHERE purchase_id = '$purchaseid'";
     $result = mysqli_query($conn, $query); // Assuming you have a database connection stored in $conn
 
     // Check if there are any rows returned from the query
@@ -885,56 +882,51 @@ if (isset($_SESSION['user_id'])) {
         while ($row = mysqli_fetch_assoc($result)) {
       
 ?>
-        <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <?php echo $row['pickup_add']?>
-                </th>
-                <td class="px-6 py-4">
-                <?php echo $row['dropoff_add']?>
-                </td>
-                
-                <td class="px-6 py-4">
-                <?php 
-                    $booking_date = $row['book_time'];
-                    $formatbookdate = new DateTime($booking_date);
-                    $formattedbookDate = $formatbookdate->format('d-m-Y H:i:s');
-                    echo $formattedbookDate;?>
-                </td>
-                <td class="px-6 py-4">
-                <?php echo $row['purchase_id']?>
-                </td>
-                <td class="px-6 py-4">
-               
-                <a href="neworderdetail.php?purchaseid=<?php echo urlencode($row['purchase_id']); ?>" class="text-sm font-medium text-blue-600 hover:underline">
-                View details</a>
-                </td>
-            </tr>
- 
-        </tbody>
-        <?php
-  }}}
-  ?>
-    </table>
-    
-    
-</div>
-</form>
+
+  <main class=" py-2 my-2 mx-auto">
+      <div class="container px-6 my-2 mx-auto flex justify-center items-center">
+           
+          
+        
 
 
 
-
-
-
-
-
-                
-               
- 
-</div>
+          <div class="w-11/12 max-w-xl p-6 bg-white border border-gray-200 rounded-lg shadow ">
+    <a href="#">
+        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 "><?php echo $row['book_time']?></h5>
+    </a>
+    <h1 class="text-md font-semibold pt-2">
+          Car Name : <span class="font-bold"><?php echo $row['car_name']?></span>
+        </h1>
+    <h1 class="text-md font-semibold pt-2">
+           Total ride distance: <span class="font-bold"><?php echo $row['cartr_distance']?> Km</span>
+        </h1>
+    <h1 class="text-md font-semibold pt-2">
+          Pick up: <span class="font-bold"><?php echo $row['pickup_add']?></span>
+        </h1>
+        <h1 class="text-md font-semibold pt-2">
+          Dropoff: <span class="font-bold"><?php echo $row['dropoff_add']?></span>
+        </h1>
+       
+        <select id="orderstatus" name="orderstatus" class="bg-white font-semibold border my-5 text-gray-900 text-sm rounded-lg  block w-52 px-4 py-2 ">
+                <option  value="">Update Order Status</option>
+                  <option  value="confirmed">Confirmed</option>
+                  <option  value="cancel">Cancel</option>
+                </select>
+                <button type="submit" class="w-44 text-white bg-[#FF3726] font-medium rounded-lg text-sm px-4 py-2 text-center my-6 md:my-4"> Update
+                </button>
+   
+              </div>
+         
+   
 
           </div>
         </main>
+<?php
+  }}}
+?>
+ </form>
+        </section>
       </div>
     </div>
   </body>
