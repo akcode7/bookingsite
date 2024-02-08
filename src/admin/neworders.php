@@ -22,15 +22,15 @@ ini_set('display_errors', 'On');
 // Process form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get input data
-    $orderstatus = $_POST['order_status'];
+    $orderstatus = $_POST['orderstatus'];
     $sessionuserid = $_SESSION['user_id'];
 
     // Use prepared statement to prevent SQL injection
-    $sql = "UPDATE `carlist` SET `order_status`=? WHERE `user_id`=?";
+    $sql = "UPDATE `bookingdetail` SET `order_status`=? WHERE `user_id`= $sessionuserid";
     $stmt = $conn->prepare($sql);
 
     // Bind parameters
-    $stmt->bind_param("si", $orderstatus, $userid);
+    $stmt->bind_param("s", $orderstatus);
 
     // Execute the statement
     $stmt->execute();
@@ -875,7 +875,7 @@ $conn->close();
         <h5 class="text-xl font-bold leading-none text-gray-900">Orders</h5>
        
    </div>
-
+<form action="" method="POST">
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -926,6 +926,7 @@ if (isset($_SESSION['user_id'])) {
                 <td class="px-6 py-4">
                 <?php echo $row['dropoff_add']?>
                 </td>
+                
                 <td class="px-6 py-4">
                 <?php 
                     $booking_date = $row['book_time'];
@@ -937,7 +938,11 @@ if (isset($_SESSION['user_id'])) {
                 <?php echo $row['purchase_id']?>
                 </td>
                 <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                <select id="orderstatus" name="orderstatus" class="bg-white font-semibold border  text-gray-900 text-sm rounded-lg  block w-52 px-4 py-2 ">
+                <option  value="">Select an option</option>
+                  <option  value="confirmed">Confirmed</option>
+                  <option  value="cancel">Cancel</option>
+                </select>
                 </td>
             </tr>
  
@@ -946,7 +951,10 @@ if (isset($_SESSION['user_id'])) {
   }}}
   ?>
     </table>
+    <button type="submit" class="w-44 text-white bg-[#FF3726] font-medium rounded-lg text-sm px-4 py-2 text-center my-6 md:my-4"> Update
+    </button>
 </div>
+</form>
 
 
 
