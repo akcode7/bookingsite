@@ -26,23 +26,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['fullname'];
     $email = $_POST['email'];
     $phonenumber = $_POST['phonenumber'];
-    $sessionUserId = $_SESSION['user_id'];
+    $userpass = md5($_POST['password']);
+    $userrole = $_POST['userrole'];
    
 
     // Use prepared statement to prevent SQL injection
-    $sql = "UPDATE `user` SET `fullname`=? , `email`=? , `phone_number`=?  WHERE `user_id`= ?";
+    $sql = "INSERT INTO `user` (`fullname`, `email`, `phone_number`, `password`, `user_role`) VALUES (?,?,?,?,?);";
     $stmt = $conn->prepare($sql);
 
     // Bind parameters
-    $stmt->bind_param("sssi", $name, $email, $phonenumber, $sessionUserId);
+    $stmt->bind_param("sssi", $name, $email, $phonenumber, $password, $userrole);
 
     // Execute the statement
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
-        echo "update success";
+        echo "insert success";
     } else {
-        echo "update error";
+        echo "insert error";
     }
 
     $stmt->close();
