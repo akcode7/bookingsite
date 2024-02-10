@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="src/css/output.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.3/dist/flowbite.min.css" /> -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
  
 </head>
 <body class="bg-[#EEF4FD]">
@@ -78,6 +79,12 @@
 <!-- header ends -->
 
 
+
+
+
+
+
+
 <section class=" px-8 md:px-8 2xl:px-36 py-7 bg-[#FF3726] mx-auto">
   <form action="" method="GET">
 <section class="md:flex  mx-auto justify-center items-center">
@@ -91,13 +98,17 @@
 
   <div class=" mx-auto">
     <h1 class="font-medium pb-3 text-md text-white">PickUp Location</h1>
-    <input name="pickup" class="px-4 py-1.5  w-52 rounded-lg" type="text">
+    <input name="pickup" id="loc_search" class="px-4 py-1.5  w-52 rounded-lg" type="text">
+    <div id="search-result" class="bg-white"></div>
   </div>
+  
 
   <div class=" mx-auto">
     <h1 class="font-medium pb-3 text-md text-white">Drop Off Location</h1>
-    <input name="dropoff" class="px-4 py-1.5  w-52 rounded-lg" type="text">
+    <input name="dropoff" id="loc_search" class="px-4 py-1.5  w-52 rounded-lg" type="text">
+    <div id="search-result" class="bg-white"></div>
   </div>
+ 
 
   <div class=" mx-auto">
     <h1 class="font-medium pb-3 text-md text-white">Pick Up date</h1>
@@ -139,6 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 while ($row = mysqli_fetch_assoc($result)) {
 
 ?>
+
 
 
   <section class="mx-auto w-11/12 md:w-3/5 md:grid shadow-lg grid-cols-10 bg-white border border-gray-400 rounded-lg py-5 px-2 my-5">
@@ -274,7 +286,33 @@ while ($row = mysqli_fetch_assoc($result)) {
     
     <!-- ====footer ends====>
     ======================= -->
-  
+    <script type="text/javascript">
+  $(document).ready(function(){
+    $("#loc_search").keyup(function(){
+      var input = $(this).val();
+
+      if(input != ""){
+        $.ajax({
+          url: "./src/admin/locationsearch.php",
+          method: "POST",
+          data: { location: input },
+          success: function(data){
+            $("#search-result").html(data);
+
+            // Add click event listener to the search results
+            $("#search-result li").click(function(){
+              var selectedValue = $(this).text();
+              $("#loc_search").val(selectedValue);
+              $("#search-result").html(""); // Clear the search results
+            });
+          }
+        });
+      } else {
+        $("#search-result").css("display", "none");
+      }
+    });
+  });
+</script>
     
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="public/script.js"></script>

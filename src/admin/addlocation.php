@@ -23,27 +23,61 @@ ini_set('display_errors', 'On');
 // Process form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get input data
-    $name = $_POST['fullname'];
-    $email = $_POST['email'];
-    $phonenumber = $_POST['phonenumber'];
-    $userpass = md5($_POST['password']);
-    $userrole = $_POST['userrole'];
+    $locations = $_POST['locations'];
+  
    
 
     // Use prepared statement to prevent SQL injection
-    $sql = "INSERT INTO `user` (`fullname`, `email`, `phone_number`, `password`, `user_role`) VALUES (?,?,?,?,?);";
+    $sql = "INSERT INTO `addressess` (`locations`) VALUES (?);";
     $stmt = $conn->prepare($sql);
 
     // Bind parameters
-    $stmt->bind_param("sssss", $name, $email, $phonenumber, $userpass, $userrole);
+    $stmt->bind_param("s", $locations);
 
     // Execute the statement
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
-        echo "insert success";
+      header("location: addlocation.php");
     } else {
         echo "insert error";
+    }
+
+    $stmt->close();
+}
+
+// Connection closed
+$conn->close();
+?>
+
+
+
+<?php
+include '../config/db_connect.php';
+
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+
+// Process form submission
+if (isset($_GET['delete_id'])) {
+    // Get input data
+   
+    $delete_id = $_GET['delete_id'];
+
+    // Use prepared statement to prevent SQL injection
+    $sql = "DELETE FROM `addressess` WHERE `sno` = ?";
+    $stmt = $conn->prepare($sql);
+
+    // Bind parameters
+    $stmt->bind_param("i", $delete_id);
+
+    // Execute the statement
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+        echo "update success";
+    } else {
+        echo "update error";
     }
 
     $stmt->close();
@@ -870,60 +904,91 @@ $conn->close();
         </header>
         <main class="h-full pb-16 overflow-y-auto bg-white">
         <form action="" method="POST">
-          <div class="container px-6 mx-auto grid">
+          <div class="container px-6 mx-auto ">
           
            
 
           <div class="my-4 max-w-screen-md border px-4 shadow-xl sm:mx-4 sm:rounded-xl sm:px-4 sm:py-4 md:mx-auto">
             <div class="flex flex-col border-b py-4 sm:flex-row sm:items-start">
               <div class="shrink-0 mr-auto sm:py-3">
-                <p class="font-medium">Account Details</p>
-                <p class="text-sm text-gray-600">Edit your account details</p>
+                <p class="font-medium">Add oprating location</p>
+                
               </div>
 
-              <button type="submit" class="hidden rounded-lg border-2 border-transparent bg-blue-600 px-4 py-2 font-medium text-white sm:inline focus:outline-none focus:ring hover:bg-blue-700">Add User</button>
+              <button type="submit" class=" rounded-lg border-2 border-transparent bg-blue-600 px-1 md:px-4 py-0.5 md:py-2 font-medium text-white sm:inline focus:outline-none focus:ring hover:bg-blue-700">Add location</button>
             </div>
           <div class="flex flex-col gap-4 border-b py-4 sm:flex-row">
-            <p class="shrink-0 w-32 font-medium">Name</p>
-            <input name="fullname"  class=" w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 sm:mr-4 sm:mb-0 focus:ring-1" />
+            <p class="shrink-0 w-32 font-medium">Add location</p>
+            <input name="locations"  class=" w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 sm:mr-4 sm:mb-0 focus:ring-1" />
             
           </div>
-        <div class="flex flex-col gap-4 border-b py-4 sm:flex-row">
-          <p class="shrink-0 w-32 font-medium">Email</p>
-          <input name="email"   class="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1" />
-        </div>
-        <div class="flex flex-col gap-4 border-b py-4 sm:flex-row">
-          <p class="shrink-0 w-32 font-medium">Phone Number</p>
-          <input name="phonenumber"  class="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1" />
-        </div>
-        <div class="flex flex-col gap-4 border-b py-4 sm:flex-row">
-          <p class="shrink-0 w-32 font-medium">Password</p>
-          <input name="password"  class="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1" />
-        </div>
+        
+          <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                  locations
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Action
+                </th>
+               
+            </tr>
+        </thead>
+        <tbody>
+        <?php include '../config/db_connect.php';
+
+// Check if the user is logged in
+if (isset($_SESSION['user_id'])) {
+    // Get the user ID from the session
+ 
+   
+   
+    
+    
+    
+
+    // Query to select user data based on user_id from the session
+    $query = "SELECT * FROM `addressess` ORDER BY `sno` DESC";
+    $result = mysqli_query($conn, $query); // Assuming you have a database connection stored in $conn
+
+    // Check if there are any rows returned from the query
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+      
+?>
+            <tr class="bg-white border-b">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                <?php echo $row['locations']?>
+                </th>
+                <td class="px-6 py-4">
+                <a href="?delete_id=<?php echo $row['sno']; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
+                </td>
+            </tr>
+            <?php
+  }}}
+  ?>
+        </tbody>
+    </table>
+</div>
        
-        <div class="flex flex-col gap-4 border-b py-4 sm:flex-row">
-        <select id="userrole" name="userrole" class="bg-white font-semibold border  text-gray-900 text-sm rounded-lg  block w-52 px-4 py-2 ">
-        <option   selected>Select User Role</option>
-        <option  value="customer" >Customer</option>
-          <option  value="administrator">Administrator</option>
-        </select>
-                </div>
-        <!-- <div class="flex flex-col gap-4 py-4  lg:flex-row">
-          <div class="shrink-0 w-32  sm:py-4">
-            <p class="mb-auto font-medium">Avatar</p>
-            <p class="text-sm text-gray-600">Change your avatar</p>
-          </div>
-          <div class="flex h-56 w-full flex-col items-center justify-center gap-4 rounded-xl border border-dashed border-gray-300 p-5 text-center">
-            <img src="/images/ddHJYlQqOzyOKm4CSCY8o.png" class="h-16 w-16 rounded-full" />
-            <p class="text-sm text-gray-600">Drop your desired image file here to start the upload</p>
-            <input type="file" class="max-w-full rounded-lg px-2 font-medium text-blue-600 outline-none ring-blue-600 focus:ring-1" />
-          </div> -->
               </div>
              
             </div>
   
   
           </div>
+
+
+
+
+
+
+    
+
+
+
           </form>
         </main>
       </div>
