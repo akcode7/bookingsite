@@ -14,78 +14,8 @@ if (isset($_SESSION['email'])) {
 
 
 
-<?php
-include '../config/db_connect.php';
-
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
-
-// Process form submission
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get input data
-    $locations = $_POST['locations'];
-  
-   
-
-    // Use prepared statement to prevent SQL injection
-    $sql = "INSERT INTO `addressess` (`locations`) VALUES (?);";
-    $stmt = $conn->prepare($sql);
-
-    // Bind parameters
-    $stmt->bind_param("s", $locations);
-
-    // Execute the statement
-    $stmt->execute();
-
-    if ($stmt->affected_rows > 0) {
-      header("location: addlocation.php");
-    } else {
-        echo "insert error";
-    }
-
-    $stmt->close();
-}
-
-// Connection closed
-$conn->close();
-?>
 
 
-
-<?php
-include '../config/db_connect.php';
-
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
-
-// Process form submission
-if (isset($_GET['delete_id'])) {
-    // Get input data
-   
-    $delete_id = $_GET['delete_id'];
-
-    // Use prepared statement to prevent SQL injection
-    $sql = "DELETE FROM `carlist` WHERE `sno` = ?";
-    $stmt = $conn->prepare($sql);
-
-    // Bind parameters
-    $stmt->bind_param("i", $delete_id);
-
-    // Execute the statement
-    $stmt->execute();
-
-    if ($stmt->affected_rows > 0) {
-        echo "update success";
-    } else {
-        echo "update error";
-    }
-
-    $stmt->close();
-}
-
-// Connection closed
-$conn->close();
-?>
 
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
@@ -150,7 +80,7 @@ $conn->close();
               ></span>
               <a
                 class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                href="addcabbooking.php"
+                href="addlisting.php"
               >
                 <svg
                   class="w-5 h-5"
@@ -166,13 +96,13 @@ $conn->close();
                     d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
                   ></path>
                 </svg>
-                <span class="ml-4">Account Details</span>
+                <span class="ml-4">Add listing</span>
               </a>
             </li>
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="cards.php"
+                href="viewlistings.php"
               >
                 <svg
                   class="w-5 h-5"
@@ -188,36 +118,14 @@ $conn->close();
                     d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
                   ></path>
                 </svg>
-                <span class="ml-4">Bookings</span>
+                <span class="ml-4">View Listing</span>
               </a>
             </li>
+        
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="../../booking.php"
-              >
-                <svg
-                  class="w-5 h-5"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"
-                  ></path>
-                  <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
-                </svg>
-                <span class="ml-4">Book new ride</span>
-              </a>
-            </li>
-            <li class="relative px-6 py-3">
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="buttons.php"
+                href="neworders.php"
               >
                 <svg
                   class="w-5 h-5"
@@ -233,136 +141,22 @@ $conn->close();
                     d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
                   ></path>
                 </svg>
-                <span class="ml-4">Contact</span>
+                <span class="ml-4">neworders</span>
               </a>
             </li>
-            <li class="relative px-6 py-3">
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="modals.php"
-              >
-                <svg
-                  class="w-5 h-5"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                  ></path>
-                </svg>
-                <span class="ml-4">Modals</span>
-              </a>
-            </li>
-            <li class="relative px-6 py-3">
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="tables.php"
-              >
-                <svg
-                  class="w-5 h-5"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
-                </svg>
-                <span class="ml-4">Tables</span>
-              </a>
-            </li>
-            <li class="relative px-6 py-3">
-              <button
-                class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                @click="togglePagesMenu"
-                aria-haspopup="true"
-              >
-                <span class="inline-flex items-center">
-                  <svg
-                    class="w-5 h-5"
-                    aria-hidden="true"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
-                    ></path>
-                  </svg>
-                  <span class="ml-4">Pages</span>
-                </span>
-                <svg
-                  class="w-4 h-4"
-                  aria-hidden="true"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </button>
-              <template x-if="isPagesMenuOpen">
-                <ul
-                  x-transition:enter="transition-all ease-in-out duration-300"
-                  x-transition:enter-start="opacity-25 max-h-0"
-                  x-transition:enter-end="opacity-100 max-h-xl"
-                  x-transition:leave="transition-all ease-in-out duration-300"
-                  x-transition:leave-start="opacity-100 max-h-xl"
-                  x-transition:leave-end="opacity-0 max-h-0"
-                  class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
-                  aria-label="submenu"
-                >
-                  <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                    <a class="w-full" href="pages/login.php">Login</a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="pages/create-account.php">
-                      Create account
-                    </a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="pages/forgot-password.php">
-                      Forgot password
-                    </a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="pages/404.php">404</a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="pages/blank.php">Blank</a>
-                  </li>
+          
                 </ul>
               </template>
             </li>
           </ul>
           <div class="px-6 my-6">
+            <a href="adduser.php">
             <button
               class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 theme_color border border-transparent rounded-lg active:theme_color theme_color_hover focus:outline-none focus:shadow-outline-purple"
             >
-              Create account
+              Add Users
               <span class="ml-2" aria-hidden="true">+</span>
-            </button>
+            </button></a>
           </div>
         </div>
       </aside>
@@ -903,7 +697,7 @@ $conn->close();
           </div>
         </header>
         <main class="h-full pb-16 overflow-y-auto bg-white">
-        <form action="" method="POST">
+       
           <div class="container px-6 mx-auto ">
           
            
@@ -911,9 +705,14 @@ $conn->close();
           <div class="my-4 max-w-screen-lg border px-4 shadow-xl sm:mx-4 sm:rounded-xl sm:px-4 sm:py-4 md:mx-auto">
             <div class="flex flex-col border-b py-4 sm:flex-row sm:items-start">
               <div class="shrink-0 mr-auto sm:py-3">
-                <p class="font-medium">Booking Listing</p>
+                <p class="font-medium">All Users</p>
                 
               </div>
+              <div class="px-5">
+            <a href="adduser.php">
+              <button class="hidden rounded-lg border-2 border-transparent bg-blue-600 px-4 py-2 font-medium text-white sm:inline focus:outline-none focus:ring hover:bg-blue-700">Add User</button>
+                
+              </div></a>
 
            
             </div>
@@ -924,82 +723,58 @@ $conn->close();
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
             <th scope="col" class="px-6 py-3">
-                 carname
+                 Full Name
                 </th>
                 <th scope="col" class="px-6 py-3">
-                  Pickup
+                  Email
                 </th>
                 <th scope="col" class="px-6 py-3">
-                  Dropoff
+                 Phone Number
                 </th>
                 <th scope="col" class="px-6 py-3">
-                  Travel Distance
+                  User Role
                 </th>
-                <th scope="col" class="px-6 py-3">
-                  Traveling time
-                </th>
-               
-                <th scope="col" class="px-6 py-3">
-                  Amount
-                </th>
-                <th scope="col" class="px-6 py-3">
-                   Edit
-                </th>
-                <th scope="col" class="px-6 py-3">
-                   Delete
-                </th>
+                
                
             </tr>
         </thead>
         <tbody>
         <?php include '../config/db_connect.php';
 
-// Check if the user is logged in
-if (isset($_SESSION['user_id'])) {
-    // Get the user ID from the session
+        // Check if the user is logged in
+        if (isset($_SESSION['user_id'])) {
+            // Get the user ID from the session
  
    
    
     
     
-    
+            
 
-    // Query to select user data based on user_id from the session
-    $query = "SELECT * FROM `carlist` ORDER BY `sno` DESC";
-    $result = mysqli_query($conn, $query); // Assuming you have a database connection stored in $conn
+            // Query to select user data based on user_id from the session
+            $query = "SELECT * FROM `user` ORDER BY `user_id` DESC";
+            $result = mysqli_query($conn, $query); // Assuming you have a database connection stored in $conn
 
-    // Check if there are any rows returned from the query
-    if ($result && mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-      
-?>
+            // Check if there are any rows returned from the query
+            if ($result && mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+            
+        ?>
             <tr class="bg-white border-b">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                <?php echo $row['car_name']?>
+                <?php echo $row['fullname']?>
                 </th>
                 <td class="px-6 py-4">
-                <?php echo $row['car_pickup']?>
+                <?php echo $row['email']?>
                 </td>
                 <td class="px-6 py-4">
-                <?php echo $row['car_dropoff']?>
+                <?php echo $row['phone_number']?>
                 </td>
                 <td class="px-6 py-4">
-                <?php echo $row['car_trdistance']?>KM
+                <?php echo $row['user_role']?>
                 </td>
-                <td class="px-6 py-4">
-                <?php echo $row['car_trtime']?>hours
-                </td>
-                <td class="px-6 py-4">
-                <?php echo $row['car_amount']?>
-                </td>
-                <td class="px-6 py-4">
                
-               <a href="updatelisting.php?sno=<?php echo urlencode($row['sno']); ?>" class="text-sm font-medium text-blue-600 hover:underline">
-               Edit</a>
-               </td>
-                <td class="px-6 py-4">
-                <a href="?delete_id=<?php echo $row['sno']; ?>" class="font-medium text-red-600 hover:underline">Delete</a>
-                </td>
+               
             </tr>
             <?php
   }}}
@@ -1024,7 +799,7 @@ if (isset($_SESSION['user_id'])) {
 
 
 
-          </form>
+         
         </main>
       </div>
     </div>
