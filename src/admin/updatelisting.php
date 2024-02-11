@@ -4,7 +4,18 @@ session_start();
 if (isset($_SESSION['email'])) {
     // Session already exists, user is identified
     $email = $_SESSION['email'];
-    echo "Welcome back, $email!";
+
+    // Check if user_role is set in the session
+    if (isset($_SESSION['user_role'])) {
+        if ($_SESSION['user_role'] !== "administrator") {
+            // Redirect to admin dashboard
+            header("location: ../../notfound.php");
+            exit();
+        }
+    }
+
+    // If user_role is not set or is not administrator, you can continue with the welcome message or redirect to another page.
+   
 } else {
     // No session exists, user needs to log in or register
     header("location: ../authentication/login.php"); // Replace 'login.php' with the actual login page
@@ -13,78 +24,59 @@ if (isset($_SESSION['email'])) {
 ?>
 
 
+<?php include '../../src/config/db_connect.php';
 
-<?php
-include '../config/db_connect.php';
 
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
 // Process form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+   
     // Get input data
-    $locations = $_POST['locations'];
+    $carname =  $_POST['car_name']; 
+   
+    $carpickup =  $_POST['car_pickup'];
+    $cardropoff = $_POST['car_dropoff'];
+    $cartrdistance = $_POST['car_trdistance'];
+    $cartrtime = $_POST['car_trtime'];
+    $carexcharge = $_POST['car_extcharge'];
+    $carcancle = $_POST['car_cancel'];
+    $caramount = $_POST['car_amount'];
+    $sno = isset($_GET['sno']) ? $_GET['sno'] : '';
+    
   
-   
 
-    // Use prepared statement to prevent SQL injection
-    $sql = "INSERT INTO `addressess` (`locations`) VALUES (?);";
+
+
+    $sql = "UPDATE `carlist` SET `car_name`=?, `car_pickup`=?, `car_dropoff`=?, `car_trdistance`=?, `car_trtime`=?, `car_extcharges`=?, `car_cancletime`=?, `car_amount`=? WHERE `sno`=?";
     $stmt = $conn->prepare($sql);
 
     // Bind parameters
-    $stmt->bind_param("s", $locations);
+    $stmt->bind_param("ssssssssi", $carname, $carpickup, $cardropoff, $cartrdistance, $cartrtime, $carexcharge, $carcancle, $caramount,$sno);
 
-    // Execute the statement
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
-      header("location: addlocation.php");
+         // Update the alert message
+        //  $successAlert = str_replace('id="success_msg"></div>', 'id="success_msg">Post added successfully.</div>', $successAlert);
+        // echo $successAlert;
+        echo "update succss";
     } else {
-        echo "insert error";
+        // $errorAlert = str_replace('id="error_msg"></div>', 'id="error_msg">Post not added.</div>', $errorAlert);
+        // echo $errorAlert;
+        echo "error";
     }
 
     $stmt->close();
+
 }
 
-// Connection closed
+//connection closed
 $conn->close();
-?>
 
 
-
-<?php
-include '../config/db_connect.php';
-
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
-
-// Process form submission
-if (isset($_GET['delete_id'])) {
-    // Get input data
-   
-    $delete_id = $_GET['delete_id'];
-
-    // Use prepared statement to prevent SQL injection
-    $sql = "DELETE FROM `carlist` WHERE `sno` = ?";
-    $stmt = $conn->prepare($sql);
-
-    // Bind parameters
-    $stmt->bind_param("i", $delete_id);
-
-    // Execute the statement
-    $stmt->execute();
-
-    if ($stmt->affected_rows > 0) {
-        echo "update success";
-    } else {
-        echo "update error";
-    }
-
-    $stmt->close();
-}
-
-// Connection closed
-$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -97,13 +89,13 @@ $conn->close();
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/output.css">
-    <link rel="stylesheet" href="../../src/admin/public/assets/css/style.css">
+    <link rel="stylesheet" href="../css/output.css" />
+    <link rel="stylesheet" href="public/assets/css/style.css">
     <script
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
       defer
     ></script>
-    <script src="../../src/admin/public/assets/js/init-alpine.js"></script>
+    <script src="public/assets/js/init-alpine.js"></script>
   </head>
   <body>
     <div
@@ -114,14 +106,14 @@ $conn->close();
       <aside
         class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0"
       >
-        <div class="py-4 text-gray-500 dark:text-gray-400">
+        <div class="py-4 text-gray-500 ">
           <a href="#">
             <img src="../icon/logo.png" alt="" class="w-40 pl-5">
           </a>
           <ul class="mt-6">
             <li class="relative px-6 py-3">
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 "
                 href="index.php"
               >
                 <svg
@@ -149,7 +141,7 @@ $conn->close();
                 aria-hidden="true"
               ></span>
               <a
-                class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800"
                 href="addcabbooking.php"
               >
                 <svg
@@ -166,12 +158,12 @@ $conn->close();
                     d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
                   ></path>
                 </svg>
-                <span class="ml-4">Account Details</span>
+                <span class="ml-4">Forms</span>
               </a>
             </li>
             <li class="relative px-6 py-3">
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 "
                 href="cards.php"
               >
                 <svg
@@ -188,13 +180,13 @@ $conn->close();
                     d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
                   ></path>
                 </svg>
-                <span class="ml-4">Bookings</span>
+                <span class="ml-4">Cards</span>
               </a>
             </li>
             <li class="relative px-6 py-3">
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="../../booking.php"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 "
+                href="charts.php"
               >
                 <svg
                   class="w-5 h-5"
@@ -211,12 +203,12 @@ $conn->close();
                   ></path>
                   <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
                 </svg>
-                <span class="ml-4">Book new ride</span>
+                <span class="ml-4">Charts</span>
               </a>
             </li>
             <li class="relative px-6 py-3">
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 "
                 href="buttons.php"
               >
                 <svg
@@ -233,12 +225,12 @@ $conn->close();
                     d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
                   ></path>
                 </svg>
-                <span class="ml-4">Contact</span>
+                <span class="ml-4">Buttons</span>
               </a>
             </li>
             <li class="relative px-6 py-3">
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 "
                 href="modals.php"
               >
                 <svg
@@ -260,7 +252,7 @@ $conn->close();
             </li>
             <li class="relative px-6 py-3">
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 "
                 href="tables.php"
               >
                 <svg
@@ -280,7 +272,7 @@ $conn->close();
             </li>
             <li class="relative px-6 py-3">
               <button
-                class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 "
                 @click="togglePagesMenu"
                 aria-haspopup="true"
               >
@@ -322,33 +314,35 @@ $conn->close();
                   x-transition:leave="transition-all ease-in-out duration-300"
                   x-transition:leave-start="opacity-100 max-h-xl"
                   x-transition:leave-end="opacity-0 max-h-0"
-                  class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
+                  class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 "
                   aria-label="submenu"
                 >
-                  <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                  <li
+                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 "
+                  >
                     <a class="w-full" href="pages/login.php">Login</a>
                   </li>
                   <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 "
                   >
                     <a class="w-full" href="pages/create-account.php">
                       Create account
                     </a>
                   </li>
                   <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 "
                   >
                     <a class="w-full" href="pages/forgot-password.php">
                       Forgot password
                     </a>
                   </li>
                   <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 "
                   >
                     <a class="w-full" href="pages/404.php">404</a>
                   </li>
                   <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 "
                   >
                     <a class="w-full" href="pages/blank.php">Blank</a>
                   </li>
@@ -368,7 +362,7 @@ $conn->close();
       </aside>
       <!-- Mobile sidebar -->
       <!-- Backdrop -->
-      <!-- <div
+      <div
         x-show="isSideMenuOpen"
         x-transition:enter="transition ease-in-out duration-150"
         x-transition:enter-start="opacity-0"
@@ -377,7 +371,7 @@ $conn->close();
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
         class="fixed inset-0 z-10 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center"
-      ></div> -->
+      ></div>
       <aside
         class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:hidden"
         x-show="isSideMenuOpen"
@@ -390,14 +384,14 @@ $conn->close();
         @click.away="closeSideMenu"
         @keydown.escape="closeSideMenu"
       >
-        <div class="py-4 text-gray-500 dark:text-gray-400">
+        <div class="py-4 text-gray-500 ">
           <a href="#">
             <img src="../icon/logo.png" alt="" class="w-40 pl-5">
           </a>
           <ul class="mt-6">
             <li class="relative px-6 py-3">
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 "
                 href="index.php"
               >
                 <svg
@@ -425,7 +419,7 @@ $conn->close();
                 aria-hidden="true"
               ></span>
               <a
-                class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 "
                 href="addcabbooking.php"
               >
                 <svg
@@ -442,12 +436,12 @@ $conn->close();
                     d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
                   ></path>
                 </svg>
-                <span class="ml-4">Account Details</span>
+                <span class="ml-4">Forms</span>
               </a>
             </li>
             <li class="relative px-6 py-3">
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 "
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 href="cards.php"
               >
                 <svg
@@ -464,7 +458,7 @@ $conn->close();
                     d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
                   ></path>
                 </svg>
-                <span class="ml-4">Orders</span>
+                <span class="ml-4">Cards</span>
               </a>
             </li>
             <li class="relative px-6 py-3">
@@ -514,7 +508,7 @@ $conn->close();
             </li>
             <li class="relative px-6 py-3">
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 "
                 href="modals.php"
               >
                 <svg
@@ -536,7 +530,7 @@ $conn->close();
             </li>
             <li class="relative px-6 py-3">
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 "
                 href="tables.php"
               >
                 <svg
@@ -556,7 +550,7 @@ $conn->close();
             </li>
             <li class="relative px-6 py-3">
               <button
-                class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800"
                 @click="togglePagesMenu"
                 aria-haspopup="true"
               >
@@ -598,35 +592,35 @@ $conn->close();
                   x-transition:leave="transition-all ease-in-out duration-300"
                   x-transition:leave-start="opacity-100 max-h-xl"
                   x-transition:leave-end="opacity-0 max-h-0"
-                  class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
+                  class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 "
                   aria-label="submenu"
                 >
                   <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 "
                   >
                     <a class="w-full" href="pages/login.php">Login</a>
                   </li>
                   <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 "
                   >
                     <a class="w-full" href="pages/create-account.php">
                       Create account
                     </a>
                   </li>
                   <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 "
                   >
                     <a class="w-full" href="pages/forgot-password.php">
                       Forgot password
                     </a>
                   </li>
                   <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 "
                   >
                     <a class="w-full" href="pages/404.php">404</a>
                   </li>
                   <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 "
                   >
                     <a class="w-full" href="pages/blank.php">Blank</a>
                   </li>
@@ -902,61 +896,16 @@ $conn->close();
             </ul>
           </div>
         </header>
-        <main class="h-full pb-16 overflow-y-auto bg-white">
-        <form action="" method="POST">
-          <div class="container px-6 mx-auto ">
-          
+        <main class="h-full pb-16 overflow-y-auto">
+          <div class="container px-6 mx-auto grid">
            
-
-          <div class="my-4 max-w-screen-lg border px-4 shadow-xl sm:mx-4 sm:rounded-xl sm:px-4 sm:py-4 md:mx-auto">
-            <div class="flex flex-col border-b py-4 sm:flex-row sm:items-start">
-              <div class="shrink-0 mr-auto sm:py-3">
-                <p class="font-medium">Booking Listing</p>
-                
-              </div>
-
-           
-            </div>
-         
-        
-      <div  style="border: 1px solid black; " class="relative ">
-    <table style="border: 1px solid black;" class="w-full text-sm text-left rtl:text-right text-gray-500">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-            <tr>
-            <th scope="col" class="px-6 py-3">
-                 carname
-                </th>
-                <th scope="col" class="px-6 py-3">
-                  Pickup
-                </th>
-                <th scope="col" class="px-6 py-3">
-                  Dropoff
-                </th>
-                <th scope="col" class="px-6 py-3">
-                  Travel Distance
-                </th>
-                <th scope="col" class="px-6 py-3">
-                  Traveling time
-                </th>
-               
-                <th scope="col" class="px-6 py-3">
-                  Amount
-                </th>
-                <th scope="col" class="px-6 py-3">
-                   Edit
-                </th>
-                <th scope="col" class="px-6 py-3">
-                   Delete
-                </th>
-               
-            </tr>
-        </thead>
-        <tbody>
-        <?php include '../config/db_connect.php';
+<?php include '../config/db_connect.php';
 
 // Check if the user is logged in
 if (isset($_SESSION['user_id'])) {
     // Get the user ID from the session
+    $sessionUserId = $_SESSION['user_id'];
+    $sno = isset($_GET['sno']) ? $_GET['sno'] : '';
  
    
    
@@ -965,66 +914,100 @@ if (isset($_SESSION['user_id'])) {
     
 
     // Query to select user data based on user_id from the session
-    $query = "SELECT * FROM `carlist` ORDER BY `sno` DESC";
+    $query = "SELECT * FROM `carlist` WHERE sno = $sno";
     $result = mysqli_query($conn, $query); // Assuming you have a database connection stored in $conn
 
     // Check if there are any rows returned from the query
     if ($result && mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
       
-?>
-            <tr class="bg-white border-b">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                <?php echo $row['car_name']?>
-                </th>
-                <td class="px-6 py-4">
-                <?php echo $row['car_pickup']?>
-                </td>
-                <td class="px-6 py-4">
-                <?php echo $row['car_dropoff']?>
-                </td>
-                <td class="px-6 py-4">
-                <?php echo $row['car_trdistance']?>KM
-                </td>
-                <td class="px-6 py-4">
-                <?php echo $row['car_trtime']?>hours
-                </td>
-                <td class="px-6 py-4">
-                <?php echo $row['car_amount']?>
-                </td>
-                <td class="px-6 py-4">
-               
-               <a href="updatelisting.php?sno=<?php echo urlencode($row['sno']); ?>" class="text-sm font-medium text-blue-600 hover:underline">
-               Edit</a>
-               </td>
-                <td class="px-6 py-4">
-                <a href="?delete_id=<?php echo $row['sno']; ?>" class="font-medium text-red-600 hover:underline">Delete</a>
-                </td>
-            </tr>
+?> 
+
+            <!-- General elements -->
+            <h4 class="mb-4 mt-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
+             Add cab booking listing
+            </h4>
+            <form action="" method="post">
+            <div class="px-4 py-3 mb-8 bg-gray-800 rounded-lg shadow-md">
+              <label class="block text-sm">
+                <span class="text-white font-bold">Car Company name</span>
+                <input name="car_name" value="<?php echo $row['car_name']?>"
+                  class="block w-full mt-2 py-2 px-4 text-sm   focus:outline-none focus:shadow-outline-purple"
+                  placeholder="car brand eg. Innova"/>
+              </label>
+
+             
+              
+
+              </div>
+
+              
+           <label class="block text-sm mb-3">
+                <span class="text-white font-bold">Pick-up address</span>
+                <input type="text" name="car_pickup" value="<?php echo $row['car_pickup']?>"
+                  class="block w-full mt-2 py-2 px-4 text-sm   focus:outline-none focus:shadow-outline-purple"
+                  placeholder="Pick Up address"/>
+              </label>
+
+              <label class="block text-sm mb-3">
+                <span class="text-white font-bold">Drop off address</span>
+                <input type="text" name="car_dropoff" value="<?php echo $row['car_dropoff']?>"
+                  class="block w-full mt-2 py-2 px-4 text-sm   focus:outline-none focus:shadow-outline-purple"
+                  placeholder="Drop off address"/>
+              </label>
+              <label class="block text-sm mb-3">
+                <span class="text-white font-bold">Total Distance</span>
+                <input name="car_trdistance" value="<?php echo $row['car_trdistance']?>" type="text" class="block w-60 mt-2 py-2 px-4 text-sm   focus:outline-none focus:shadow-outline-purple"
+                  placeholder="Enter distance in Kilometers"/>
+              </label>
+
+            
+
+              <label class="block text-sm mb-3">
+                <span class="text-white font-bold">Total travelling Time</span>
+                <input type="number" name="car_trtime" value="<?php echo $row['car_trtime']?>" class="block w-60 mt-2 py-2 px-4 text-sm   focus:outline-none focus:shadow-outline-purple"
+                  placeholder="Enter time in Hours"/>
+                 
+              </label>
+              <label class="block text-sm mb-3">
+                <span class="text-white font-bold">Enter extra charge cost after booking distance Rs/Km</span>
+                <input name="car_extcharge" type="text" value="<?php echo $row['car_extcharges']?>" class="block w-60 mt-2 py-2 px-4 text-sm   focus:outline-none focus:shadow-outline-purple"
+                  placeholder="Enter extra charge eg. 23Rs/km"/>
+              </label>
+
+              <label class="block text-sm mb-3">
+                <span class="text-white font-bold">Cancellation Free till</span>
+                <input type="text" name="car_cancel" value="<?php echo $row['car_cancletime']?>" class="block w-60 mt-2 py-2 px-4 text-sm   focus:outline-none focus:shadow-outline-purple"
+                  placeholder=" eg. 6 hours of departure"/>
+              </label>
+
+              <label class="block text-sm mb-3">
+                <span class="text-white font-bold">Enter Booking Price in Rs.</span>
+                <input type="text" name="car_amount" value="<?php echo $row['car_amount']?>" class="block w-60 mt-2 py-2 px-4 text-sm   focus:outline-none focus:shadow-outline-purple"
+                  placeholder="Booking amount in Rs"/>
+              </label>
+         
+              <button
+                      type="submit"
+                      class="w-64 text-white bg-[#FF3726] font-medium rounded-lg text-sm px-4 py-2 text-center my-6 md:my-4"
+                    >
+                      Update Listing
+                    </button>
+            
+            </div>
+
+         
+       
+
+           
+          
+
+            </form>
             <?php
   }}}
   ?>
-        </tbody>
-    </table>
-</div>
-       
-              </div>
-             
-            </div>
-  
   
           </div>
-
-
-
-
-
-
-    
-
-
-
-          </form>
         </main>
       </div>
     </div>

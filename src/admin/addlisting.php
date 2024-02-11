@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare($sql);
 
     // Bind parameters
-    $stmt->bind_param("ssssssis", $pickupadd, $dropoffadd, $fullname, $email, $gender, $phonenumber, $userid, $currentIndianTime);
+    $stmt->bind_param("ssissssssss", $carname, $carac, $carseat, $carpickup, $cardropoff, $cartrdistance, $cartrtime, $carexcharge, $carcancle, $caramount, $currentIndianTime);
 
     $stmt->execute();
 
