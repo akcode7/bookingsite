@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+if (isset($_SESSION['email'])) {
+    // Session already exists, user is identified
+    $email = $_SESSION['email'];
+    echo "Welcome back, $email!";
+} else {
+    // No session exists, user needs to log in or register
+    header("location: src/authentication/login.php"); // Replace 'login.php' with the actual login page
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,7 +104,7 @@
 <section class="md:flex  mx-auto justify-center items-center">
 <div class="mx-auto">
 <label for="trip" class="block font-medium pb-3 text-md text-white  text-sm  ">Trip Type</label>
-<select id="triptype" name="triptype" class="bg-white font-semibold border  text-gray-900 text-sm rounded-lg  block w-52 px-4 py-2 ">
+<select id="triptype" name="triptype" class="bg-white cursor-pointer font-semibold border  text-gray-900 text-sm rounded-lg  block w-52 px-4 py-2 ">
   <option  value="Oneway" selected>One way</option>
   <option  value="Roundtrip">Round Trip</option>
 </select>
@@ -98,15 +112,15 @@
 
   <div class=" mx-auto">
     <h1 class="font-medium pb-3 text-md text-white">PickUp Location</h1>
-    <input name="pickup" id="loc_search" class="px-4 py-1.5  w-52 rounded-lg" type="text">
-    <div id="search-result" class="bg-white"></div>
+    <input autocomplete="off" name="pickup" id="loc_search" class="px-4 py-1.5  w-52 rounded-lg relative  mb-1" type="text">
+    <div id="search-result" class="bg-white absolute w-52 rounded-lg"></div>
   </div>
   
 
   <div class=" mx-auto">
     <h1 class="font-medium pb-3 text-md text-white">Drop Off Location</h1>
-    <input name="dropoff" id="loc_search" class="px-4 py-1.5  w-52 rounded-lg" type="text">
-    <div id="search-result" class="bg-white"></div>
+    <input autocomplete="off" name="dropoff" id="loc_search_d" class="px-4 py-1.5  border-none w-52 rounded-lg relative  mb-1" type="text">
+    <div id="search-result_d"  class="bg-white absolute w-52 rounded-lg"></div>
   </div>
  
 
@@ -287,32 +301,61 @@ while ($row = mysqli_fetch_assoc($result)) {
     <!-- ====footer ends====>
     ======================= -->
     <script type="text/javascript">
-  $(document).ready(function(){
-    $("#loc_search").keyup(function(){
-      var input = $(this).val();
+ $(document).ready(function(){
+      $("#loc_search").keyup(function(){
+        var input = $(this).val();
 
-      if(input != ""){
-        $.ajax({
-          url: "./src/admin/locationsearch.php",
-          method: "POST",
-          data: { location: input },
-          success: function(data){
-            $("#search-result").html(data);
+        if(input != ""){
+          $.ajax({
+            url: "./src/admin/locationsearch.php",
+            method: "POST",
+            data: { location: input },
+         
+            success: function(data){
+              $("#search-result").html(data);
 
-            // Add click event listener to the search results
-            $("#search-result li").click(function(){
-              var selectedValue = $(this).text();
-              $("#loc_search").val(selectedValue);
-              $("#search-result").html(""); // Clear the search results
-            });
-          }
-        });
-      } else {
-        $("#search-result").css("display", "none");
-      }
+              // Add click event listener to the search results
+              $("#search-result li").click(function(){
+                var selectedValue = $(this).text();
+                $("#loc_search").val(selectedValue);
+                $("#search-result").html(""); // Clear the search results
+              });
+            }
+          });
+        } else {
+          $("#search-result").html(""); // Clear the search results if the input is empty
+        }
+      });
     });
-  });
+
+    $(document).ready(function(){
+      $("#loc_search_d").keyup(function(){
+        var input = $(this).val();
+
+        if(input != ""){
+          $.ajax({
+            url: "./src/admin/locationsearch.php",
+            method: "POST",
+            data: { location_d: input },
+         
+            success: function(data){
+              $("#search-result_d").html(data);
+
+              // Add click event listener to the search results
+              $("#search-result_d li").click(function(){
+                var selectedValue = $(this).text();
+                $("#loc_search_d").val(selectedValue);
+                $("#search-result_d").html(""); // Clear the search results
+              });
+            }
+          });
+        } else {
+          $("#search-result_d").html(""); // Clear the search results if the input is empty
+        }
+      });
+    });
 </script>
+
     
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="public/script.js"></script>

@@ -1,34 +1,53 @@
+<?php
+session_start();
+
+// Check if user is already logged in
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+    header("location: ../../index.php"); // Redirect to index.php if already logged in
+    exit();
+}
+?>
 
 <?php
+include '../config/db_connect.php';
 
-include 'src/config/db_connect.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
 
+// Process form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $email = $_POST['email'];
-  $password = $_POST['password'];
+    // Get input data
+    $name = $_POST['fullname'];
+    $email = $_POST['email'];
+   
+    $userpass = md5($_POST['password']);
+    $userrole = "customer";
+   
 
-  $sql = "SELECT * FROM user WHERE email='$email'";
-  $result = mysqli_query($conn, $sql);
-  $num = mysqli_num_rows($result);
+    // Use prepared statement to prevent SQL injection
+    $sql = "INSERT INTO `user` (`fullname`, `email`, `password`, `user_role`) VALUES (?,?,?,?);";
+    $stmt = $conn->prepare($sql);
 
-  if ($num == 1) {
-      while ($row = mysqli_fetch_assoc($result)) {
-          if ($row['password'] === md5($password)) {
-              session_start();
-              $_SESSION['loggedin'] = true;
-              $_SESSION['email'] = $email;
-             
-              header("location: index.php");
-          } else {
-              echo 'error';
-          }
-      }
-  } else {
-      echo "multiply username";
-  }
+    // Bind parameters
+    $stmt->bind_param("ssss", $name, $email, $userpass, $userrole);
+
+    // Execute the statement
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+      session_start();
+      $_SESSION['loggedin'] = true;
+      $_SESSION['email'] = $email;
+       header("location: ../../index.php");
+    } else {
+        echo "insert error";
+    }
+
+    $stmt->close();
 }
 
-
+// Connection closed
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <link href="src/css/output.css" rel="stylesheet">
+    <link href="../css/output.css" rel="stylesheet">
   </head>
   <body>
     <section class="h-screen w-full flex flex-col">
@@ -51,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           class="hidden sm:col-span-3 sm:block md:block bg-gray-200 lg:block xl:block 2xl:block"
         >
           <div class="flex items-center justify-center h-screen">
-            <img class="w-11/12" src="src/images/signupbg.png" alt="" />
+            <img class="w-11/12" src="../images/signupbg.png" alt="" />
           </div>
         </div>
 
@@ -69,10 +88,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   >
                     Create an account
                   </h1>
-                  <form class="space-y-4 md:space-y-6" action="#">
+                  <form class="space-y-4 md:space-y-6"  method="POST">
                     <div>
                       <label
                         for="text"
+                        
                         class="block mb-2 text-sm font-medium text-gray-900"
                         >Full Name</label
                       >
@@ -96,10 +116,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       <input
                         type="email"
                         name="email"
+                        required=""
                         id="email"
                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-full p-2.5"
                         placeholder="name@company.com"
-                        required=""
+                      
                       />
                     </div>
 
@@ -128,9 +149,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <p class="text-sm font-light text-gray-600">
                       Already have an account?
                       <a
-                        href="loginpage.html"
+                        href="login.php"
                         class="font-medium text-primary-600 hover:underline text-[#FF3726]"
-                        >Sign In</a
+                        >Sign in</a
                       >
                     </p>
                   </form>
