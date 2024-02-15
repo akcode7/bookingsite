@@ -2,13 +2,25 @@
    <header  class="text-gray-500 body-font hidden  lg:flex justify-between items-center">
     <div class="container mx-auto ">
       <a href="index.php" class="flex title-font font-medium items-center text-gray-900 mb-4 ml-5 md:mb-0 align-middle">
-        <img src="src/icon/logo.png"  class="w-56 z-10" alt="" srcset="">
+        <img src="src/icon/logo.png"  class="w-32 z-10" alt="" srcset="">
       </a>
     </div>
     <div>
-        <a href="src/authentication/login.php">
-         <button class=" mr-5 inline-flex items-center text-white font-bold bg-[#FF3726] border-0 py-2 px-8 focus:outline-none hover:bg-gray-700 rounded-xl text-base md:mt-0 z-10">login</button>
-         </a>
+    <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) : ?>
+    <!-- Display My Account button if user is logged in -->
+    <a href="src/userdashboard/accountdetail.php">
+    <button class="mr-5 inline-flex items-center text-black font-medium focus:outline-none w-40 md:mt-0 z-10 text-lg">
+        <i class="fa fa-user-circle-o mx-2 pt-1"></i> My Account
+    </button>
+    </a>
+<?php else : ?>
+    <!-- Display Login button if user is not logged in -->
+    <a href="src/authentication/login.php">
+    <button class="mr-5  items-center text-black text-lg flex border-0 focus:outline-none font-medium md:mt-0 z-10">
+        <i class="fa fa-user-circle-o mx-2  items-center "></i> Login
+    </button>
+    </a>
+<?php endif; ?>
 </div>
   </header>
   <!-- mobile header -->

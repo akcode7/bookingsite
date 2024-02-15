@@ -12,6 +12,42 @@ if (isset($_SESSION['email'])) {
 }
 ?>
 
+
+<?php
+include '../config/db_connect.php';
+
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+
+// Process form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get input data
+    $orderstatus = $_POST['orderstatus'];
+    $purchaseid = isset($_GET['purchaseid']) ? $_GET['purchaseid'] : '';
+
+    // Use prepared statement to prevent SQL injection
+    $sql = "UPDATE `bookingdetail` SET `order_status`=? WHERE `purchase_id`= ?";
+    $stmt = $conn->prepare($sql);
+
+    // Bind parameters
+    $stmt->bind_param("ss", $orderstatus, $purchaseid);
+
+    // Execute the statement
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+      header ("location: orderhistorydetail.php?purchaseid=$purchaseid");
+    } else {
+        echo "update error";
+    }
+
+    $stmt->close();
+}
+
+// Connection closed
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
   <head>
@@ -76,7 +112,7 @@ if (isset($_SESSION['email'])) {
               ></span>
               <a
                 class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                href="addcabbooking.php"
+                href="accountdetail.php"
               >
                 <svg
                   class="w-5 h-5"
@@ -98,7 +134,7 @@ if (isset($_SESSION['email'])) {
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="cards.php"
+                href="userorders.php"
               >
                 <svg
                   class="w-5 h-5"
@@ -114,7 +150,7 @@ if (isset($_SESSION['email'])) {
                     d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
                   ></path>
                 </svg>
-                <span class="ml-4">Bookings</span>
+                <span class="ml-4">My bookings</span>
               </a>
             </li>
             <li class="relative px-6 py-3">
@@ -807,6 +843,7 @@ if (isset($_SESSION['email'])) {
           </div>
         </header>
   <section class="h-full bg-white py-32">
+    <form  method="POST">
     
   <?php
 include '../config/db_connect.php';
@@ -849,7 +886,16 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         <h1 class="text-md font-semibold pt-2">
           Dropoff: <span class="font-bold"><?php echo $row['dropoff_add']?></span>
         </h1>
-   
+       
+        <?php if ($row['order_status'] == 'cancel') : ?>
+
+        <p class="text-xl font-bold text-red-600 py-5">Booking Cancelled</p>
+
+        <?php else : ?>
+
+        <button name="orderstatus" value="cancel" type="submit" class="w-44 text-white bg-[#FF3726] font-medium rounded-lg text-sm px-4 py-2 text-center my-6 md:my-4">Cancel</button>
+
+        <?php endif; ?>
 </div>
 
 
@@ -858,6 +904,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 <?php
   }}}
 ?>
+ </form>
         </section>
       </div>
     </div>
