@@ -22,7 +22,7 @@ session_start();
 
  <?php include 'src/component/header.php'?>
 
-<section class=" px-8 md:px-8 2xl:px-36 py-7 bg-[#FF3726] mx-auto">
+<section style="background-image: linear-gradient(180deg, #ad77ff 0%, #4d0aa4 100%);" class=" px-8 md:px-8 2xl:px-36 py-7 bg-transparent mx-auto">
   <form action="booking.php" method="GET">
 <section class="md:flex  mx-auto justify-center items-center">
 <div class="mx-auto">
@@ -80,7 +80,7 @@ session_start();
         <p class="text-[#FF3726] text-lg md:text-2xl font-medium  py-2">COMMITTED TO PROVIDING OUR CUSTOMERS WITH <br> EXCEPTIONAL SERVICE.</p>
         <p class="text-gray-500 text-sm md:text-lg font-normal py-2">Lorem ipsum is simply ipun txns mane so dummy text of free available in market the printing and typesetting industry has been the industry’s 
             standard dummy text ever.</p>
-            <button type="submit" class="w-64 text-white bg-[#FF3726] font-medium rounded-lg text-sm px-6 py-4 text-center my-4 ">Discover More</button>
+            <button style="background-image: linear-gradient(180deg, #ad77ff 0%, #4d0aa4 100%);"  class="w-64 text-white bg-transparent font-medium rounded-lg text-sm px-6 py-4 text-center my-4 ">Discover More</button>
       </div>
     </div>
   </div>
@@ -134,7 +134,7 @@ session_start();
         <p class="text-[#FF3726] text-2xl font-medium  py-2">COMMITTED TO PROVIDING OUR CUSTOMERS WITH <br> EXCEPTIONAL SERVICE.</p>
         <p class="text-gray-500 text-lg font-normal py-2">Lorem ipsum is simply ipun txns mane so dummy text of free available in market the printing and typesetting industry has been the industry’s 
             standard dummy text ever.</p>
-            <button type="submit" class="w-64 text-white bg-[#FF3726] font-medium rounded-lg text-sm px-6 py-4 text-center my-6 md:my-4 ">Discover More</button>
+            <button style="background-image: linear-gradient(180deg, #ad77ff 0%, #4d0aa4 100%);" type="submit" class="w-64 text-white bg-transparent font-medium rounded-lg text-sm px-6 py-4 text-center my-6 md:my-4 ">Discover More</button>
       </div>
 
       <div class="mb-4 md:mb-0">
