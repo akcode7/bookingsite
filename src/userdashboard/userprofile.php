@@ -4,13 +4,14 @@ session_start();
 if (isset($_SESSION['email'])) {
     // Session already exists, user is identified
     $email = $_SESSION['email'];
-    echo "Welcome back, $email!";
+   
 } else {
     // No session exists, user needs to log in or register
     header("location: ../authentication/login.php"); // Replace 'login.php' with the actual login page
     exit();
 }
 ?>
+
 
 
 
@@ -115,7 +116,7 @@ $conn->close();
               ></span>
               <a
                 class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                href="accountdetail.php"
+                href="userprofile.php"
               >
                 <svg
                   class="w-5 h-5"

@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
              
 
               if ($row['user_role'] !== "administrator") {
-                  header("location: ../userdashboard/accountdetail.php");
+                  header("location: ../userdashboard/userprofile.php");
               } else {
                   header("location: ../admin/addlisting.php");
               }

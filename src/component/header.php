@@ -8,7 +8,7 @@
     <div>
     <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) : ?>
     <!-- Display My Account button if user is logged in -->
-    <a href="src/userdashboard/accountdetail.php">
+    <a href="src/userdashboard/userprofile.php">
     <button class="mr-5 inline-flex items-center text-black font-medium focus:outline-none w-40 md:mt-0 z-10 text-lg">
         <i class="fa fa-user-circle-o mx-2 pt-1"></i> My Account
     </button>
