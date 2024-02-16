@@ -12,6 +12,7 @@ if(!$conn){
 }
 
 // ?>
+
 <?php 
 
 // $server = "localhost";

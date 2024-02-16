@@ -19,10 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get input data
     $name = $_POST['fullname'];
     $email = $_POST['email'];
-   
     $userpass = md5($_POST['password']);
     $userrole = "customer";
-   
 
     // Use prepared statement to prevent SQL injection
     $sql = "INSERT INTO `user` (`fullname`, `email`, `password`, `user_role`) VALUES (?,?,?,?);";
@@ -44,6 +42,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $stmt->close();
+
+    $sql = "SELECT * FROM user WHERE email='$email'";
+    $result = mysqli_query($conn, $sql);
+    $num = mysqli_num_rows($result);
+  
+    if ($num == 1) {
+        while ($row = mysqli_fetch_assoc($result)) {
+                session_start();
+                $_SESSION['user_role'] = $row['user_role'];
+                $_SESSION['user_id'] = $row['user_id'];
+            }};
+
 }
 
 // Connection closed
