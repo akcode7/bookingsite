@@ -23,7 +23,6 @@ if (isset($_SESSION['email'])) {
 }
 ?>
 
-
 <?php include '../../src/config/db_connect.php';
 
 
