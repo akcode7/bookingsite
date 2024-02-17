@@ -39,49 +39,111 @@ if (isset($_SESSION['email'])) {
 
 
 
-<section class=" px-8 md:px-8 2xl:px-36 py-7 bg-[#FF3726] mx-auto">
-  <form action="" method="GET">
+<section style="background-image: linear-gradient(180deg, #ad77ff 0%, #4d0aa4 100%);" class=" px-3 md:px-8 2xl:px-36 py-4 bg-transparent mx-auto">
+  <form action="booking.php" method="GET">
 <section class="md:flex  mx-auto justify-center items-center">
-<div class="mx-auto">
-<label for="trip" class="block font-medium pb-3 text-md text-white  text-sm  ">Trip Type</label>
-<select id="triptype" name="triptype" class="bg-white cursor-pointer font-semibold border  text-gray-900 text-sm rounded-lg  block w-52 px-4 py-2 ">
+<div class="mx-1 bg-white mb-2 md:mb-0 p-2 md:p-4 md:rounded-lg">
+<label for="trip" class="block font-medium pb-3 text-md text-[#9249ff]  text-sm  ">TRIP TYPE</label>
+<select id="triptype" name="triptype" class="bg-white cursor-pointer font-semibold border border-solid border-[#9249ff]  text-gray-900 text-sm rounded-lg  block w-full md:w-52 px-4 py-3 ">
   <option  value="Oneway" selected>One way</option>
   <option  value="Roundtrip">Round Trip</option>
 </select>
   </div>
-
-  <div class=" mx-auto">
-    <h1 class="font-medium pb-3 text-md text-white">PickUp Location</h1>
-    <input autocomplete="off" name="pickup" id="loc_search" class="px-4 py-1.5  w-52 rounded-lg relative  mb-1" type="text">
-    <div id="search-result" class="bg-white absolute w-52 rounded-lg"></div>
+<div class="flex mb-2 md:mb-0 justify-center">
+  <div class="mx-1  bg-white p-2 md:p-4 md:rounded-lg">
+    <h1 class="font-medium pb-3 text-md md:text-[#9249ff]">FROM</h1>
+    <input autocomplete="off" placeholder="lucknow" name="pickup" id="loc_search" class="px-4 py-2  border border-solid border-[#9249ff] w-full md:w-52 rounded-lg relative  focus-none" type="text">
+    <div id="search-result" class="bg-white absolute w-40 md:w-52 rounded-lg"></div>
   </div>
   
 
-  <div class=" mx-auto">
-    <h1 class="font-medium pb-3 text-md text-white">Drop Off Location</h1>
-    <input autocomplete="off" name="dropoff" id="loc_search_d" class="px-4 py-1.5  border-none w-52 rounded-lg relative  mb-1" type="text">
-    <div id="search-result_d"  class="bg-white absolute w-52 rounded-lg"></div>
+  <div class="mx-1  bg-white p-2 md:p-4 md:rounded-lg">
+    <h1 class="font-medium pb-3 text-md md:text-[#9249ff]">TO</h1>
+    <input autocomplete="off" placeholder="Mumbai" name="dropoff" id="loc_search_d" class="px-4 py-2  border border-solid border-[#9249ff] w-full md:w-52 rounded-lg relative " type="text">
+    <div id="search-result_d"  class="bg-white absolute w-40 md:w-52 rounded-lg"></div>
   </div>
- 
-
-  <div class=" mx-auto">
-    <h1 class="font-medium pb-3 text-md text-white">Pick Up date</h1>
+  </div>
+  <div class="grid grid-cols-2 md:flex mb-2 md:mb-0 justify-center">
+    <div class="col-span-1">
+  <div class="mx-1 bg-white p-2.5 md:p-4 md:rounded-lg">
+    <h1 class="font-medium pb-3 text-md text-[#9249ff]">PICK-UP DATE</h1>
     
-    <div >
+    <div>
      
-      <input name="pickupdate" type="date" class="bg-white border  text-gray-900 sm:text-sm rounded-lg  block w-52 pl-10 px-4 py-2  datepicker-input" placeholder="Select date">
+      <input name="pickupdate" type="date" class="bg-white border border-solid border-[#9249ff]  text-gray-900 sm:text-sm rounded-lg w-full md:w-52  px-4 py-2  datepicker-input" placeholder="Select date">
     </div>
   </div>
-
-  
-
-  <div class=" mx-auto ">
-    <h1 class="font-medium pb-2 text-md text-white">Update</h1>
-    <button value="Search" type="submit" class="bg-white text-[#FF3726] font-medium rounded-lg text-sm px-12 py-2 text-center  ">Search</button>
   </div>
+  <div class="col-span-1">
+  <div class="bg-white p-2.5 md:p-4 mx-1 md:rounded-lg">
+<label for="trip" class="block font-medium pb-3 text-md text-[#9249ff]  text-sm  ">PICKUP-TIME</label>
+<select id="pickuptime" name="pickuptime" class="bg-white cursor-pointer font-semibold border border-solid border-[#9249ff]  text-gray-900 text-sm rounded-lg  block w-full md:w-52 px-4 py-3 md:py-2.5 ">
+<option  value="12:00 AM" selected>12:00 AM</option>
+  <option  value="12:30 AM" selected>12:30 AM</option>
+  <option  value="1:00 AM" selected>1:00 AM</option>
+  <option  value="1:30 AM" selected>1:30 AM</option>
+  <option  value="2:00 AM" selected>2:00 AM</option>
+  <option  value="2:30 AM" selected>2:30 AM</option>
+  <option  value="3:00 AM" selected>3:00 AM</option>
+  <option  value="3:30 AM" selected>3:30 AM</option>
+  <option  value="4:00 AM" selected>4:00 AM</option>
+  <option  value="4:30 AM" selected>4:30 AM</option>
+  <option  value="5:00 AM" selected>5:00 AM</option>
+  <option  value="5:30 AM" selected>5:30 AM</option>
+  <option  value="6:00 AM" selected>6:00 AM</option>
+  <option  value="6:30 AM" selected>6:30 AM</option>
+  <option  value="7:00 AM" selected>7:00 AM</option>
+  <option  value="7:30 AM" selected>7:30 AM</option>
+  <option  value="8:00 AM" selected>8:00 AM</option>
+  <option  value="8:30 AM" selected>8:30 AM</option>
+  <option  value="9:00 AM" selected>9:00 AM</option>
+  <option  value="9:30 AM" selected>9:30 AM</option>
+  <option  value="10:00 AM" selected>10:00 AM</option>
+  <option  value="10:30 AM" selected>10:30 AM</option>
+  <option  value="11:00 AM" selected>11:00 AM</option>
+  <option  value="11:30 AM" selected>11:30 AM</option>
+  <option  value="12:00 PM" selected>12:00 PM</option>
+  <option  value="12:30 PM" selected>12:30 PM</option>
+  <option  value="1:00 PM" selected>1:00 PM</option>
+  <option  value="1:30 PM" selected>1:30 PM</option>
+  <option  value="2:00 PM" selected>2:00 PM</option>
+  <option  value="2:30 PM" selected>2:30 PM</option>
+  <option  value="3:00 PM" selected>3:00 PM</option>
+  <option  value="3:30 PM" selected>3:30 PM</option>
+  <option  value="4:00 PM" selected>4:00 PM</option>
+  <option  value="4:30 PM" selected>4:30 PM</option>
+  <option  value="5:00 PM" selected>5:00 PM</option>
+  <option  value="5:30 PM" selected>5:30 PM</option>
+  <option  value="6:00 PM" selected>6:00 PM</option>
+  <option  value="6:30 PM" selected>6:30 PM</option>
+  <option  value="7:00 PM" selected>7:00 PM</option>
+  <option  value="7:30 PM" selected>7:30 PM</option>
+  <option  value="8:00 PM" selected>8:00 PM</option>
+  <option  value="8:30 PM" selected>8:30 PM</option>
+  <option  value="9:00 PM" selected>9:00 PM</option>
+  <option  value="9:30 PM" selected>9:30 PM</option>
+  <option  value="10:00 PM" selected>10:00 PM</option>
+  <option  value="10:30 PM" selected>10:30 PM</option>
+  <option  value="11:00 PM" selected>11:00 PM</option>
+  <option  value="11:30 PM" selected>11:30 PM</option>
+  <option  value="12:00 PM" selected>12:00 PM</option>
+  <option  value="12:30 PM" selected>12:30 PM</option>
+  
+</select>
+  </div>
+  </div>
+
+</div>
+
+ 
 </section>
+<div class=" py-4 ">
+    
+    <button value="Search" type="submit" class="bg-white text-[#FF3726] font-medium rounded-lg text-sm px-12 py-2 text-center">Search</button>
+  </div>
 </form>
 </section>
+
 
 <!-- booking detail card 1 starts -->
 
@@ -95,6 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
   $dropoff = isset($_GET['dropoff']) ? $_GET['dropoff'] : '';
   $pickupdate = isset($_GET['pickupdate']) ? $_GET['pickupdate'] : '';
   $triptype = isset($_GET['triptype']) ? $_GET['triptype'] : '';
+  $pickuptime = isset($_GET['pickuptime']) ? $_GET['pickuptime'] : '';
 
 
     // Perform a SELECT query based on the pickup and drop-off addresses
@@ -117,7 +180,7 @@ while ($row = mysqli_fetch_assoc($result)) {
           <?php echo $row['car_name']?>
         </h1>
         <div class="pl-5">
-        <ul class="list-disc md:flex gap-8 pt-2 pl-4 md:pl-0">
+        <ul class="list-disc flex gap-8 pt-2 pl-4 md:pl-0">
           <li>
             <?php echo $row['car_ac']?> 
           </li>
@@ -162,8 +225,9 @@ while ($row = mysqli_fetch_assoc($result)) {
       <div class=" col-span-3 mx-auto p-3">
         <h1 class="font-bold text-4xl pb-3">Rs <?php echo $row['car_amount']?></h1>
         <p>Trip Type: <?php echo $triptype; ?></p>
-        <p>Pickup: <?php echo $pickupdate; ?></p>
-        <a href="checkout.php?pickup=<?php echo urlencode($row['car_pickup']); ?>&dropoff=<?php echo urlencode($row['car_dropoff']); ?>&carname=<?php echo urlencode($row['car_name']); ?>&cartrdistance=<?php echo urlencode($row['car_trdistance']); ?>&caramount=<?php echo urlencode($row['car_amount']); ?>&pickupdate=<?php echo $pickupdate; ?> &triptype=<?php echo $triptype; ?>">
+        <p>Pick-up date: <?php echo $pickupdate; ?></p>
+        <p>Pick-up time: <?php echo $pickuptime; ?></p>
+        <a href="checkout.php?pickup=<?php echo urlencode($row['car_pickup']); ?>&dropoff=<?php echo urlencode($row['car_dropoff']); ?>&carname=<?php echo urlencode($row['car_name']); ?>&cartrdistance=<?php echo urlencode($row['car_trdistance']); ?>&caramount=<?php echo urlencode($row['car_amount']); ?>&pickupdate=<?php echo $pickupdate; ?> &triptype=<?php echo $triptype; ?>&pickuptime=<?php echo $pickuptime; ?>">
     <button class="text-white bg-[#FF3726] font-medium rounded-lg text-sm px-8 py-2 text-center">Book Now</button>
 </a>
       </div>

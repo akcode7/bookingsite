@@ -65,13 +65,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['purchase_id'])) {
         <hr class="bg-black h-[1.5px] ">
         <div class="grid grid-cols-2 py-3">
             <div class="col-span-1">
-                
-                <span class=" font-medium pl-3">Traveler Name: <span class="pl-1 font-semibold text-black"><?php echo $row['full_name']?></span></span>
-                <h1 class=" font-medium pl-3">Phone Number: <span class="pl-1 font-semibold text-black"><?php echo $row['phone_number']?></span></h1>
-                <h1 class=" font-medium pl-3">Email: <span class="pl-1 font-semibold text-black"><?php echo $row['email_id']?></span></h1>
+            <p class="font-normal pl-3"><b>Booking ID:</b> <?php echo $row['purchase_id']?></p>
+                <span class=" font-bold pl-3">Traveler Name: <span class="pl-1 font-semibold text-black"><?php echo $row['full_name']?></span></span>
+                <h1 class=" font-bold pl-3">Phone Number: <span class="pl-1 font-semibold text-black"><?php echo $row['phone_number']?></span></h1>
+                <h1 class=" font-bold pl-3">Email: <span class="pl-1 font-semibold text-black"><?php echo $row['email_id']?></span></h1>
             </div>
             <div class="col-span-1">
-                <p class="font-normal pl-3"><b>Booking ID:</b> <?php echo $row['purchase_id']?></p>
+             
                 
                 <h1 class=" font-medium pl-3"><b>Booking Date:</b> <span class="pl-1 font-semibold text-black">
                     <?php 
@@ -84,7 +84,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['purchase_id'])) {
                     $pick_update = $row['pickup_date']; 
                     $formattedDate = date('d-m-Y', strtotime($pick_update));
                     echo $formattedDate;?></span></h1>
+                     <h1 class=" font-medium pl-3"><b>Pickup time: </b><span class="pl-1 font-semibold text-black"><?php echo $row['pickup_time']?></span></h1>
                     <h1 class=" font-medium pl-3"><b>Trip Type: </b><span class="pl-1 font-semibold text-black"><?php echo $row['triptype']?></span></h1>
+                   
             </div>
         </div>
   
@@ -95,7 +97,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['purchase_id'])) {
             <div class="col-span-1 px-3 ">
                 <h1 class="py-1 text-left font-bold text-lg  ">Pick-up Address</h1>
                 <p class="font-normal"><?php echo $row['pickup_add']?></p>
-                <p class="font-normal"><?php echo $row['purchase_id']?></p>
+              
             </div>
             <div class="col-span-1 px-3">
                 <h1 class="py-1 font-bold text-lg text-left ">Drop-off Address</h1>

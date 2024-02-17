@@ -726,10 +726,13 @@ if (isset($_SESSION['email'])) {
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    Pickup Address
+                    Pick-up Address
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Dropoff Address
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Pick-up time
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Book Time
@@ -770,6 +773,9 @@ if (isset($_SESSION['user_id'])) {
                 </th>
                 <td class="px-6 py-4">
                 <?php echo $row['dropoff_add']?>
+                </td>
+                <td class="px-6 py-4">
+                <?php echo $row['pickup_time']?>
                 </td>
                 
                 <td class="px-6 py-4">

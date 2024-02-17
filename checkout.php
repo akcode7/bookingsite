@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $userid) {
     $gender = $_POST['gen_der'];
     $phonenumber = $_POST['phone_number'];
     $pickupdate = isset($_GET['pickupdate']) ? $_GET['pickupdate'] : '';
+    
     $formattedDate = date('Y-m-d', strtotime($pickupdate));
     $triptype = isset($_GET['triptype']) ? $_GET['triptype'] : '';
     $carname = isset($_GET['carname']) ? $_GET['carname'] : '';
@@ -25,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $userid) {
     
     $bookingamount = isset($_GET['caramount']) ? $_GET['caramount'] : '';
     $orderstatus = "pending";
+    $pickuptime = isset($_GET['pickuptime']) ? $_GET['pickuptime'] : '';
    
    
    
@@ -36,11 +38,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $userid) {
     $currentIndianTime = $indianTime->format('Y-m-d H:i:s');
 
 
-    $sql = "INSERT INTO `bookingdetail` (`purchase_id`,`pickup_add`, `dropoff_add`, `full_name`, `email_id`, `gender`, `phone_number`,`pickup_date`,`triptype`,`car_name`,`cartr_distance`,`book_amount`,`order_status`,`book_time`,`user_id`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+    $sql = "INSERT INTO `bookingdetail` (`purchase_id`,`pickup_add`, `dropoff_add`, `full_name`, `email_id`, `gender`, `phone_number`,`pickup_date`,`triptype`,`car_name`,`cartr_distance`,`book_amount`,`order_status`,`pickup_time`, `book_time`,`user_id`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
     $stmt = $conn->prepare($sql);
 
     // Bind parameters
-    $stmt->bind_param("ssssssssssssssi", $purchaseid, $pickupadd, $dropoffadd, $fullname, $email, $gender, $phonenumber, $formattedDate,$triptype, $carname, $cardistance, $bookingamount,$orderstatus, $currentIndianTime, $userid);
+    $stmt->bind_param("sssssssssssssssi", $purchaseid, $pickupadd, $dropoffadd, $fullname, $email, $gender, $phonenumber, $formattedDate,$triptype, $carname, $cardistance, $bookingamount,$orderstatus,$pickuptime, $currentIndianTime, $userid);
 
     $stmt->execute();
 
@@ -475,5 +477,10 @@ while ($row = mysqli_fetch_assoc($result)) {
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="public/script.js"></script>
+    <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
   </body>
 </html>

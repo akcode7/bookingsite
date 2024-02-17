@@ -60,7 +60,7 @@ session_start();
   <div class="col-span-1">
   <div class="bg-white p-2.5 md:p-4 mx-1 md:rounded-lg">
 <label for="trip" class="block font-medium pb-3 text-md text-[#9249ff]  text-sm  ">PICKUP-TIME</label>
-<select id="triptype" name="triptype" class="bg-white cursor-pointer font-semibold border border-solid border-[#9249ff]  text-gray-900 text-sm rounded-lg  block w-full md:w-52 px-4 py-3 md:py-2.5 ">
+<select id="pickuptime" name="pickuptime" class="bg-white cursor-pointer font-semibold border border-solid border-[#9249ff]  text-gray-900 text-sm rounded-lg  block w-full md:w-52 px-4 py-3 md:py-2.5 ">
 <option  value="1:00 AM" selected>12:00 AM</option>
   <option  value="1:00 AM" selected>12:30 AM</option>
   <option  value="1:00 AM" selected>1:00 AM</option>
