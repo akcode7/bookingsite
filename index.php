@@ -22,7 +22,7 @@ session_start();
 
  <?php include 'src/component/header.php'?>
 
-<section style="background-image: linear-gradient(180deg, #ad77ff 0%, #4d0aa4 100%);" class=" px-3 md:px-8 2xl:px-36 py-7 bg-transparent mx-auto">
+<section style="background-image: linear-gradient(180deg, #ad77ff 0%, #4d0aa4 100%);" class=" px-3 md:px-8 2xl:px-36 py-4 bg-transparent mx-auto">
   <form action="booking.php" method="GET">
 <section class="md:flex  mx-auto justify-center items-center">
 <div class="mx-1 bg-white mb-2 md:mb-0 p-2 md:p-4 md:rounded-lg">
@@ -34,32 +34,33 @@ session_start();
   </div>
 <div class="flex mb-2 md:mb-0 justify-center">
   <div class="mx-1  bg-white p-2 md:p-4 md:rounded-lg">
-    <h1 class="font-medium pb-3 text-md md:text-[#9249ff]">PICK-UP LOCATION</h1>
+    <h1 class="font-medium pb-3 text-md md:text-[#9249ff]">FROM</h1>
     <input autocomplete="off" placeholder="lucknow" name="pickup" id="loc_search" class="px-4 py-2  border border-solid border-[#9249ff] w-full md:w-52 rounded-lg relative  focus-none" type="text">
     <div id="search-result" class="bg-white absolute w-40 md:w-52 rounded-lg"></div>
   </div>
   
 
   <div class="mx-1  bg-white p-2 md:p-4 md:rounded-lg">
-    <h1 class="font-medium pb-3 text-md md:text-[#9249ff]">DROP-OFF LOCATION</h1>
+    <h1 class="font-medium pb-3 text-md md:text-[#9249ff]">TO</h1>
     <input autocomplete="off" placeholder="Mumbai" name="dropoff" id="loc_search_d" class="px-4 py-2  border border-solid border-[#9249ff] w-full md:w-52 rounded-lg relative " type="text">
     <div id="search-result_d"  class="bg-white absolute w-40 md:w-52 rounded-lg"></div>
   </div>
   </div>
-  <div class="flex mb-2 md:mb-0 justify-center">
-  <div class="mx-1 bg-white p-2 md:p-4 md:rounded-lg">
+  <div class="grid grid-cols-2 md:flex mb-2 md:mb-0 justify-center">
+    <div class="col-span-1">
+  <div class="mx-1 bg-white p-2.5 md:p-4 md:rounded-lg">
     <h1 class="font-medium pb-3 text-md text-[#9249ff]">PICK-UP DATE</h1>
     
-    <div >
+    <div>
      
-      <input name="pickupdate" type="date" class="bg-white border border-solid border-[#9249ff]  text-gray-900 sm:text-sm rounded-lg w-44 md:w-52  px-4 py-2  datepicker-input" placeholder="Select date">
+      <input name="pickupdate" type="date" class="bg-white border border-solid border-[#9249ff]  text-gray-900 sm:text-sm rounded-lg w-full md:w-52  px-4 py-2  datepicker-input" placeholder="Select date">
     </div>
   </div>
-
-  
-  <div class="bg-white p-2 md:p-4 mx-1 md:rounded-lg">
+  </div>
+  <div class="col-span-1">
+  <div class="bg-white p-2.5 md:p-4 mx-1 md:rounded-lg">
 <label for="trip" class="block font-medium pb-3 text-md text-[#9249ff]  text-sm  ">PICKUP-TIME</label>
-<select id="triptype" name="triptype" class="bg-white cursor-pointer font-semibold border border-solid border-[#9249ff]  text-gray-900 text-sm rounded-lg  block w-44 md:w-52 px-4 py-3 ">
+<select id="triptype" name="triptype" class="bg-white cursor-pointer font-semibold border border-solid border-[#9249ff]  text-gray-900 text-sm rounded-lg  block w-full md:w-52 px-4 py-3 md:py-2.5 ">
 <option  value="1:00 AM" selected>12:00 AM</option>
   <option  value="1:00 AM" selected>12:30 AM</option>
   <option  value="1:00 AM" selected>1:00 AM</option>
@@ -113,14 +114,16 @@ session_start();
   
 </select>
   </div>
+  </div>
 
 </div>
 
-  <div class=" mx-1 py-1 ">
+ 
+</section>
+<div class=" py-4 ">
     
     <button value="Search" type="submit" class="bg-white text-[#FF3726] font-medium rounded-lg text-sm px-12 py-2 text-center">Search</button>
   </div>
-</section>
 </form>
 </section>
 
