@@ -22,44 +22,102 @@ session_start();
 
  <?php include 'src/component/header.php'?>
 
-<section style="background-image: linear-gradient(180deg, #ad77ff 0%, #4d0aa4 100%);" class=" px-8 md:px-8 2xl:px-36 py-7 bg-transparent mx-auto">
+<section style="background-image: linear-gradient(180deg, #ad77ff 0%, #4d0aa4 100%);" class=" px-3 md:px-8 2xl:px-36 py-7 bg-transparent mx-auto">
   <form action="booking.php" method="GET">
 <section class="md:flex  mx-auto justify-center items-center">
-<div class="mx-auto">
-<label for="trip" class="block font-medium pb-3 text-md text-white  text-sm  ">Trip Type</label>
-<select id="triptype" name="triptype" class="bg-white cursor-pointer font-semibold border  text-gray-900 text-sm rounded-lg  block w-52 px-4 py-2 ">
+<div class="mx-1 bg-white mb-2 md:mb-0 p-2 md:p-4 md:rounded-lg">
+<label for="trip" class="block font-medium pb-3 text-md text-[#9249ff]  text-sm  ">TRIP TYPE</label>
+<select id="triptype" name="triptype" class="bg-white cursor-pointer font-semibold border border-solid border-[#9249ff]  text-gray-900 text-sm rounded-lg  block w-full md:w-52 px-4 py-3 ">
   <option  value="Oneway" selected>One way</option>
   <option  value="Roundtrip">Round Trip</option>
 </select>
   </div>
-
-  <div class=" mx-auto">
-    <h1 class="font-medium pb-3 text-md text-white">PickUp Location</h1>
-    <input autocomplete="off" name="pickup" id="loc_search" class="px-4 py-1.5  w-52 rounded-lg relative border-none focus-none mb-1" type="text">
-    <div id="search-result" class="bg-white absolute w-52 rounded-lg"></div>
+<div class="flex mb-2 md:mb-0 justify-center">
+  <div class="mx-1  bg-white p-2 md:p-4 md:rounded-lg">
+    <h1 class="font-medium pb-3 text-md md:text-[#9249ff]">PICK-UP LOCATION</h1>
+    <input autocomplete="off" placeholder="lucknow" name="pickup" id="loc_search" class="px-4 py-2  border border-solid border-[#9249ff] w-full md:w-52 rounded-lg relative  focus-none" type="text">
+    <div id="search-result" class="bg-white absolute w-40 md:w-52 rounded-lg"></div>
   </div>
   
 
-  <div class=" mx-auto">
-    <h1 class="font-medium pb-3 text-md text-white">Drop Off Location</h1>
-    <input autocomplete="off" name="dropoff" id="loc_search_d" class="px-4 py-1.5  border-none w-52 rounded-lg relative mb-1" type="text">
-    <div id="search-result_d"  class="bg-white absolute w-52 rounded-lg"></div>
+  <div class="mx-1  bg-white p-2 md:p-4 md:rounded-lg">
+    <h1 class="font-medium pb-3 text-md md:text-[#9249ff]">DROP-OFF LOCATION</h1>
+    <input autocomplete="off" placeholder="Mumbai" name="dropoff" id="loc_search_d" class="px-4 py-2  border border-solid border-[#9249ff] w-full md:w-52 rounded-lg relative " type="text">
+    <div id="search-result_d"  class="bg-white absolute w-40 md:w-52 rounded-lg"></div>
   </div>
- 
-
-  <div class=" mx-auto">
-    <h1 class="font-medium pb-3 text-md text-white">Pick Up date</h1>
+  </div>
+  <div class="flex mb-2 md:mb-0 justify-center">
+  <div class="mx-1 bg-white p-2 md:p-4 md:rounded-lg">
+    <h1 class="font-medium pb-3 text-md text-[#9249ff]">PICK-UP DATE</h1>
     
     <div >
      
-      <input name="pickupdate" type="date" class="bg-white border  text-gray-900 sm:text-sm rounded-lg  block w-52 pl-10 px-4 py-2  datepicker-input" placeholder="Select date">
+      <input name="pickupdate" type="date" class="bg-white border border-solid border-[#9249ff]  text-gray-900 sm:text-sm rounded-lg w-11/12 md:w-52  px-4 py-2  datepicker-input" placeholder="Select date">
     </div>
   </div>
 
   
+  <div class="bg-white p-2 md:p-4 mx-1 md:rounded-lg">
+<label for="trip" class="block font-medium pb-3 text-md text-[#9249ff]  text-sm  ">PICKUP-TIME</label>
+<select id="triptype" name="triptype" class="bg-white cursor-pointer font-semibold border border-solid border-[#9249ff]  text-gray-900 text-sm rounded-lg  block w-44 md:w-52 px-4 py-3 ">
+<option  value="1:00 AM" selected>12:00 AM</option>
+  <option  value="1:00 AM" selected>12:30 AM</option>
+  <option  value="1:00 AM" selected>1:00 AM</option>
+  <option  value="1:00 AM" selected>1:30 AM</option>
+  <option  value="1:00 AM" selected>2:00 AM</option>
+  <option  value="1:00 AM" selected>2:30 AM</option>
+  <option  value="1:00 AM" selected>3:00 AM</option>
+  <option  value="1:00 AM" selected>3:30 AM</option>
+  <option  value="1:00 AM" selected>4:00 AM</option>
+  <option  value="1:00 AM" selected>4:30 AM</option>
+  <option  value="1:00 AM" selected>5:00 AM</option>
+  <option  value="1:00 AM" selected>5:30 AM</option>
+  <option  value="1:00 AM" selected>6:00 AM</option>
+  <option  value="1:00 AM" selected>6:30 AM</option>
+  <option  value="1:00 AM" selected>7:00 AM</option>
+  <option  value="1:00 AM" selected>7:30 AM</option>
+  <option  value="1:00 AM" selected>8:00 AM</option>
+  <option  value="1:00 AM" selected>8:30 AM</option>
+  <option  value="1:00 AM" selected>9:00 AM</option>
+  <option  value="1:00 AM" selected>9:30 AM</option>
+  <option  value="1:00 AM" selected>10:00 AM</option>
+  <option  value="1:00 AM" selected>10:30 AM</option>
+  <option  value="1:00 AM" selected>11:00 AM</option>
+  <option  value="1:00 AM" selected>11:30 AM</option>
+  <option  value="1:00 AM" selected>12:00 PM</option>
+  <option  value="1:00 AM" selected>12:30 PM</option>
+  <option  value="1:00 AM" selected>1:00 PM</option>
+  <option  value="1:00 AM" selected>1:30 PM</option>
+  <option  value="1:00 AM" selected>2:00 PM</option>
+  <option  value="1:00 AM" selected>2:30 PM</option>
+  <option  value="1:00 AM" selected>3:00 PM</option>
+  <option  value="1:00 AM" selected>3:30 PM</option>
+  <option  value="1:00 AM" selected>4:00 PM</option>
+  <option  value="1:00 AM" selected>4:30 PM</option>
+  <option  value="1:00 AM" selected>5:00 PM</option>
+  <option  value="1:00 AM" selected>5:30 PM</option>
+  <option  value="1:00 AM" selected>6:00 PM</option>
+  <option  value="1:00 AM" selected>6:30 PM</option>
+  <option  value="1:00 AM" selected>7:00 PM</option>
+  <option  value="1:00 AM" selected>7:30 PM</option>
+  <option  value="1:00 AM" selected>8:00 PM</option>
+  <option  value="1:00 AM" selected>8:30 PM</option>
+  <option  value="1:00 AM" selected>9:00 PM</option>
+  <option  value="1:00 AM" selected>9:30 PM</option>
+  <option  value="1:00 AM" selected>10:00 PM</option>
+  <option  value="1:00 AM" selected>10:30 PM</option>
+  <option  value="1:00 AM" selected>11:00 PM</option>
+  <option  value="1:00 AM" selected>11:30 PM</option>
+  <option  value="1:00 AM" selected>12:00 PM</option>
+  <option  value="1:00 AM" selected>12:30 PM</option>
+  
+</select>
+  </div>
 
-  <div class=" mx-auto ">
-    <h1 class="font-medium pb-2 text-md text-white">Book Now</h1>
+</div>
+
+  <div class=" mx-1 py-1 ">
+    
     <button value="Search" type="submit" class="bg-white text-[#FF3726] font-medium rounded-lg text-sm px-12 py-2 text-center">Search</button>
   </div>
 </section>

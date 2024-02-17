@@ -15,6 +15,7 @@ include '../../src/config/db_connect.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $email = $_POST['email'];
   $password = $_POST['password'];
+  $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
   $sql = "SELECT * FROM user WHERE email='$email'";
   $result = mysqli_query($conn, $sql);
@@ -22,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if ($num == 1) {
       while ($row = mysqli_fetch_assoc($result)) {
-          if ($row['password'] === md5($password)) {
+        if (password_verify($password, $hashed_password)) {
               session_start();
               $_SESSION['loggedin'] = true;
               $_SESSION['email'] = $email;

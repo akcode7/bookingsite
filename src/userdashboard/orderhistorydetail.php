@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
-      header ("location: orderhistorydetail.php?purchaseid=$purchaseid");
+      header("Refresh:0");
     } else {
         echo "update error";
     }
@@ -846,26 +846,26 @@ $conn->close();
   <section class="h-full bg-white py-32">
     
   <form  method="POST">
- <div id="model-popup" class="hidden">
+  <div id="model-popup" class="hidden">
 
-<div  tabindex="-1"  class=" flex item-center overflow-y-auto overflow-x-hidden fixed  z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative p-4 w-full max-w-md max-h-full mx-auto">
-        <div class="relative bg-gray-100 rounded-lg shadow py-20 w-full mx-auto ">
-            <p onclick="cancelbookbtn()" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" ">
+<div  tabindex="-1"  class=" flex item-center items-baseline overflow-y-auto overflow-x-hidden fixed  z-50 justify-center md:items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full top-0 mx-auto">
+        <div class="relative bg-gray-200 rounded-lg shadow py-12 w-full mx-auto ">
+            <p onclick="cancelbookbtn()" class="absolute top-3 end-2.5 text-gray-800 bg-transparent cursor-pointer hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center " ">
                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                 </svg>
                 <span class="sr-only">Close modal</span>
 </p>
             <div class="p-4 md:p-5 text-center">
-                <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                 </svg>
-                <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to cancel this booking?</h3>
-                <button id="cancelbtn" name="orderstatus" value="cancel" type="submit" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                <h3 class="mb-5 text-lg font-normal text-gray-500 ">Are you sure you want to cancel this booking?</h3>
+                <button id="cancelbtn" name="orderstatus" value="cancel" type="submit" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300  font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                     Yes, I'm sure
                 </button>
-                <button onclick="cancelbookbtn()"  class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No, cancel</button>
+                <button onclick="cancelbookbtn()"  class="py-2.5 px-5 ms-3 text-sm font-medium text-white focus:outline-none bg-green-400 rounded-lg border border-gray-200 hover:bg-white hover:text-blue-500 focus:z-10 focus:ring-4 focus:ring-gray-100 ">No, cancel</button>
             </div>
         </div>
     </div>
@@ -899,9 +899,30 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 
           <div class="w-11/12 max-w-xl p-6 bg-white border border-gray-200 rounded-lg shadow ">
-    <a href="#">
-        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 "><?php echo $row['book_time']?></h5>
-    </a>
+          <div class="block md:flex justify-between items-center content-center mb-4">
+          <span class=" text-md font-bold tracking-tight text-gray-900 ">Booking Time: <span class="text-md font-medium"><?php echo $row['book_time']?></span></span>
+            <div class="flex items-center py-3 md:py-0"> 
+                 
+
+                 <span class="font-medium text-left">Booking status: 
+                <?php if ($row['order_status'] == "cancel"): ?>
+                    <span class="pl-1 font-semibolduppercase items-center text-white px-1 py-0.5 rounded-lg bg-red-600">Cancelled</span>
+                <?php elseif ($row['order_status'] == "pending"): ?>
+                    <span class="pl-1 font-semibold  uppercase items-center  text-white px-1  py-0.5 rounded-lg bg-blue-600">Pending</span>
+                <?php elseif ($row['order_status'] == "confirmed"): ?>
+                    <span class="pl-1 font-semibold uppercase items-center text-white px-1  py-0.5 rounded-lg bg-green-600">Confirmed</span>
+               
+                <?php endif; ?>
+            </span>
+            </div>
+            
+            
+        </div>
+   
+    
+    <h1 class="text-md font-semibold">
+          Pick-Up date: <span class="font-bold"><?php echo $row['pickup_date']?></span>
+        </h1>
     <h1 class="text-md font-semibold pt-2">
           Car Name : <span class="font-bold"><?php echo $row['car_name']?></span>
         </h1>

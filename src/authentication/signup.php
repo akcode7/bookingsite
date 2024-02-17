@@ -19,15 +19,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get input data
     $name = $_POST['fullname'];
     $email = $_POST['email'];
-    $userpass = md5($_POST['password']);
+    $userpass = $_POST['password'];
     $userrole = "customer";
+
+    $hashed_password = password_hash($userpass, PASSWORD_DEFAULT);
 
     // Use prepared statement to prevent SQL injection
     $sql = "INSERT INTO `user` (`fullname`, `email`, `password`, `user_role`) VALUES (?,?,?,?);";
     $stmt = $conn->prepare($sql);
 
     // Bind parameters
-    $stmt->bind_param("ssss", $name, $email, $userpass, $userrole);
+    $stmt->bind_param("ssss", $name, $email, $hashed_password, $userrole);
 
     // Execute the statement
     $stmt->execute();

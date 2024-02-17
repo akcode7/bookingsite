@@ -163,7 +163,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         <h1 class="font-bold text-4xl pb-3">Rs <?php echo $row['car_amount']?></h1>
         <p>Trip Type: <?php echo $triptype; ?></p>
         <p>Pickup: <?php echo $pickupdate; ?></p>
-        <a href="checkout.php?pickup=<?php echo urlencode($row['car_pickup']); ?>&dropoff=<?php echo urlencode($row['car_dropoff']); ?>&carname=<?php echo urlencode($row['car_name']); ?>&cartrdistance=<?php echo urlencode($row['car_trdistance']); ?>&pickupdate=<?php echo $pickupdate; ?> &triptype=<?php echo $triptype; ?>">
+        <a href="checkout.php?pickup=<?php echo urlencode($row['car_pickup']); ?>&dropoff=<?php echo urlencode($row['car_dropoff']); ?>&carname=<?php echo urlencode($row['car_name']); ?>&cartrdistance=<?php echo urlencode($row['car_trdistance']); ?>&caramount=<?php echo urlencode($row['car_amount']); ?>&pickupdate=<?php echo $pickupdate; ?> &triptype=<?php echo $triptype; ?>">
     <button class="text-white bg-[#FF3726] font-medium rounded-lg text-sm px-8 py-2 text-center">Book Now</button>
 </a>
       </div>

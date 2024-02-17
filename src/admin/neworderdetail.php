@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
-        echo "update success";
+      header("Refresh:0");
     } else {
         echo "update error";
     }
@@ -770,9 +770,28 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 
           <div class="w-11/12 max-w-xl p-6 bg-white border border-gray-200 rounded-lg shadow ">
-    <a href="#">
-        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 "><?php echo $row['book_time']?></h5>
-    </a>
+          <div class="block md:flex justify-between items-center content-center mb-4">
+          <span class=" text-md font-bold tracking-tight text-gray-900 ">Booking Time: <span class="text-md font-medium"><?php echo $row['book_time']?></span></span>
+            <div class="flex items-center py-3 md:py-0"> 
+                 
+
+                 <span class="font-medium text-left">Booking status: 
+                <?php if ($row['order_status'] == "cancel"): ?>
+                    <span class="pl-1 font-semibolduppercase items-center text-white px-1 py-0.5 rounded-lg bg-red-600">Cancelled</span>
+                <?php elseif ($row['order_status'] == "pending"): ?>
+                    <span class="pl-1 font-semibold  uppercase items-center  text-white px-1  py-0.5 rounded-lg bg-blue-600">Pending</span>
+                <?php elseif ($row['order_status'] == "confirmed"): ?>
+                    <span class="pl-1 font-semibold uppercase items-center text-white px-1  py-0.5 rounded-lg bg-green-600">Confirmed</span>
+               
+                <?php endif; ?>
+            </span>
+            </div>
+            
+            
+        </div>
+        <h1 class="text-md font-semibold">
+          Pick-Up date: <span class="font-bold"><?php echo $row['pickup_date']?></span>
+        </h1>
     <h1 class="text-md font-semibold pt-2">
           Car Name : <span class="font-bold"><?php echo $row['car_name']?></span>
         </h1>

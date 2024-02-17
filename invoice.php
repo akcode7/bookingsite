@@ -42,32 +42,49 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['purchase_id'])) {
 
     <section id="pdfcontent" class="p-12 mx-auto flex justify-center item-center">
         
-        <div class="border border-black h-screen w-1/2 p-6 ">    
+        <div class="border border-black  w-1/2 p-6 ">    
         <div class="flex justify-between items-center content-center">
             <img src="./src/icon/logo.png" class="w-40 h-20" alt="" srcset="">
-            <h1 class="py-1 font-bold text-lg text-center ">Electronic Booking slip</h1>
+            <div> 
+                 <h1 class="py-1 font-bold text-lg  text-left">Electronic Booking slip</h1>
+
+                 <span class="font-medium text-left">Booking status: 
+                <?php if ($row['order_status'] == "cancel"): ?>
+                    <span class="pl-1 font-semibolduppercase text-white px-1 py-0.5 rounded-lg bg-red-600">Cancelled</span>
+                <?php elseif ($row['order_status'] == "pending"): ?>
+                    <span class="pl-1 font-semibold  uppercase text-white px-1  py-0.5 rounded-lg bg-blue-600">Pending</span>
+                <?php elseif ($row['order_status'] == "confirmed"): ?>
+                    <span class="pl-1 font-semibold uppercase text-white px-1  py-0.5 rounded-lg bg-green-600">Confirmed</span>
+               
+                <?php endif; ?>
+            </span>
+            </div>
+            
+            
         </div>
         <hr class="bg-black h-[1.5px] ">
         <div class="grid grid-cols-2 py-3">
             <div class="col-span-1">
-                <span class="text-gray-700 font-medium pl-3">Traveler Name: <span class="pl-1 font-semibold text-black"><?php echo $row['full_name']?></span></span>
-                <h1 class="text-gray-700 font-medium pl-3">Phone Number: <span class="pl-1 font-semibold text-black"><?php echo $row['phone_number']?></span></h1>
-                <h1 class="text-gray-700 font-medium pl-3">Email: <span class="pl-1 font-semibold text-black"><?php echo $row['email_id']?></span></h1>
+                
+                <span class=" font-medium pl-3">Traveler Name: <span class="pl-1 font-semibold text-black"><?php echo $row['full_name']?></span></span>
+                <h1 class=" font-medium pl-3">Phone Number: <span class="pl-1 font-semibold text-black"><?php echo $row['phone_number']?></span></h1>
+                <h1 class=" font-medium pl-3">Email: <span class="pl-1 font-semibold text-black"><?php echo $row['email_id']?></span></h1>
             </div>
             <div class="col-span-1">
-               
-                <h1 class="text-gray-700 font-medium pl-3">Booking Date: <span class="pl-1 font-semibold text-black">
+                <p class="font-normal pl-3"><b>Booking ID:</b> <?php echo $row['purchase_id']?></p>
+                
+                <h1 class=" font-medium pl-3"><b>Booking Date:</b> <span class="pl-1 font-semibold text-black">
                     <?php 
                     $booking_date = $row['book_time'];
                     $formatbookdate = new DateTime($booking_date);
                     $formattedbookDate = $formatbookdate->format('d-m-Y H:i:s');
                     echo $formattedbookDate;?>
                     </span></h1>
-                <h1 class="text-gray-700 font-medium pl-3">Pick-up Date: <span class="pl-1 font-semibold text-black"><?php 
+                <h1 class=" font-medium pl-3"><b>Pick-up Date:</b> <span class="pl-1 font-semibold text-black"><?php 
                     $pick_update = $row['pickup_date']; 
                     $formattedDate = date('d-m-Y', strtotime($pick_update));
                     echo $formattedDate;?></span></h1>
-                    <h1 class="text-gray-700 font-medium pl-3">Trip Type: <span class="pl-1 font-semibold text-black"><?php echo $row['triptype']?></span></h1>
+                    <h1 class=" font-medium pl-3"><b>Trip Type: </b><span class="pl-1 font-semibold text-black"><?php echo $row['triptype']?></span></h1>
             </div>
         </div>
   
@@ -88,7 +105,17 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['purchase_id'])) {
         </div>
 
         <hr class="bg-black h-[1.5px] ">
-        <button id="btn">Generate</button>
+        
+            <div class="col-span-1 px-3 ">
+                <h1 class="py-1 text-left font-bold text-lg  ">Payment Details</h1>
+                <p class="font-normal"><b>Payment Method:</b> Cash</p>
+
+                <p class="font-normal"><b>Total Amount: </b><?php echo $row['book_amount']?> Rs</p>
+               
+            </div>
+          
+
+        
     </div>
     
     </section>
