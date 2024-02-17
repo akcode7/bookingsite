@@ -39,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phonenumber = $_POST['phonenumber'];
     $userpass = md5($_POST['password']);
     $userrole = $_POST['userrole'];
+    $hashed_password = password_hash($userpass, PASSWORD_DEFAULT);
    
 
     // Use prepared statement to prevent SQL injection
@@ -46,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare($sql);
 
     // Bind parameters
-    $stmt->bind_param("sssss", $name, $email, $phonenumber, $userpass, $userrole);
+    $stmt->bind_param("sssss", $name, $email, $phonenumber, $hashed_password, $userrole);
 
     // Execute the statement
     $stmt->execute();
