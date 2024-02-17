@@ -52,7 +52,7 @@ session_start();
     
     <div >
      
-      <input name="pickupdate" type="date" class="bg-white border border-solid border-[#9249ff]  text-gray-900 sm:text-sm rounded-lg w-11/12 md:w-52  px-4 py-2  datepicker-input" placeholder="Select date">
+      <input name="pickupdate" type="date" class="bg-white border border-solid border-[#9249ff]  text-gray-900 sm:text-sm rounded-lg w-44 md:w-52  px-4 py-2  datepicker-input" placeholder="Select date">
     </div>
   </div>
 
