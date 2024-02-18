@@ -842,17 +842,8 @@ if (isset($_SESSION['user_id'])) {
           <p class="shrink-0 w-32 font-medium">Phone Number</p>
           <input name="phonenumber" value="<?php echo $row['phone_number']?>" class="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1" />
         </div>
-        <!-- <div class="flex flex-col gap-4 py-4  lg:flex-row">
-          <div class="shrink-0 w-32  sm:py-4">
-            <p class="mb-auto font-medium">Avatar</p>
-            <p class="text-sm text-gray-600">Change your avatar</p>
-          </div>
-          <div class="flex h-56 w-full flex-col items-center justify-center gap-4 rounded-xl border border-dashed border-gray-300 p-5 text-center">
-            <img src="/images/ddHJYlQqOzyOKm4CSCY8o.png" class="h-16 w-16 rounded-full" />
-            <p class="text-sm text-gray-600">Drop your desired image file here to start the upload</p>
-            <input type="file" class="max-w-full rounded-lg px-2 font-medium text-blue-600 outline-none ring-blue-600 focus:ring-1" />
-          </div> -->
-          <button type="submit"  class=" rounded-lg border-2 border-transparent bg-blue-600 px-4 py-2 font-medium text-white sm:inline focus:outline-none focus:ring hover:bg-blue-700">Update</button>
+        
+          <button type="submit"  class=" rounded-lg border-2 border-transparent bg-blue-500 px-4 py-2 font-medium text-white sm:inline focus:outline-none focus:ring hover:bg-blue-700">Update</button>
               </div>
              
             </div>

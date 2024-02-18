@@ -593,7 +593,8 @@ mysqli_free_result($result4);
 mysqli_free_result($result5);
 mysqli_free_result($result6);
 
-
+// Close the database connection
+mysqli_close($conn);
 ?>
 
 
@@ -782,6 +783,7 @@ if (isset($_SESSION['user_id'])) {
                     </span>
                   </div>';
                }
+
               ?>
               
             </div>
