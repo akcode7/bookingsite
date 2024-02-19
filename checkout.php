@@ -446,7 +446,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                     </div>
                     <div class="col-span-1 px-2 text-right">
                       <h1   class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl" >
-                       Rs3000
+                      <?php echo $bookingamount; ?>
                       </h1>
                       <p class="font-normal text-sm text-[#ff3726]">View details</p>
                     </div>
