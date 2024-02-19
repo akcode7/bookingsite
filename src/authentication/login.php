@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if ($num == 1) {
       while ($row = mysqli_fetch_assoc($result)) {
-        if ($password == md5($_POST['password'])) {
+        if (password_verify($row['password'], $hashed_password)) {
               session_start();
               $_SESSION['loggedin'] = true;
               $_SESSION['email'] = $email;
