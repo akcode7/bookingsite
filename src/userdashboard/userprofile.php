@@ -805,12 +805,6 @@ if (isset($_SESSION['user_id'])) {
     // Get the user ID from the session
     $sessionUserId = $_SESSION['user_id'];
  
-   
-   
-    
-    
-    
-
     // Query to select user data based on user_id from the session
     $query = "SELECT * FROM `user` WHERE user_id = $sessionUserId";
     $result = mysqli_query($conn, $query); // Assuming you have a database connection stored in $conn
