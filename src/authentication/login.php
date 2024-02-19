@@ -14,8 +14,8 @@ include '../../src/config/db_connect.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $email = $_POST['email'];
-  $password = md5($_POST['password']);
-  
+  $password = $_POST['password'];
+
 
   $sql = "SELECT * FROM user WHERE email='$email'";
   $result = mysqli_query($conn, $sql);
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if ($num == 1) {
       while ($row = mysqli_fetch_assoc($result)) {
-        if (password_verify($row['password'], $hashed_password)) {
+        if ($row['password'] === md5($password)) {
               session_start();
               $_SESSION['loggedin'] = true;
               $_SESSION['email'] = $email;
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           }
       }
   } else {
-      echo "Incorrect Password and Email";
+      echo "Incorrect email or password";
   }
 }
 
