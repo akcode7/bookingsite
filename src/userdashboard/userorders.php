@@ -550,7 +550,14 @@ if (isset($_SESSION['user_id'])) {
                            
                         </p>
                         <p class="text-md font-medium text-gray-700 truncate ">
-                           Order Status: <span class="font-bold text-gray-900">In progress</span> 
+                           Order Status: <span class="font-bold text-gray-900"> <?php if ($row['order_status'] == "cancel"): ?>
+                    <span class="pl-1 font-semibold uppercase items-center text-white px-1 py-0.5 rounded-lg bg-red-600">Cancelled</span>
+                <?php elseif ($row['order_status'] == "pending"): ?>
+                    <span class="pl-1 font-semibold  uppercase items-center  text-white px-1  py-0.5 rounded-lg bg-blue-600">Pending</span>
+                <?php elseif ($row['order_status'] == "confirmed"): ?>
+                    <span class="pl-1 font-semibold uppercase items-center text-white px-1  py-0.5 rounded-lg bg-green-600">Confirmed</span>
+               
+                <?php endif; ?></span> 
                         </p>
                         <p class="text-md font-medium text-gray-700 truncate ">
                            Order Date: <span class="font-bold text-gray-900">  <?php 
