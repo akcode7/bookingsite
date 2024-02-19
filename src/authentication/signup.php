@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get input data
     $name = $_POST['fullname'];
     $email = $_POST['email'];
-    $userpass = md5($_POST['password']);
+    $password = md5($_POST['password']);
     $userrole = "customer";
 
 
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare($sql);
 
     // Bind parameters
-    $stmt->bind_param("ssss", $name, $email, $hashed_password, $userrole);
+    $stmt->bind_param("ssss", $name, $email, $password, $userrole);
 
     // Execute the statement
     $stmt->execute();

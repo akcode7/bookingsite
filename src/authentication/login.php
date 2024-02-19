@@ -105,6 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div>
                       <label
                         for="password"
+                     
                         class="block mb-2 text-sm font-medium text-gray-900"
                         >Password</label
                       >
@@ -125,7 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             aria-describedby="remember"
                             type="checkbox"
                             class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-[#ff3726] focus:border-[#ff3726]"
-                            required=""
+                         
                           />
                         </div>
                         <div class="ml-3 text-sm">
