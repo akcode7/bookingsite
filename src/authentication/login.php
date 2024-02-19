@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           }
       }
   } else {
-      echo "multiply username";
+      echo "Incorrect Password and Email";
   }
 }
 
