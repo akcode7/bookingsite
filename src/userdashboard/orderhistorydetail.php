@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
-      header("Refresh: 1");
+      header("Refresh: 0");
     
     } else {
         echo "update error";
