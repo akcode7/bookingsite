@@ -241,7 +241,7 @@ $conn->close();
                 aria-hidden="true"
               ></span>
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:text-gray-100"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150  dark:text-gray-100"
                 href="userorders.php"
               >
                 <svg

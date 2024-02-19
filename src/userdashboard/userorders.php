@@ -534,7 +534,7 @@ if (isset($_SESSION['user_id'])) {
     
 
     // Query to select user data based on user_id from the session
-    $query = "SELECT * FROM `bookingdetail` WHERE user_id = $sessionUserId";
+    $query = "SELECT * FROM `bookingdetail` WHERE user_id = $sessionUserId ORDER BY `book_time` DESC";
     $result = mysqli_query($conn, $query); // Assuming you have a database connection stored in $conn
 
     // Check if there are any rows returned from the query
