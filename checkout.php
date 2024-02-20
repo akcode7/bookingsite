@@ -495,9 +495,9 @@ use PHPMailer\PHPMailer\Exception;
 
 if(isset($_POST['send'])){
   //Load Composer's autoloader
-require 'PHPMailer/Exception.php';
-require 'PHPMailer/PHPMailer.php';
-require 'PHPMailer/SMTP.php';
+require 'src/PHPMailer/Exception.php';
+require 'src/PHPMailer/PHPMailer.php';
+require 'src/PHPMailer/SMTP.php';
 
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
