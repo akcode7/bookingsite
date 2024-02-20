@@ -26,7 +26,7 @@ try {
 
     //Recipients
     $mail->setFrom('admin@gpsolarpanel.com', 'checkout');
-    $mail->addAddress('ankitengineer@hotmail.com', 'Joe User');     //Add a recipient
+    $mail->addAddress('xakobe5283@ricorit.com', 'Joe User');     //Add a recipient
     // $mail->addAddress('ellen@example.com');               //Name is optional
     // $mail->addReplyTo('info@example.com', 'Information');
     // $mail->addCC('cc@example.com');
