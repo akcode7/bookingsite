@@ -1,11 +1,24 @@
 
-<?php include 'src/config/db_connect.php';
+<?php include 'config/db_connect.php';
+
+//Import PHPMailer classes into the global namespace
+//These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 $userid = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 // Process form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST" && $userid) {
+
+
+
+
+
+
     
    
     // Get input data
@@ -27,15 +40,57 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $userid) {
     $bookingamount = isset($_GET['caramount']) ? $_GET['caramount'] : '';
     $orderstatus = "pending";
     $pickuptime = isset($_GET['pickuptime']) ? $_GET['pickuptime'] : '';
-   
-   
-   
-    
-  
 
     // Get the current Indian time
     $indianTime = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
     $currentIndianTime = $indianTime->format('Y-m-d H:i:s');
+
+
+
+
+require 'PHPMailer/Exception.php';
+require 'PHPMailer/PHPMailer.php';
+require 'PHPMailer/SMTP.php';
+
+//Create an instance; passing `true` enables exceptions
+$mail = new PHPMailer(true);
+
+try {
+    //Server settings
+    // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+    $mail->isSMTP();                                            //Send using SMTP
+    $mail->Host       = 'smtp.hostinger.com';                     //Set the SMTP server to send through
+    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+    $mail->Username   = 'admin@gpsolarpanel.com';                     //SMTP username
+    $mail->Password   = 'Admin!@#2310';                               //SMTP password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+    //Recipients
+    $mail->setFrom('admin@gpsolarpanel.com', 'checkout');
+    $mail->addAddress('xakobe5283@ricorit.com', 'Joe User');     //Add a recipient
+    // $mail->addAddress('ellen@example.com');               //Name is optional
+    // $mail->addReplyTo('info@example.com', 'Information');
+    // $mail->addCC('cc@example.com');
+    // $mail->addBCC('bcc@example.com');
+
+    //Attachments
+    // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+    // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+
+    //Content
+    $mail->isHTML(true);                                  //Set email format to HTML
+    $mail->Subject = 'Thanks for booking your ride';
+    $mail->Body    = "This is the $purchaseid";
+    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+    $mail->send();
+    echo 'Message has been sent';
+} catch (Exception $e) {
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+}
+
+
 
 
     $sql = "INSERT INTO `bookingdetail` (`purchase_id`,`pickup_add`, `dropoff_add`, `full_name`, `email_id`, `gender`, `phone_number`,`pickup_date`,`triptype`,`car_name`,`cartr_distance`,`book_amount`,`order_status`,`pickup_time`, `book_time`,`user_id`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
@@ -63,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $userid) {
 
     if ($stmt->affected_rows > 0) {
      
-      header("Location: invoice.php");
+      header("Location: ../invoice.php");
       
       exit();
     } else {
@@ -72,8 +127,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $userid) {
         echo "error";
     }
 
+
     $stmt->close();
     
+
+
 
 }
 
@@ -94,13 +152,13 @@ $conn->close();
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <link href="src/css/output.css" rel="stylesheet">
+    <link href="css/output.css" rel="stylesheet">
   </head>
   <body>
 
  <!-- header starts -->
 
-<?php include 'src/component/header.php'?>
+<?php include 'component/header.php'?>
 <!-- header ends -->
 
 <section class="h-screen w-full flex flex-col ">
@@ -108,7 +166,7 @@ $conn->close();
 <div class="flex sm:col-span-5 sm:block md:block bg-[#eaffeb] lg:block xl:block 2xl:block">
  <!-- booking detail card 1 starts -->
  <?php
-include 'src/config/db_connect.php';
+include 'config/db_connect.php';
 
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
@@ -131,7 +189,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
     <div class="mx-auto w-11/12  md:grid shadow-lg grid-cols-10 bg-white border border-gray-400 rounded-lg py-5 px-2">
         <div class="col-span-2 px-2">
-            <img src="src/icon/suvcar.png" class="rounded-lg w-11/12" alt="">
+            <img src="icon/suvcar.png" class="rounded-lg w-11/12" alt="">
         </div>
     
         <div class="col-span-5 p-2">
@@ -174,7 +232,7 @@ while ($row = mysqli_fetch_assoc($result)) {
       </li>
           </ul>
           <span class="flex py-2">
-            <img src="src/icon/discounticon.png"/>
+            <img src="icon/discounticon.png"/>
             <h1 class="font-bold text-[#FF3726] py-2 pl-2">Cheapest Price Garanteed</h1>
           
       </span>
@@ -369,7 +427,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         <label for="inline-2-radio" class="ms-2 text-sm font-medium text-gray-900 ">Female</label>
     </div>
     <div class="flex items-center me-4 mx-2">
-        <input checked id="inline-checked-radio" type="radio" value="other" name="gen_der" class="w-4 outline-none h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
+        <input  id="inline-checked-radio" type="radio" value="other" name="gen_der" class="w-4 outline-none h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 ">
         <label for="inline-checked-radio" class="ms-2 text-sm font-medium text-gray-900 ">Other</label>
     </div>
     
@@ -477,7 +535,7 @@ while ($row = mysqli_fetch_assoc($result)) {
  
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="public/script.js"></script>
+    <script src="../public/script.js"></script>
     <script>
     if ( window.history.replaceState ) {
         window.history.replaceState( null, null, window.location.href );
@@ -486,58 +544,3 @@ while ($row = mysqli_fetch_assoc($result)) {
   </body>
 </html>
 
-<?php
-//Import PHPMailer classes into the global namespace
-//These must be at the top of your script, not inside a function
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
-if(isset($_POST['send'])){
-  //Load Composer's autoloader
-require 'src/PHPMailer/Exception.php';
-require 'src/PHPMailer/PHPMailer.php';
-require 'src/PHPMailer/SMTP.php';
-
-//Create an instance; passing `true` enables exceptions
-$mail = new PHPMailer(true);
-
-try {
-    //Server settings
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-    $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'smtp.hostinger.com';                     //Set the SMTP server to send through
-    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'admin@gpsolarpanel.com';                     //SMTP username
-    $mail->Password   = 'Admin!@#2310';                               //SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-
-    //Recipients
-    $mail->setFrom('admin@gpsolarpanel.com', 'checkout');
-    $mail->addAddress('xakobe5283@ricorit.com', 'Joe User');     //Add a recipient
-    // $mail->addAddress('ellen@example.com');               //Name is optional
-    // $mail->addReplyTo('info@example.com', 'Information');
-    // $mail->addCC('cc@example.com');
-    // $mail->addBCC('bcc@example.com');
-
-    //Attachments
-    // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-    // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-
-    //Content
-    $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Thanks for booking your ride';
-    $mail->Body    = "This is the '$purchaseid'";
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-    $mail->send();
-    echo 'Message has been sent';
-} catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-}
-
-}
-
-
-?>

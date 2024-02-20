@@ -227,7 +227,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         <p>Trip Type: <?php echo $triptype; ?></p>
         <p>Pick-up date: <?php echo $pickupdate; ?></p>
         <p>Pick-up time: <?php echo $pickuptime; ?></p>
-        <a href="checkout.php?pickup=<?php echo urlencode($row['car_pickup']); ?>&dropoff=<?php echo urlencode($row['car_dropoff']); ?>&carname=<?php echo urlencode($row['car_name']); ?>&cartrdistance=<?php echo urlencode($row['car_trdistance']); ?>&caramount=<?php echo urlencode($row['car_amount']); ?>&pickupdate=<?php echo $pickupdate; ?> &triptype=<?php echo $triptype; ?>&pickuptime=<?php echo $pickuptime; ?>">
+        <a href="src/checkout.php?pickup=<?php echo urlencode($row['car_pickup']); ?>&dropoff=<?php echo urlencode($row['car_dropoff']); ?>&carname=<?php echo urlencode($row['car_name']); ?>&cartrdistance=<?php echo urlencode($row['car_trdistance']); ?>&caramount=<?php echo urlencode($row['car_amount']); ?>&pickupdate=<?php echo $pickupdate; ?> &triptype=<?php echo $triptype; ?>&pickuptime=<?php echo $pickuptime; ?>">
     <button class="text-white bg-[#FF3726] font-medium rounded-lg text-sm px-8 py-2 text-center">Book Now</button>
 </a>
       </div>
