@@ -13,6 +13,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 include '../../src/config/db_connect.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
   $email = $_POST['email'];
   $password = $_POST['password'];
 
@@ -25,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       while ($row = mysqli_fetch_assoc($result)) {
         if ($row['password'] === md5($password)) {
               session_start();
+
               $_SESSION['loggedin'] = true;
               $_SESSION['email'] = $email;
               $_SESSION['user_role'] = $row['user_role'];
@@ -32,9 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
              
 
               if ($row['user_role'] !== "administrator") {
-                  header("location: ../userdashboard/userprofile.php");
+                  header("location: ../../booking.php?" . http_build_query($_GET)) ;
               } else {
-                  header("location: ../admin/addlisting.php");
+                  header("location: ../admin/index.php");
               }
           } else {
               echo 'error';

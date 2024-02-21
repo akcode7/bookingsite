@@ -7,7 +7,7 @@ if (isset($_SESSION['email'])) {
     echo "Welcome back, $email!";
 } else {
     // No session exists, user needs to log in or register
-    header("location: src/authentication/login.php"); // Replace 'login.php' with the actual login page
+    header("location: src/authentication/login.php?" . http_build_query($_GET)); // Replace 'login.php' with the actual login page
     exit();
 }
 ?>
