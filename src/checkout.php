@@ -167,7 +167,7 @@ $conn->close();
 
 <section class="h-screen my-12 block w-full md:flex flex-col ">
 <div class="h-screen block md:grid grid-cols-8">
-<div class=" sm:col-span-5 sm:block md:block bg-[#eaffeb] lg:block xl:block 2xl:block">
+<div style="background-image: linear-gradient(180deg, #ad77ff 0%, #4d0aa4 50%);" class=" sm:col-span-5 sm:block md:block bg-transparent lg:block xl:block 2xl:block py-8">
  <!-- booking detail card 1 starts -->
  <?php
 include 'config/db_connect.php';
@@ -446,8 +446,16 @@ while ($row = mysqli_fetch_assoc($result)) {
 <!-- user detail forn ends -->
 
 <!-- Additional  detail starts -->
-<div class="mx-auto my-7 px-5">
-  <div class="mx-auto w-11/12 shadow-lg bg-white border border-gray-400 rounded-lg py-5 px-5">
+
+
+<div class="mx-auto my-7 px-5 cursor-pointer" id="dropdownbtn">
+  <div id="butn" onclick="toggledropdown()" class="mx-auto w-11/12 shadow-lg  bg-white border border-gray-400 rounded-lg py-5 px-5">
+     <div class="text-xl font-semibold flex justify-between items-center">Included & Excluded
+     <i class="fa fa-angle-down px-4 text-2xl"></i>
+    </div>
+  </div>
+
+  <div id="dropdown" class="mx-auto w-11/12 shadow-lg bg-white border border-gray-400 rounded-lg py-5 px-5 hidden">
     <h2 class="mb-2 text-lg font-semibold text-gray-900">Additional Information:</h2>
     <hr class="py-2">
     <div class="md:grid grid-cols-2">
@@ -483,14 +491,28 @@ while ($row = mysqli_fetch_assoc($result)) {
     </div>
   </div>
 
+
+
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- Additional details end -->
 
 
 </div>
 
-<div class="col-span-3 bg-white md:fixed md:right-10 py-8">
+<div class="col-span-3 bg-white md:fixed md:right-10 py-2 md:py-8">
           <div class="flex items-center justify-center md:h-screen">
             <div class="flex flex-col  px-6 py-8 mx-auto md:h-screen lg:py-0">
               <div class="w-full bg-white rounded-lg shadow border-gray-700 md:mt-0 sm:max-w-md xl:p-0" >
@@ -514,9 +536,10 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <div class="justify-center flex">
 
                       <button
+                      style="background-image: linear-gradient(180deg, #ad77ff 0%, #4d0aa4 100%);"
                       type="submit"
                       name="send"
-                      class="w-64 text-white bg-[#FF3726] font-medium rounded-lg text-sm px-4 py-2 text-center my-6 md:my-4">
+                      class="w-64 text-white bg-transparent font-medium rounded-lg text-sm px-4 py-2 text-center my-6 md:my-4">
                      Pay in cash
                     </button>
                     </div>

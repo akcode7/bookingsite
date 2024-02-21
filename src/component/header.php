@@ -27,14 +27,14 @@
 <div class="lg:hidden">
 
 <!-- header menu btm starts -->
-<div class="grid grid-cols-2">
+<div class="grid grid-cols-2 py-4 md:py-0">
 <div>
   <a href="index.php">
     <img src="src/icon/logo.png"  class="w-56 " alt="" srcset="">
   </a>
 </div>
 <div>
-  <i class="absolute right-10 top-10 fa fa-bars text-2xl mobile-menu-button z-10"></i>
+  <i class="absolute right-10 top-6 md:top-10 fa fa-bars text-2xl mobile-menu-button z-10"></i>
 </div>
 </div>
 <!-- header menu btn ends-->
