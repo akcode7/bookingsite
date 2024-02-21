@@ -80,14 +80,18 @@ try {
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Thanks for booking your ride';
-    $mail->Body    = "This is the $purchaseid";
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+    $mail->Subject = 'Thanks for booking your ride with us';
+    $mail->Body    = "Your Booking id: $purchaseid <br> pick-up address: $pickupadd <br> drop-off address: $pickupadd";
+    $mail->AltBody = "Thanks for booking your ride Booking id: $purchaseid pick-up address: $pickupadd drop-off address: $pickupadd";
 
     $mail->send();
     echo 'Message has been sent';
 } catch (Exception $e) {
+
+  
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+
+
 }
 
 
@@ -161,9 +165,9 @@ $conn->close();
 <?php include 'component/header.php'?>
 <!-- header ends -->
 
-<section class="h-screen w-full flex flex-col ">
-<div class="h-screen md:grid grid-cols-8">
-<div class="flex sm:col-span-5 sm:block md:block bg-[#eaffeb] lg:block xl:block 2xl:block">
+<section class="h-screen my-12 block w-full md:flex flex-col ">
+<div class="h-screen block md:grid grid-cols-8">
+<div class=" sm:col-span-5 sm:block md:block bg-[#eaffeb] lg:block xl:block 2xl:block">
  <!-- booking detail card 1 starts -->
  <?php
 include 'config/db_connect.php';
@@ -349,16 +353,12 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 <!-- pickup and dropoff address starts -->
 
-<div class="mx-auto my-7 px-5 cursor-pointer" id="dropdownbtn">
-    <div id="butn" onclick="toggledropdown()" class="mx-auto w-11/12 shadow-lg  bg-white border border-gray-400 rounded-lg py-5 px-5">
-       <div class="text-xl font-semibold flex justify-between items-center">Pick-Up And Drop-Off Location 
-       <i class="fa fa-angle-down px-4 text-2xl"></i>
-      </div>
-    </div>
+<div class="mx-auto my-7 px-5 cursor-pointer" >
+   
 
 
 
-  <div id="dropdown" class="mx-auto w-11/12 bg-white border border-gray-400 rounded-lg py-5 px-6 mt-1 hidden">
+  <div  class="mx-auto w-11/12 bg-white border border-gray-400 rounded-lg py-5 px-6 mt-1 ">
     <form action="" method="post">
       <div>
         <label
@@ -403,14 +403,14 @@ while ($row = mysqli_fetch_assoc($result)) {
     <h1 class="text-xl font-semibold py-2">Enter Traveller Details</h1>
     
    
-      <div class="flex ">
+      <div class="md:flex block">
       <div class="pb-2 mx-2">
         <label for="text" class="block  mb-2 text-sm font-medium text-gray-900" >Your Full Name</label>
-        <input type="text" name="full_name" id="fullname" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-80 p-2.5"  placeholder="Enter Full Name"   required=""/>
+        <input type="text" name="full_name" id="fullname" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-full md:w-80 p-2.5"  placeholder="Enter Full Name"   required=""/>
       </div>
       <div class="pb-2 mx-2">
         <label for="email" class="block mb-2 text-sm font-medium text-gray-900" >Email Id <span class="font-normal">(Confirmation email will be sent here)</span></label> 
-        <input type="email" name="email_add" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-80 p-2.5" placeholder="Enter email ID"  required="" />
+        <input type="email" name="email_add" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-full md:w-80 p-2.5" placeholder="Enter email ID"  required="" />
       </div>
     </div>
 
@@ -436,7 +436,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     <div class="py-5 mx-2 ">
       <label for="number"  class="block mb-2 text-sm font-medium text-gray-900" >Phone Number<span class="font-normal">(We will contact you on this number)</span></label> 
       
-      <input pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==12) return false;" type="number" name="phone_number" id="phnumber" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-80 p-2.5" maxlength="12" placeholder="Enter Phone number"  required="" />
+      <input pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==12) return false;" type="number" name="phone_number" id="phnumber" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-[#FF3726] focus:border-[#FF3726] block w-full md:w-80 p-2.5" maxlength="12" placeholder="Enter Phone number"  required="" />
     </div>
    
   </div>
@@ -491,7 +491,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 </div>
 
 <div class="col-span-3 bg-white md:fixed md:right-10 py-8">
-          <div class="flex items-center justify-center h-screen">
+          <div class="flex items-center justify-center md:h-screen">
             <div class="flex flex-col  px-6 py-8 mx-auto md:h-screen lg:py-0">
               <div class="w-full bg-white rounded-lg shadow border-gray-700 md:mt-0 sm:max-w-md xl:p-0" >
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
