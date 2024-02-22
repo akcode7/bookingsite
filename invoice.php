@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+if (isset($_SESSION['email'])) {
+    // Session already exists, user is identified
+    $email = $_SESSION['email'];
+    
+} else {
+    // No session exists, user needs to log in or register
+    header("location: src/authentication/login.php"); // Replace 'login.php' with the actual login page
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +31,7 @@
     
 <?php
   include 'src/config/db_connect.php';
-  session_start();
+ 
 
 // Check if the user is logged in
 if (isset($_SESSION['user_id']) && isset($_SESSION['purchase_id'])) {
