@@ -54,15 +54,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['purchase_id'])) {
 ?>
 
 
-    <section id="pdfcontent" class="p-12 mx-auto flex justify-center item-center">
+    <section id="pdfcontent" class="p-6 md:p-12 mx-auto flex justify-center item-center">
         
-        <div class="border border-black  w-1/2 p-6 ">    
+        <div class="border border-black  w-full md:w-1/2 p-3 md:p-6 ">    
         <div class="flex justify-between items-center content-center">
-            <img src="./src/icon/logo.png" class="w-40 h-20" alt="" srcset="">
+            <img src="./src/icon/logo.png" class="w-32 h-16 md:w-40 md:h-20" alt="" srcset="">
             <div> 
-                 <h1 class="py-1 font-bold text-lg  text-left">Electronic Booking slip</h1>
+                 <h1 class="py-1 font-bold md:text-lg text-sm">Electronic Booking slip</h1>
 
-                 <span class="font-medium text-left">Booking status: 
+                 <span class="font-medium text-sm md:text-lg text-left">Booking status: 
                 <?php if ($row['order_status'] == "cancel"): ?>
                     <span class="pl-1 font-semibolduppercase text-white px-1 py-0.5 rounded-lg bg-red-600">Cancelled</span>
                 <?php elseif ($row['order_status'] == "pending"): ?>
@@ -77,24 +77,24 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['purchase_id'])) {
             
         </div>
         <hr class="bg-black h-[1.5px] ">
-        <div class="grid grid-cols-2 py-3">
+        <div class="md:grid grid-cols-2 py-3">
             <div class="col-span-1">
-            <p class="font-normal pl-3"><b>Booking ID:</b> <?php echo $row['purchase_id']?></p>
-                <span class=" font-bold pl-3">Traveler Name: <span class="pl-1 font-semibold text-black"><?php echo $row['full_name']?></span></span>
-                <h1 class=" font-bold pl-3">Phone Number: <span class="pl-1 font-semibold text-black"><?php echo $row['phone_number']?></span></h1>
-                <h1 class=" font-bold pl-3">Email: <span class="pl-1 font-semibold text-black"><?php echo $row['email_id']?></span></h1>
+            <p class="font-normal pl-3 text-lg"><b>Booking ID:</b> <?php echo $row['purchase_id']?></p>
+                <span class=" font-bold pl-3 text-lg">Traveler Name: <span class="pl-1 font-semibold text-black"><?php echo $row['full_name']?></span></span>
+                <h1 class=" font-bold pl-3 text-lg">Phone Number: <span class="pl-1 font-semibold text-black"><?php echo $row['phone_number']?></span></h1>
+                <h1 class=" font-bold pl-3 text-lg">Email: <span class="pl-1 font-semibold text-black"><?php echo $row['email_id']?></span></h1>
             </div>
             <div class="col-span-1">
              
                 
-                <h1 class=" font-medium pl-3"><b>Booking Date:</b> <span class="pl-1 font-semibold text-black">
+                <h1 class=" font-medium pl-3 text-lg"><b>Booking Date:</b> <span class="pl-1 font-semibold text-black">
                     <?php 
                     $booking_date = $row['book_time'];
                     $formatbookdate = new DateTime($booking_date);
                     $formattedbookDate = $formatbookdate->format('d-m-Y H:i:s');
                     echo $formattedbookDate;?>
                     </span></h1>
-                <h1 class=" font-medium pl-3"><b>Pick-up Date:</b> <span class="pl-1 font-semibold text-black"><?php 
+                <h1 class=" font-medium pl-3 text-lg"><b>Pick-up Date:</b> <span class="pl-1 font-semibold text-black"><?php 
                     $pick_update = $row['pickup_date']; 
                     $formattedDate = date('d-m-Y', strtotime($pick_update));
                     echo $formattedDate;?></span></h1>
@@ -107,9 +107,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['purchase_id'])) {
    
         <hr class="bg-black h-[1.5px] ">
 
-        <div class="grid grid-cols-2  gap-3 py-3">
+        <div class="md:grid grid-cols-2  gap-3 py-3">
             <div class="col-span-1 px-3 ">
-                <h1 class="py-1 text-left font-bold text-lg  ">Pick-up Address</h1>
+                <h1 class="py-1 text-left font-bold   text-lg">Pick-up Address</h1>
                 <p class="font-normal"><?php echo $row['pickup_add']?></p>
               
             </div>
