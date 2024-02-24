@@ -136,7 +136,7 @@ $conn->close();
       >
         <div class="py-4 text-gray-500 dark:text-gray-400">
           <a href="#">
-            <img src="../icon/logo.png" alt="" class="w-40 pl-5">
+            <img src="../component/logo.png" alt="" class="w-40 pl-5">
           </a>
           <ul class="mt-6">
             <li class="relative px-6 py-3">
@@ -279,7 +279,7 @@ $conn->close();
       >
         <div class="py-4 text-gray-500 dark:text-gray-400">
           <a href="#">
-            <img src="../icon/logo.png" alt="" class="w-40 pl-5">
+            <img src="../component/logo.png" alt="" class="w-40 pl-5">
           </a>
           <ul class="mt-6">
             <li class="relative px-6 py-3">
@@ -558,7 +558,7 @@ $conn->close();
             <!-- Search input -->
             <div class="flex justify-center flex-1 lg:mr-32">
               <div
-                class="relative w-full max-w-xl mr-6 focus-within:text-purple-500"
+                class="relative hidden w-full max-w-xl mr-6 focus-within:text-purple-500"
               >
                 <div class="absolute inset-y-0 flex items-center pl-2">
                   <svg
@@ -833,5 +833,7 @@ $conn->close();
         window.history.replaceState( null, null, window.location.href );
     }
 </script>
+
+
   </body>
 </html>

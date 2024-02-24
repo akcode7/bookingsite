@@ -725,6 +725,10 @@ while ($row = mysqli_fetch_assoc($result)) {
         window.history.replaceState( null, null, window.location.href );
     }
 </script>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript" src="public/livechat.js"></script>
+<!--End of Tawk.to Script-->
   </body>
 </html>
 

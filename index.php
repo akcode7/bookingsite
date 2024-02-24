@@ -133,7 +133,7 @@ session_start();
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
     
       <div class="mb-4 md:mb-0">
-        <img src="src/images/carimg2.png" alt="Image" class="w-9/12 h-auto">
+        <img src="src/images/homesection1.webp" alt="Image" class="w-full h-auto">
       </div>
   
       <div>
@@ -176,7 +176,7 @@ session_start();
 
     <div class="col-span-1 text-center pt-10 px-6">
         
-        <h1 class="text-xl font-bold text-gray-700 hover:text-white rounded-t-lg bg-gray-200 mb-4 px-24 py-4 hover:bg-[#015A60]">Drive</h1>
+        <h1 class="text-xl font-bold text-gray-700 hover:text-white rounded-t-lg bg-gray-200 mb-4 px-24 py-4 hover:bg-[#015A60]">Ride</h1>
         <img class=" mx-auto" src="src/icon/driveicon.png" alt="" srcset="">
     </div>
 
@@ -199,7 +199,7 @@ session_start();
       </div>
 
       <div class="mb-4 md:mb-0">
-        <img src="src/images/carimg4.webp" alt="Image" class="w-full md:w-9/12 h-auto">
+        <img src="src/images/homesection2.webp" alt="Image" class="w-full  h-auto">
       </div>
 
       
@@ -244,7 +244,7 @@ session_start();
     <div class="container mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-6">
         <div class="p-0 md:p-6 md:col-span-2">
-            <img src="src/icon/logo.png" alt="Logo" class="w-52">
+            <img src="src/component/logo.png" alt="Logo" class="w-52">
             <p class="text-gray-300 font-medium pt-4">abccarcompany offers a complete drive solutions through our Managed website</p>
             <div class="flex gap-4 pt-7 pb-6">
             <i class="fa-brands fa-instagram text-gray-400 p-4 bg-gray-800 rounded-full hover:bg-teal-500 hover:text-white transition duration-700 ease-linear"></i>
@@ -350,5 +350,11 @@ session_start();
 
 
 <script src="public/script.js"></script>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript" src="public/livechat.js"></script>
+<!--End of Tawk.to Script-->
+
+
 </body>
 </html>

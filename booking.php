@@ -4,10 +4,10 @@ session_start();
 if (isset($_SESSION['email'])) {
     // Session already exists, user is identified
     $email = $_SESSION['email'];
-    echo "Welcome back, $email!";
+    
 } else {
     // No session exists, user needs to log in or register
-    header("location: src/authentication/login.php?" . http_build_query($_GET)); // Replace 'login.php' with the actual login page
+    header("location: src/authentication/signup.php?" . http_build_query($_GET)); // Replace 'login.php' with the actual login page
     exit();
 }
 ?>
@@ -257,7 +257,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-6">
             <div class="p-0 md:p-6 md:col-span-2">
-                <img src="src/icon/logo.png" alt="Logo" class="w-52">
+                <img src="src/component/logo.png" alt="Logo" class="w-52">
                 <p class="text-gray-300 font-medium pt-4">abccarcompany offers a complete drive solutions through our Managed website</p>
                 <div class="flex gap-4 pt-7 pb-6">
                 <i class="fa-brands fa-instagram text-gray-400 p-4 bg-gray-800 rounded-full hover:bg-teal-500 hover:text-white transition duration-700 ease-linear"></i>

@@ -28,6 +28,11 @@ if (isset($_SESSION['email'])) {
 
 </head>
 <body>
+
+<!-- header starts -->
+
+<?php include 'src/component/header.php'?>
+<!-- header ends -->
     
 <?php
   include 'src/config/db_connect.php';
@@ -58,7 +63,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['purchase_id'])) {
         
         <div class="border border-black  w-full md:w-1/2 p-3 md:p-6 ">    
         <div class="flex justify-between items-center content-center">
-            <img src="./src/icon/logo.png" class="w-32 h-16 md:w-40 md:h-20" alt="" srcset="">
+            <img src="src/component/logo.png" class="w-32 h-16 md:w-40 md:h-20" alt="" srcset="">
             <div> 
                  <h1 class="py-1 font-bold md:text-lg text-sm">Electronic Booking slip</h1>
 

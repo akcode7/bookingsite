@@ -2,7 +2,7 @@
    <header  class="text-gray-500 body-font hidden  lg:flex justify-between items-center">
     <div class="container mx-auto ">
       <a href="index.php" class="flex title-font font-medium items-center text-gray-900 mb-4 ml-5 md:mb-0 align-middle">
-        <img src="src/icon/logo.png"  class="w-32 z-10" alt="" srcset="">
+        <img src="src/component/logo.png"  class="w-32 z-10" alt="" srcset="">
       </a>
     </div>
     <div>
@@ -30,23 +30,23 @@
 <div class="grid grid-cols-2 py-4 md:py-0">
 <div>
   <a href="index.php">
-    <img src="src/icon/logo.png"  class="w-56 " alt="" srcset="">
+    <img src="src/component/logo.png"  class="w-32 " alt="" srcset="">
   </a>
 </div>
 <div>
-  <i class="absolute right-10 top-6 md:top-10 fa fa-bars text-2xl mobile-menu-button z-10"></i>
+  <i class="absolute right-10 top-10 md:top-10 fa fa-bars text-2xl mobile-menu-button z-10"></i>
 </div>
 </div>
 <!-- header menu btn ends-->
 <div class="container  right-0 top-0 z-10 bg-black h-screen hidden mobile-menu w-10/12" style="position:fixed; overflow-y: scroll;">
 <div class="flex pl-10 mb-20">
-  <img src="assets/src/images/LinQ_whitetxt.png" class="w-7/12 mt-5" alt="">
+  <img src="logo.png" class="w-7/12 mt-5" alt="">
   <i class="fa fa-times text-white mt-10 right-10 absolute text-xl hover:text-red-500 mobile-menu-close-btn"></i>
 </div>
 <div class="mb-10 w-11/12 pl-6">
   <nav class="text-white w-11/12 ">
       <ul class="divide-y divide-gray-600">
-          <a href="index.php"><li class="py-3 hover:text-yellow-300 text-lg font-semibold"> Home</li></a>
+          <a href="../../index.php"><li class="py-3 hover:text-yellow-300 text-lg font-semibold">Book a ride</li></a>
           <a href="about.php"><li class="py-3 hover:text-yellow-300 text-lg font-semibold">About</li></a>
           <a href="services.php"><li class="py-3 hover:text-yellow-300 text-lg font-semibold">Services</li></a>
           <a href="contact.php"> <li class="py-3 hover:text-yellow-300 text-lg font-semibold">Contact</li></a>

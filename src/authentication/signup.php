@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       session_start();
       $_SESSION['loggedin'] = true;
       $_SESSION['email'] = $email;
-       header("location: ../../index.php");
+       
     } else {
         echo "insert error";
     }
@@ -53,6 +53,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 session_start();
                 $_SESSION['user_role'] = $row['user_role'];
                 $_SESSION['user_id'] = $row['user_id'];
+
+                if ($row['user_role'] !== "administrator") {
+                  header("location: ../../booking.php?" . http_build_query($_GET)) ;
+              };
+
             }};
 
 }
@@ -160,7 +165,7 @@ $conn->close();
                     <p class="text-sm font-light text-gray-600">
                       Already have an account?
                       <a
-                        href="login.php"
+                        href="login.php?<?php echo http_build_query($_GET); ?>"
                         class="font-medium text-primary-600 hover:underline text-[#FF3726]"
                         >Sign in</a
                       >
