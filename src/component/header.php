@@ -1,8 +1,8 @@
    <!-- header starts php -->
    <header  class="text-gray-500 body-font hidden  lg:flex justify-between items-center">
     <div class="container mx-auto ">
-      <a href="index.php" class="flex title-font font-medium items-center text-gray-900 mb-4 ml-5 md:mb-0 align-middle">
-        <img src="https://gpsolarpanel.com/src/component/logo.png"  class="w-32 z-10" alt="" srcset="">
+      <a href="https://ezzeemiles.com" class="flex title-font font-medium items-center text-gray-900 mb-4 ml-5 md:mb-0 align-middle">
+        <img src="https://ezzeemiles.com/src/component/logo.png"  class="w-32 z-10" alt="" srcset="">
       </a>
     </div>
     <div>
