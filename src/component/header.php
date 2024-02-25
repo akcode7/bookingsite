@@ -2,7 +2,7 @@
    <header  class="text-gray-500 body-font hidden  lg:flex justify-between items-center">
     <div class="container mx-auto ">
       <a href="index.php" class="flex title-font font-medium items-center text-gray-900 mb-4 ml-5 md:mb-0 align-middle">
-        <img src="src/component/logo.png"  class="w-32 z-10" alt="" srcset="">
+        <img src="https://gpsolarpanel.com/src/component/logo.png"  class="w-32 z-10" alt="" srcset="">
       </a>
     </div>
     <div>
@@ -30,7 +30,7 @@
 <div class="grid grid-cols-2 py-4 md:py-0">
 <div>
   <a href="index.php">
-    <img src="src/component/logo.png"  class="w-32 " alt="" srcset="">
+    <img src="https://gpsolarpanel.com/src/component/logo.png"  class="w-32 " alt="" srcset="">
   </a>
 </div>
 <div>
