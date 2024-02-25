@@ -18,9 +18,10 @@ if (isset($_SESSION['email'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="src/css/output.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
    
   
@@ -59,7 +60,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['purchase_id'])) {
 ?>
 
 
-    <section id="pdfcontent" class="p-6 md:p-12 mx-auto flex justify-center item-center">
+    <section id="content" class="p-6 md:p-12 mx-auto flex justify-center item-center">
         
         <div class="border border-black  w-full md:w-1/2 p-3 md:p-6 ">    
         <div class="flex justify-between items-center content-center">
@@ -136,13 +137,17 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['purchase_id'])) {
                 <p class="font-normal"><b>Total Amount: </b><?php echo $row['book_amount']?> Rs</p>
                
             </div>
-          
-
+           
         
     </div>
+
+
+   
+
     
     </section>
     
+    <button class="px-5 py-2 bg-teal-300" onclick="generatePDF()">Generate PDF</button>
 
    
     <?php
@@ -152,7 +157,29 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['purchase_id'])) {
 
 
 
-<script type="module" src="./invoicepdf.js"></script>
+<script>
+    function generatePDF() {
+        // Check if jsPDF is defined
+        if (typeof jsPDF !== 'undefined') {
+            // Get the HTML content to be converted
+            const content = document.getElementById('content');
+
+            // Create a new jsPDF instance
+            const pdf = new jsPDF();
+
+            // Convert the HTML content to PDF
+            pdf.html(content, {
+                callback: function (pdf) {
+                    // Save the PDF file
+                    pdf.save('converted.pdf');
+                }
+            });
+        } else {
+            // Log an error if jsPDF is not defined
+            console.error('Error: jsPDF is not defined. Check the script URL and loading order.');
+        }
+    }
+</script>
 
 </body>
 </html>
