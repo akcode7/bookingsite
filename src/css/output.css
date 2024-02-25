@@ -1123,6 +1123,10 @@ video {
   width: 100%;
 }
 
+.w-96 {
+  width: 24rem;
+}
+
 .min-w-0 {
   min-width: 0px;
 }
@@ -1898,6 +1902,26 @@ video {
   padding-top: 2rem;
 }
 
+.pl-24 {
+  padding-left: 6rem;
+}
+
+.pl-32 {
+  padding-left: 8rem;
+}
+
+.pl-36 {
+  padding-left: 9rem;
+}
+
+.pl-40 {
+  padding-left: 10rem;
+}
+
+.pl-0 {
+  padding-left: 0px;
+}
+
 .text-left {
   text-align: left;
 }
@@ -2133,6 +2157,11 @@ video {
   color: rgb(253 224 71 / var(--tw-text-opacity));
 }
 
+.text-\[\#5412AB\] {
+  --tw-text-opacity: 1;
+  color: rgb(84 18 171 / var(--tw-text-opacity));
+}
+
 .underline {
   text-decoration-line: underline;
 }
@@ -2306,6 +2335,11 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-\[\#5412AB\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(84 18 171 / var(--tw-bg-opacity));
+}
+
 .hover\:from-pink-500:hover {
   --tw-gradient-from: #ec4899 var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(236 72 153 / 0) var(--tw-gradient-to-position);
@@ -2475,6 +2509,16 @@ video {
 .active\:text-gray-500:active {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+
+@media not all and (min-width: 768px) {
+  .max-md\:w-11 {
+    width: 2.75rem;
+  }
+
+  .max-md\:w-11\/12 {
+    width: 91.666667%;
+  }
 }
 
 @media (min-width: 640px) {
@@ -2684,6 +2728,10 @@ video {
     width: 20rem;
   }
 
+  .md\:w-11\/12 {
+    width: 91.666667%;
+  }
+
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2761,6 +2809,18 @@ video {
     padding-left: 0px;
   }
 
+  .md\:pl-1 {
+    padding-left: 0.25rem;
+  }
+
+  .md\:pl-10 {
+    padding-left: 2.5rem;
+  }
+
+  .md\:pl-40 {
+    padding-left: 10rem;
+  }
+
   .md\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
@@ -2779,6 +2839,12 @@ video {
   .md\:text-\[\#9249ff\] {
     --tw-text-opacity: 1;
     color: rgb(146 73 255 / var(--tw-text-opacity));
+  }
+
+  @media (min-width: 1024px) {
+    .md\:lg\:pl-40 {
+      padding-left: 10rem;
+    }
   }
 }
 
@@ -2812,6 +2878,10 @@ video {
     padding-top: 0px;
     padding-bottom: 0px;
   }
+
+  .lg\:pl-40 {
+    padding-left: 10rem;
+  }
 }
 
 @media (min-width: 1280px) {
@@ -2825,6 +2895,10 @@ video {
 
   .xl\:p-0 {
     padding: 0px;
+  }
+
+  .xl\:pl-40 {
+    padding-left: 10rem;
   }
 }
 

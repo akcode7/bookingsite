@@ -346,7 +346,7 @@ while ($row = mysqli_fetch_assoc($result)) {
           </ul>
           <span class="flex py-2">
             <img src="icon/discounticon.png"/>
-            <h1 class="font-bold text-[#FF3726] py-2 pl-2">Cheapest Price Garanteed</h1>
+            <h1 class="font-bold text-[#5412AB] py-2 pl-2">Cheapest Price Garanteed</h1>
           
       </span>
     
@@ -637,7 +637,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                       <h1   class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl" >
                       <?php echo $bookingamount; ?>
                       </h1>
-                      <p class="font-normal text-sm text-[#ff3726]">View details</p>
+                      <p class="font-normal text-sm text-[#5412AB]">View details</p>
                     </div>
                   </div>
                  

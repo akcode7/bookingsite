@@ -166,7 +166,7 @@ $conn->close();
                       Already have an account?
                       <a
                         href="login.php?<?php echo http_build_query($_GET); ?>"
-                        class="font-medium text-primary-600 hover:underline text-[#FF3726]"
+                        class="font-medium text-primary-600 hover:underline text-[#5412AB]"
                         >Sign in</a
                       >
                     </p>

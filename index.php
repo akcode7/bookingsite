@@ -21,8 +21,9 @@ session_start();
 <body>
 
  <?php include 'src/component/header.php'?>
-
-<section style="background-image: linear-gradient(180deg, #ad77ff 0%, #4d0aa4 100%);" class=" px-3 md:px-8 2xl:px-36 py-4 bg-transparent mx-auto">
+ 
+<section style="background-image: linear-gradient(180deg, #ad77ff 0%, #4d0aa4 100%);" class="  px-3 md:px-8 2xl:px-36 py-4 bg-transparent mx-auto">
+<section class="container mx-auto" >
   <form action="booking.php" method="GET">
 <section class="md:flex  mx-auto justify-center items-center">
 <div class="mx-1 bg-white mb-2 md:mb-0 p-2 md:p-4 md:rounded-lg">
@@ -122,11 +123,11 @@ session_start();
 </section>
 <div class=" py-4 ">
     
-    <button value="Search" type="submit" class="bg-white text-[#FF3726] font-medium rounded-lg text-sm px-12 py-2 text-center">Search</button>
+    <button value="Search" type="submit" class="bg-white text-[#5412AB] font-medium rounded-lg text-sm px-12 py-3 text-center ">Search</button>
   </div>
 </form>
 </section>
-
+</section>
 
 
 <div class="container mx-auto my-14 py-8 px-4 md:px-24 bg-center bg-no-repeat bg-[url('/src/images/carbg2.jpg')]">
@@ -138,7 +139,7 @@ session_start();
   
       <div>
         <h2 class="text-xl md:text-6xl font-bold mb-4">Services with a Wide Range of Cars</h2>
-        <p class="text-[#FF3726] text-lg md:text-2xl font-medium  py-2">COMMITTED TO PROVIDING OUR CUSTOMERS WITH <br> EXCEPTIONAL SERVICE.</p>
+        <p class="text-[#5412AB] text-lg md:text-2xl font-medium  py-2">COMMITTED TO PROVIDING OUR CUSTOMERS WITH <br> EXCEPTIONAL SERVICE.</p>
         <p class="text-gray-500 text-sm md:text-lg font-normal py-2">Lorem ipsum is simply ipun txns mane so dummy text of free available in market the printing and typesetting industry has been the industry’s 
             standard dummy text ever.</p>
             <button style="background-image: linear-gradient(180deg, #ad77ff 0%, #4d0aa4 100%);"  class="w-64 text-white bg-transparent font-medium rounded-lg text-sm px-6 py-4 text-center my-4 ">Discover More</button>
@@ -150,7 +151,7 @@ session_start();
  
 
 <div class="py-4">
-    <p class="text-center text-2xl text-[#ff3726] pb-2"> SIMPLE 4 EASY STEPS</p>
+    <p class="text-center text-2xl text-[#5412AB] pb-2"> SIMPLE 4 EASY STEPS</p>
     <h1 class="text-5xl font-bold text-center ">See How It Works</h1>
 </div>
 
@@ -158,25 +159,25 @@ session_start();
 <section class="md:grid grid-cols-4 justify-center pb-16">
     <div class="col-span-1 text-center pt-10 px-6">
         
-        <h1 class="text-xl font-bold text-gray-700 hover:text-white rounded-t-lg bg-gray-200 mb-8 px-24 py-4 hover:bg-[#015A60]">Search</h1>
+        <h1 class="text-xl font-bold text-gray-700 hover:text-white rounded-t-lg bg-gray-200 mb-8 px-24 py-4 hover:bg-[#5412AB]">Search</h1>
         <img class=" mx-auto" src="src/icon/searchicon.png" alt="" srcset="">
     </div>
 
     <div class="col-span-1 text-center pt-10 px-6">
         
-        <h1 class="text-xl font-bold text-gray-700 hover:text-white rounded-t-lg bg-gray-200 mb-8 px-24 py-4 hover:bg-[#015A60]">Select</h1>
+        <h1 class="text-xl font-bold text-gray-700 hover:text-white rounded-t-lg bg-gray-200 mb-8 px-24 py-4 hover:bg-[#5412AB]">Select</h1>
         <img class=" mx-auto" src="src/icon/selecticon.png" alt="" srcset="">
     </div>
 
     <div class="col-span-1 text-center pt-10 px-6">
         
-        <h1 class="text-xl font-bold text-gray-700 hover:text-white rounded-t-lg bg-gray-200 mb-8 px-24 py-4 hover:bg-[#015A60]">Book</h1>
+        <h1 class="text-xl font-bold text-gray-700 hover:text-white rounded-t-lg bg-gray-200 mb-8 px-24 py-4 hover:bg-[#5412AB]">Book</h1>
         <img class=" mx-auto" src="src/icon/bookicon.png" alt="" srcset="">
     </div>
 
     <div class="col-span-1 text-center pt-10 px-6">
         
-        <h1 class="text-xl font-bold text-gray-700 hover:text-white rounded-t-lg bg-gray-200 mb-4 px-24 py-4 hover:bg-[#015A60]">Ride</h1>
+        <h1 class="text-xl font-bold text-gray-700 hover:text-white rounded-t-lg bg-gray-200 mb-4 px-24 py-4 hover:bg-[#5412AB]">Ride</h1>
         <img class=" mx-auto" src="src/icon/driveicon.png" alt="" srcset="">
     </div>
 
@@ -192,7 +193,7 @@ session_start();
     
       <div>
         <h2 class="text-6xl font-bold mb-4">Services with a Wide Range of Cars</h2>
-        <p class="text-[#FF3726] text-2xl font-medium  py-2">COMMITTED TO PROVIDING OUR CUSTOMERS WITH <br> EXCEPTIONAL SERVICE.</p>
+        <p class="text-[#5412AB] text-2xl font-medium  py-2">COMMITTED TO PROVIDING OUR CUSTOMERS WITH <br> EXCEPTIONAL SERVICE.</p>
         <p class="text-gray-500 text-lg font-normal py-2">Lorem ipsum is simply ipun txns mane so dummy text of free available in market the printing and typesetting industry has been the industry’s 
             standard dummy text ever.</p>
             <button style="background-image: linear-gradient(180deg, #ad77ff 0%, #4d0aa4 100%);" type="submit" class="w-64 text-white bg-transparent font-medium rounded-lg text-sm px-6 py-4 text-center my-6 md:my-4 ">Discover More</button>

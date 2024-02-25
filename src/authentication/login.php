@@ -167,7 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       Don’t have an account yet?
                       <a
                         href="signup.php?<?php echo http_build_query($_GET); ?>"
-                        class="font-medium text-primary-600 hover:underline text-[#FF3726]"
+                        class="font-medium text-primary-600 hover:underline text-[#5412AB]"
                         >Sign up</a
                       >
                     </p>

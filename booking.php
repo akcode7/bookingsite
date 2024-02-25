@@ -139,7 +139,7 @@ if (isset($_SESSION['email'])) {
 </section>
 <div class=" py-4 ">
     
-    <button value="Search" type="submit" class="bg-white text-[#FF3726] font-medium rounded-lg text-sm px-12 py-2 text-center">Search</button>
+    <button value="Search" type="submit" class="bg-white text-[#5412AB] font-medium rounded-lg text-sm px-12 py-2 text-center">Search</button>
   </div>
 </form>
 </section>
@@ -216,7 +216,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         </ul>
         <span class="flex py-2">
           <img src="src/icon/discounticon.png"/>
-          <h1 class="font-bold text-[#FF3726] py-2 pl-2">Cheapest Price Garanteed</h1>
+          <h1 class="font-bold text-[#5412AB] py-2 pl-2">Cheapest Price Garanteed</h1>
         
     </span>
 
