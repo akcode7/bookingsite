@@ -102,105 +102,53 @@ try {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>turbocar</title>
-        <style>
-            body{
-                background-color: #F6F6F6; 
-                margin: 0;
-                padding: 0;
-            }
-            h1,h2,h3,h4,h5,h6{
-                margin: 0;
-                padding: 0;
-            }
-            p{
-                margin: 0;
-                padding: 0;
-            }
-            .container{
-                width: 80%;
-                margin-right: auto;
-                margin-left: auto;
-            }
-            .brand-section{
-               background-color: #0d1033;
-               padding: 10px 40px;
-            }
-            .logo{
-                width: 50%;
-            }
-    
-            .row{
-                display: flex;
-                flex-wrap: wrap;
-            }
-            .col-6{
-                width: 50%;
-                flex: 0 0 auto;
-            }
-            .text-white{
-                color: #fff;
-            }
-            .company-details{
-                float: right;
-                text-align: right;
-            }
-            .body-section{
-                padding: 16px;
-                border: 1px solid gray;
-            }
-            .heading{
-                font-size: 20px;
-                margin-bottom: 08px;
-            }
-            .sub-heading{
-                color: #262626;
-                margin-bottom: 05px;
-            }
-            table{
-                background-color: #fff;
-                width: 100%;
-                border-collapse: collapse;
-            }
-            table thead tr{
-                border: 1px solid #111;
-                background-color: #f2f2f2;
-            }
-            table td {
-                vertical-align: middle !important;
-                text-align: center;
-            }
-            table th, table td {
-                padding-top: 08px;
-                padding-bottom: 08px;
-            }
-            .table-bordered{
-                box-shadow: 0px 0px 5px 0.5px gray;
-            }
-            .table-bordered td, .table-bordered th {
-                border: 1px solid #dee2e6;
-            }
-            .text-right{
-                text-align: end;
-            }
-            .w-20{
-                width: 20%;
-            }
-            .float-right{
-                float: right;
-            }
-        </style>
+       
+        
     </head>
+    <style>
+      .bg-blue-950{
+      background-color: #1E3A8A; 
+      }
+      .text-white{
+      color: white;
+      }
+
+      .md{
+      display: block;
+      }
+      @media (min-width: 768px) { 
+       .md{
+       display: flex;
+       } 
+       }
+
+       .justify-between{
+       justify-content: space-between;
+       y}
+
+       .text-lg{
+       font-size: 16px;
+       }
+       .font-bold{
+       font-weight: bold;
+       }
+
+       .border{
+       border: 2px solid;
+       border-right: 0px;
+       border-left: 0px;
+       }
+      </style>
     <body>
     
-        <div class="container">
-            <div class="brand-section">
-                <div class="row">
-                    <div class="col-6">
+        <div >
+            <div style="background-color: transparent; background-image: linear-gradient(180deg, #ad77ff 0%, #4d0aa4 100%);">
+                <div style="display: flex; padding: 10px;" class="justify-between" >
+                    <div >
                         <h1 class="text-white">Turbocars</h1>
                     </div>
-                    <div class="col-6">
-                        <div class="company-details">
+                    <div >
+                        <div >
                             <p class="text-white">Book your cab with ease</p>
                             <p class="text-white">admin@gmail.com</p>
                             <p class="text-white">+91 888847653</p>
@@ -209,32 +157,32 @@ try {
                 </div>
             </div>
     
-            <div class="body-section">
-                <div class="row">
-                    <div class="col-6">
-     <h2 class="heading">Order Status: ' . $orderstatus . '</h2>
-                        <h2 class="sub-heading">Booking Id: '. $purchaseid . '</h2>
-                        <h2 class="sub-heading">Booking Id: '. $triptype . '</h2>
-                        <p class="sub-heading">Pick-up Date:' . $pickupdate . '</p>
-                        <p class="sub-heading">Pick-up Time: ' .$pickuptime. ' </p>
-                        <p class="sub-heading">Pick-up Address:' . $pickupadd . ' </p>
-                        <p class="sub-heading">Pick-up Address:'. $dropoffadd . ' </p>
+            <div class="p-5">
+                <div class="md justify-between ">
+                    <div >
+     <h2 style="padding-top: 10px;" class="text-lg font-bold">Order Status: ' . $orderstatus . '</h2>
+                        <h2 class="text-lg font-bold">Booking Id: ' . $purchaseid . '</h2>
+                        <h2 class="text-lg font-bold">Trip-Type: ' . $triptype . '</h2>
+                        <p class="text-lg font-bold">Pick-up Date: ' . $pickupdate . '</p>
+                        <p class="text-lg font-bold">Pick-up Time: ' . $pickuptime . ' </p>
+                        <p class="text-lg font-bold">Pick-up Address: ' . $pickupadd . ' </p>
+                        <p class="text-lg font-bold">Drop Address: ' . $dropoffadd . ' </p>
                         
                     </div>
-                    <div class="col-6">
-                        <p class="sub-heading">Traveller Name: ' . $fullname . '</p>
-                        <p class="sub-heading">Phone Number:' . $phonenumber . ' </p>
-                        <p class="sub-heading">Phone Number:' . $email . ' </p>
+                    <div class="text-lg font-bold">
+                        <p class="text-lg font-bold">Traveller Name: ' . $fullname . '</p>
+                        <p class="text-lg font-bold">Phone Number:' . $phonenumber . ' </p>
+                        <p class="text-lg font-bold">Email:' . $email . ' </p>
                         
                     </div>
                 </div>
             </div>
     
-            <div class="body-section">
+            <div style="padding: 10px;" class="border">
                 
-                <br>
-                <h3 class="heading">Payment Status: Unpaid</h3>
-                <h3 class="heading">Payment Mode: Cash</h3>
+            
+                <h3 class="text-xl">Payment Status:<span class="font-bold"> Unpaid</span></h3>
+                <h3 class="text-xl">Payment Mode: <span class="font-bold">Cash</span></h3>
             </div>
     
                  
@@ -283,7 +231,7 @@ try {
 
     if ($stmt->affected_rows > 0) {
      
-      header("Location: ../invoice.php");
+      header("Location: ../e_booking_slip.php");
       
       exit();
     } else {

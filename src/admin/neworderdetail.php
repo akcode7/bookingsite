@@ -843,10 +843,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 <?php if ($row['order_status'] == "cancel"): ?>
                     <span class="pl-1 font-semibolduppercase items-center text-white px-1 py-0.5 rounded-lg bg-red-600">Cancelled</span>
                 <?php elseif ($row['order_status'] == "pending"): ?>
-                    <span class="pl-1 font-semibold  uppercase items-center  text-white px-1  py-0.5 rounded-lg bg-blue-600">Pending</span>
+                    <span class="pl-1 font-semibold  uppercase items-center  text-white px-1  py-0.5 rounded-lg bg-yellow-600">Pending</span>
                 <?php elseif ($row['order_status'] == "confirmed"): ?>
                     <span class="pl-1 font-semibold uppercase items-center text-white px-1  py-0.5 rounded-lg bg-green-600">Confirmed</span>
-               
+                <?php elseif ($row['order_status'] == "completed"): ?>
+                    <span class="pl-1 font-semibold uppercase items-center text-white px-1  py-0.5 rounded-lg bg-blue-600">Completed</span>
+            
                 <?php endif; ?>
             </span>
             </div>
@@ -875,6 +877,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         <select id="orderstatus" name="orderstatus" class="bg-white font-semibold border my-2 text-gray-900 text-sm rounded-lg  block w-52 px-4 py-2 "> 
                
                   <option  value="confirmed">Confirmed</option>
+                  <option  value="completed">Completed</option>
                   <option  value="cancelled">Cancel</option>
                 </select>
                 </label>

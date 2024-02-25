@@ -29,7 +29,7 @@ session_start();
 <label for="trip" class="block font-medium pb-3 text-md text-[#9249ff]  text-sm  ">TRIP TYPE</label>
 <select id="triptype" name="triptype" class="bg-white cursor-pointer font-semibold border border-solid border-[#9249ff]  text-gray-900 text-sm rounded-lg  block w-full md:w-52 px-4 py-3 ">
   <option  value="Oneway" selected>One way</option>
-  <option  value="Roundtrip">Round Trip</option>
+  <!-- <option  value="Roundtrip">Round Trip</option> -->
 </select>
   </div>
 <div class="flex mb-2 md:mb-0 justify-center">
@@ -239,55 +239,7 @@ session_start();
 <!-- <=======footer starts======>
     <========================> -->
 
-  <footer class="mx-auto">
-    <section class="bg-[#292930] pt-24 pb-20">
-    <div class="container mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-6">
-        <div class="p-0 md:p-6 md:col-span-2">
-            <img src="src/component/logo.png" alt="Logo" class="w-52">
-            <p class="text-gray-300 font-medium pt-4">abccarcompany offers a complete drive solutions through our Managed website</p>
-            <div class="flex gap-4 pt-7 pb-6">
-            <i class="fa-brands fa-instagram text-gray-400 p-4 bg-gray-800 rounded-full hover:bg-teal-500 hover:text-white transition duration-700 ease-linear"></i>
-            <i class="fa-brands fa-facebook-f text-gray-400 p-4 bg-gray-800 rounded-full hover:bg-teal-500 hover:text-white transition duration-700 ease-linear"></i>
-            <i class="fa-brands fa-linkedin-in text-gray-400 p-4 bg-gray-800 rounded-full hover:bg-teal-500 hover:text-white transition duration-700 ease-linear"></i>
-            </div>
-        </div>
-        <div class="md:col-span-1">
-            <h3 class="text-start text-xl font-semibold text-white tracking-wider pt-6">Useful Links</h3>
-            <ul class="pt-8 text-gray-300 font-semibold">
-            <li class="pb-3 hover:text-yellow-300"><a href="#">Home</a></li>
-            <li class="pb-3 hover:text-yellow-300"><a href="#">About Us</a></li>
-            <li class="pb-3 hover:text-yellow-300"><a href="#">Contact</a></li>
-            <li class="pb-3 hover:text-yellow-300"><a href="#">Services</a></li>
-            <li class="pb-3 hover:text-yellow-300"><a href="#">Contact Us</a></li>
-            </ul>
-        </div>
-        <div class="md:col-span-1 pr-0 md:pr-2">
-            <h3 class="text-start text-xl font-semibold text-white tracking-wider pt-6">Our Services</h3>
-            <ul class="pt-8 text-gray-300 font-semibold">
-            <li class="pb-3 hover:text-yellow-300"><a href="#">Luxery car rent</a></li>
-            <li class="pb-3 hover:text-yellow-300"><a href="#">Simple Car rent</a></li>
-            <li class="pb-3 hover:text-yellow-300"><a href="#">Suv car rent</a></li>
-            <li class="pb-3 hover:text-yellow-300"><a href="#">Sedan car rent</a></li>
-            <li class="pb-3 hover:text-yellow-300"><a href="#">Book Cab</a></li>
-            </ul>
-        </div>
-        <div class="md:col-span-2 pl-0 md:pl-2">
-            <h3 class="text-start text-xl font-semibold text-white tracking-wider pt-6">Subscribe Newsletter</h3>
-            <p class="text-gray-300 font-medium pt-6">Drop your email address below to receive occasional updates.</p>
-            <form>   
-            <div class="relative pt-8">
-                <input type="search" id="default-search" class="block w-full p-6 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-teal-500 focus:text-teal-400" placeholder="Enter your mail" required>
-                <button type="submit" class="text-white absolute right-3 bottom-2.5 bg-yellow-500 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-4 transition duration-700">Submit</button>
-            </div>
-            </form>
-        </div>
-        </div>
-        <hr class="border border-gray-700">
-        
-    </div>
-    </section>
-</footer>
+    <?php include 'src/component/footer.php'?>
 
 <!-- ====footer ends====>
 ======================= -->

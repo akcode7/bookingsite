@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set('Asia/Kolkata');
+
 session_start();
 
 // Check if user is already logged in
@@ -6,7 +8,10 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     header("location: ../../index.php"); // Redirect to index.php if already logged in
     exit();
 }
+
 ?>
+
+
 
 <?php
 
@@ -16,6 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $email = $_POST['email'];
   $password = $_POST['password'];
+  
+
+ 
 
 
   $sql = "SELECT * FROM user WHERE email='$email'";
@@ -26,12 +34,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       while ($row = mysqli_fetch_assoc($result)) {
         if ($row['password'] === md5($password)) {
               session_start();
-
               $_SESSION['loggedin'] = true;
+              $_SESSION['re_member_me'] = bin2hex(random_bytes(16));
               $_SESSION['email'] = $email;
               $_SESSION['user_role'] = $row['user_role'];
               $_SESSION['user_id'] = $row['user_id'];
-             
+              
+              if (isset($_POST['re_member_me'])) {
+                $remember_me_token = bin2hex(random_bytes(16)); // Generate a 32-character hexadecimal token
+              
+                setcookie('re_member_me_cookie',  $remember_me_token, time() + (8 * 24 * 3600), '/'); // Cookie valid for 8 days
+            }
+            
 
               if ($row['user_role'] !== "administrator") {
                   header("location: ../../booking.php?" . http_build_query($_GET)) ;
@@ -125,14 +139,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="flex items-center h-5">
                           <input
                             id="remember"
-                            aria-describedby="remember"
+                            name="re_member_me"
                             type="checkbox"
                             class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-[#ff3726] focus:border-[#ff3726]"
                          
                           />
                         </div>
                         <div class="ml-3 text-sm">
-                          <label for="remember" class="text-gray-600"
+                          <label for="remember"  class="text-gray-600"
                             >Remember me</label
                           >
                         </div>

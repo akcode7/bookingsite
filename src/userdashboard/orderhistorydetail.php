@@ -614,66 +614,105 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
       
 ?>
 
-  <main class=" py-2 my-2 mx-auto">
-      <div class="container px-6 my-2 mx-auto flex justify-center items-center">
-           
-           
+
+        <section id="pdfcontent" class="p-6 md:p-12 mx-auto flex justify-center item-center">
         
+        <div class="border border-black  w-full md:w-1/2 p-3 md:p-6 ">    
+        <div class="flex justify-between items-center content-center">
+            <img src="../component/logo.png" class="w-32 h-16 md:w-40 md:h-20" alt="" srcset="">
+            <div> 
+                 <h1 class="py-1 font-bold md:text-lg text-sm">Electronic Booking slip</h1>
 
-
-
-          <div class="w-11/12 max-w-xl p-6 bg-white border border-gray-200 rounded-lg shadow ">
-          <div class="block md:flex justify-between items-center content-center mb-4">
-          <span class=" text-md font-bold tracking-tight text-gray-900 ">Booking Time: <span class="text-md font-medium"><?php echo $row['book_time']?></span></span>
-            <div class="flex items-center py-3 md:py-0"> 
-                 
-
-                 <span class="font-medium text-left">Booking status: 
-                <?php if ($row['order_status'] == "cancel"): ?>
+                 <span class="font-medium text-sm md:text-lg text-left">Booking status: 
+                 <?php if ($row['order_status'] == "cancel"): ?>
                     <span class="pl-1 font-semibolduppercase items-center text-white px-1 py-0.5 rounded-lg bg-red-600">Cancelled</span>
                 <?php elseif ($row['order_status'] == "pending"): ?>
-                    <span class="pl-1 font-semibold  uppercase items-center  text-white px-1  py-0.5 rounded-lg bg-blue-600">Pending</span>
+                    <span class="pl-1 font-semibold  uppercase items-center  text-white px-1  py-0.5 rounded-lg bg-yellow-600">Pending</span>
                 <?php elseif ($row['order_status'] == "confirmed"): ?>
                     <span class="pl-1 font-semibold uppercase items-center text-white px-1  py-0.5 rounded-lg bg-green-600">Confirmed</span>
-               
+                <?php elseif ($row['order_status'] == "completed"): ?>
+                    <span class="pl-1 font-semibold uppercase items-center text-white px-1  py-0.5 rounded-lg bg-blue-600">Completed</span>
+            
                 <?php endif; ?>
             </span>
             </div>
             
             
         </div>
+        <hr class="bg-black h-[1.5px] ">
+        <div class="md:grid grid-cols-2 py-3">
+            <div class="col-span-1">
+            <p class="font-normal pl-3 text-lg"><b>Booking ID:</b> <?php echo $row['purchase_id']?></p>
+                <span class=" font-bold pl-3 text-lg">Traveler Name: <span class="pl-1 font-semibold text-black"><?php echo $row['full_name']?></span></span>
+                <h1 class=" font-bold pl-3 text-lg">Phone Number: <span class="pl-1 font-semibold text-black"><?php echo $row['phone_number']?></span></h1>
+                <h1 class=" font-bold pl-3 text-lg">Email: <span class="pl-1 font-semibold text-black"><?php echo $row['email_id']?></span></h1>
+            </div>
+            <div class="col-span-1">
+             
+                
+                <h1 class=" font-medium pl-3 text-lg"><b>Booking Date:</b> <span class="pl-1 font-semibold text-black">
+                    <?php 
+                    $booking_date = $row['book_time'];
+                    $formatbookdate = new DateTime($booking_date);
+                    $formattedbookDate = $formatbookdate->format('d-m-Y H:i:s');
+                    echo $formattedbookDate;?>
+                    </span></h1>
+                <h1 class=" font-medium pl-3 text-lg"><b>Pick-up Date:</b> <span class="pl-1 font-semibold text-black"><?php 
+                    $pick_update = $row['pickup_date']; 
+                    $formattedDate = date('d-m-Y', strtotime($pick_update));
+                    echo $formattedDate;?></span></h1>
+                     <h1 class=" font-medium pl-3"><b>Pickup time: </b><span class="pl-1 font-semibold text-black"><?php echo $row['pickup_time']?></span></h1>
+                    <h1 class=" font-medium pl-3"><b>Trip Type: </b><span class="pl-1 font-semibold text-black"><?php echo $row['triptype']?></span></h1>
+                   
+            </div>
+        </div>
+  
    
+        <hr class="bg-black h-[1.5px] ">
+
+        <div class="md:grid grid-cols-2  gap-3 py-3">
+            <div class="col-span-1 px-3 ">
+                <h1 class="py-1 text-left font-bold   text-lg">Pick-up Address</h1>
+                <p class="font-normal"><?php echo $row['pickup_add']?></p>
+              
+            </div>
+            <div class="col-span-1 px-3">
+                <h1 class="py-1 font-bold text-lg text-left ">Drop-off Address</h1>
+                <p class="font-normal"><?php echo $row['dropoff_add']?></p>
+            </div>
+
+        </div>
+
+        <hr class="bg-black h-[1.5px] ">
+        
+            <div class="col-span-1 px-3 ">
+                <h1 class="py-1 text-left font-bold text-lg  ">Payment Details</h1>
+                <p class="font-normal"><b>Payment Method:</b> Cash</p>
+
+                <p class="font-normal"><b>Total Amount: </b><?php echo $row['book_amount']?> Rs</p>
+
+
+                <?php if ($row['order_status'] == 'cancel') : ?>
+
+              <p class="text-xl font-bold text-red-600 py-5">Booking Cancelled</p>
+
+              <?php elseif ($row['order_status'] == "completed"): ?>
+                <p class="text-xl font-bold text-blue-600 py-5">Ride completed</p>
+
+              <?php else : ?>
+
+              <button onclick="cancelbookbtn()" class="w-44 cursor-pointer text-white bg-[#FF3726] font-medium rounded-lg text-sm px-4 py-2 text-center my-6 md:my-4">Cancel</button>
+
+              <?php endif; ?>
+               
+            </div>
+          
+
+        
+    </div>
     
-    <h1 class="text-md font-semibold">
-          Pick-Up date: <span class="font-bold"><?php echo $row['pickup_date']?></span>
-        </h1>
-    <h1 class="text-md font-semibold pt-2">
-          Car Name : <span class="font-bold"><?php echo $row['car_name']?></span>
-        </h1>
-    <h1 class="text-md font-semibold pt-2">
-           Total ride distance: <span class="font-bold"><?php echo $row['cartr_distance']?> Km</span>
-        </h1>
-    <h1 class="text-md font-semibold pt-2">
-          Pick up: <span class="font-bold"><?php echo $row['pickup_add']?></span>
-        </h1>
-        <h1 class="text-md font-semibold pt-2">
-          Dropoff: <span class="font-bold"><?php echo $row['dropoff_add']?></span>
-        </h1>
-       
-        <?php if ($row['order_status'] == 'cancel') : ?>
-
-        <p class="text-xl font-bold text-red-600 py-5">Booking Cancelled</p>
-
-        <?php else : ?>
-
-        <button onclick="cancelbookbtn()" class="w-44 cursor-pointer text-white bg-[#FF3726] font-medium rounded-lg text-sm px-4 py-2 text-center my-6 md:my-4">Cancel</button>
-
-        <?php endif; ?>
-</div>
-
-
-          </div>
-        </main>
+    </section>
+    
 <?php
   }}}
 ?>

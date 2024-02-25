@@ -468,7 +468,7 @@ $query3 = "SELECT COUNT(*) as totalRows FROM `user` WHERE user_role != 'administ
 
 $query4 = "SELECT COUNT(*) as totalRows2 FROM `bookingdetail`";
 $query5 = "SELECT COUNT(*) as totalRows3 FROM `bookingdetail` WHERE order_status = 'pending'";
-$query6 = "SELECT SUM(CAST(book_amount AS DECIMAL(10,2))) as totalAmount FROM `bookingdetail` WHERE order_status = 'confirmed'";
+$query6 = "SELECT SUM(CAST(book_amount AS DECIMAL(10,2))) as totalAmount FROM `bookingdetail` WHERE order_status = 'completed'";
 
 
 $result3 = mysqli_query($conn, $query3);
@@ -678,12 +678,14 @@ if (isset($_SESSION['user_id'])) {
                         <span
                           class="px-2 py-1 ">
                           <?php if ($row['order_status'] == "cancel"): ?>
-                    <span class="pl-1 font-semibold uppercase items-center text-white px-1 py-0.5 rounded-lg bg-red-600">Cancelled</span>
+                    <span class="pl-1 font-semibolduppercase items-center text-white px-1 py-0.5 rounded-lg bg-red-600">Cancelled</span>
                 <?php elseif ($row['order_status'] == "pending"): ?>
-                    <span class="pl-1 font-semibold  uppercase items-center  text-white px-1  py-0.5 rounded-lg bg-blue-600">Pending</span>
+                    <span class="pl-1 font-semibold  uppercase items-center  text-white px-1  py-0.5 rounded-lg bg-yellow-600">Pending</span>
                 <?php elseif ($row['order_status'] == "confirmed"): ?>
                     <span class="pl-1 font-semibold uppercase items-center text-white px-1  py-0.5 rounded-lg bg-green-600">Confirmed</span>
-               
+                <?php elseif ($row['order_status'] == "completed"): ?>
+                    <span class="pl-1 font-semibold uppercase items-center text-white px-1  py-0.5 rounded-lg bg-blue-600">Completed</span>
+            
                 <?php endif; ?>
                         </span>
                       </td>
