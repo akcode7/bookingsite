@@ -30,7 +30,7 @@
 <div class="grid grid-cols-2 py-4 md:py-0">
 <div>
   <a href="https://ezzeemiles.com/">
-    <img src="https://gpsolarpanel.com/src/component/logo.png"  class="w-32 " alt="" srcset="">
+    <img src="https://ezzeemiles.com/src/component/logo.png"  class="w-32 " alt="" srcset="">
   </a>
 </div>
 <div>
