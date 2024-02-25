@@ -29,7 +29,7 @@
 <!-- header menu btm starts -->
 <div class="grid grid-cols-2 py-4 md:py-0">
 <div>
-  <a href="index.php">
+  <a href="https://ezzeemiles.com/">
     <img src="https://gpsolarpanel.com/src/component/logo.png"  class="w-32 " alt="" srcset="">
   </a>
 </div>
