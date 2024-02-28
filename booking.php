@@ -315,6 +315,12 @@ while ($row = mysqli_fetch_assoc($result)) {
     
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="public/script.js"></script>
+
+
+        <script>
+              var today = new Date().toISOString().split('T')[0];
+    document.getElementsByName("pickupdate")[0].setAttribute('min', today);
+        </script>
 </body>
 </html>
     

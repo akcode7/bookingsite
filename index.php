@@ -28,7 +28,7 @@ session_start();
 <section class="md:flex  mx-auto justify-center items-center">
 <div class="mx-1 bg-white mb-2 md:mb-0 p-2 md:p-4 md:rounded-lg">
 <label for="trip" class="block font-medium pb-3 text-md text-[#9249ff]  text-sm  ">TRIP TYPE</label>
-<select id="triptype" name="triptype" class="bg-white cursor-pointer font-semibold border border-solid border-[#9249ff]  text-gray-900 text-sm rounded-lg  block w-full md:w-52 px-4 py-3 ">
+<select required id="triptype" name="triptype" class="bg-white cursor-pointer font-semibold border border-solid border-[#9249ff]  text-gray-900 text-sm rounded-lg  block w-full md:w-52 px-4 py-3 ">
   <option  value="Oneway" selected>One way</option>
   <!-- <option  value="Roundtrip">Round Trip</option> -->
 </select>
@@ -36,14 +36,14 @@ session_start();
 <div class="flex mb-2 md:mb-0 justify-center">
   <div class="mx-1  bg-white p-2 md:p-4 md:rounded-lg">
     <h1 class="font-medium pb-3 text-md md:text-[#9249ff]">FROM</h1>
-    <input autocomplete="off" placeholder="lucknow" name="pickup" id="loc_search" class="px-4 py-2  border border-solid border-[#9249ff] w-full md:w-52 rounded-lg relative  focus-none" type="text">
+    <input required autocomplete="off" placeholder="lucknow" name="pickup" id="loc_search" class="px-4 py-2  border border-solid border-[#9249ff] w-full md:w-52 rounded-lg relative  focus-none" type="text">
     <div id="search-result" class="bg-white absolute w-40 md:w-52 rounded-lg"></div>
   </div>
   
 
   <div class="mx-1  bg-white p-2 md:p-4 md:rounded-lg">
     <h1 class="font-medium pb-3 text-md md:text-[#9249ff]">TO</h1>
-    <input autocomplete="off" placeholder="Mumbai" name="dropoff" id="loc_search_d" class="px-4 py-2  border border-solid border-[#9249ff] w-full md:w-52 rounded-lg relative " type="text">
+    <input  required autocomplete="off" placeholder="Mumbai" name="dropoff" id="loc_search_d" class="px-4 py-2  border border-solid border-[#9249ff] w-full md:w-52 rounded-lg relative " type="text">
     <div id="search-result_d"  class="bg-white absolute w-40 md:w-52 rounded-lg"></div>
   </div>
   </div>
@@ -54,14 +54,14 @@ session_start();
     
     <div>
      
-      <input name="pickupdate" type="date" class="bg-white border border-solid border-[#9249ff]  text-gray-900 sm:text-sm rounded-lg w-full md:w-52  px-4 py-2  datepicker-input" placeholder="Select date">
+      <input required name="pickupdate" type="date" class="bg-white border border-solid border-[#9249ff]  text-gray-900 sm:text-sm rounded-lg w-full md:w-52  px-4 py-2  datepicker-input" placeholder="Select date">
     </div>
   </div>
   </div>
   <div class="col-span-1">
   <div class="bg-white p-2.5 md:p-4 mx-1 md:rounded-lg">
 <label for="trip" class="block font-medium pb-3 text-md text-[#9249ff]  text-sm  ">PICKUP-TIME</label>
-<select id="pickuptime" name="pickuptime" class="bg-white cursor-pointer font-semibold border border-solid border-[#9249ff]  text-gray-900 text-sm rounded-lg  block w-full md:w-52 px-4 py-3 md:py-2.5 ">
+<select required id="pickuptime" name="pickuptime" class="bg-white cursor-pointer font-semibold border border-solid border-[#9249ff]  text-gray-900 text-sm rounded-lg  block w-full md:w-52 px-4 py-3 md:py-2.5 ">
 <option  value="12:00 AM" selected>12:00 AM</option>
   <option  value="12:30 AM" selected>12:30 AM</option>
   <option  value="1:00 AM" selected>1:00 AM</option>
@@ -308,6 +308,11 @@ session_start();
 <script type="text/javascript" src="public/livechat.js"></script>
 <!--End of Tawk.to Script-->
 
+
+<script>
+              var today = new Date().toISOString().split('T')[0];
+    document.getElementsByName("pickupdate")[0].setAttribute('min', today);
+        </script>
 
 </body>
 </html>
