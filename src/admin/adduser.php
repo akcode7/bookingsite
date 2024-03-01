@@ -701,7 +701,7 @@ $conn->close();
                 >
                   <img
                     class="object-cover w-8 h-8 rounded-full"
-                    src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
+                    src="../icon/usericon.png"
                     alt=""
                     aria-hidden="true"
                   />
@@ -797,9 +797,13 @@ $conn->close();
         </div>
         <div class="flex flex-col gap-4 border-b py-4 sm:flex-row">
           <p class="shrink-0 w-32 font-medium">Password</p>
-          <input placeholder="••••••••" type="password" required name="password"  class="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1" />
+          <input placeholder="••••••••" type="password" required name="password" id="password" class="w-full rounded-md border bg-white px-2 py-2 outline-none ring-blue-600 focus:ring-1" />
         </div>
-       
+
+        <div class="flex items-center">
+        <input class="mx-2 cursor-pointer w-4 h-4 border border-gray-300 rounded bg-gray-50" type="checkbox" onclick="myFunction()">Show Password
+        </div>
+
         <div class="flex flex-col gap-4 border-b py-4 sm:flex-row">
         <p class="font-medium">Select User Role</p>
         <select required id="userrole" name="userrole" class="bg-white font-semibold border  text-gray-900 text-sm rounded-lg  block w-52 px-4 py-2 ">
@@ -834,6 +838,15 @@ $conn->close();
     }
 </script>
 
-
+<script>
+function myFunction() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
   </body>
 </html>
