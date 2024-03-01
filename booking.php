@@ -52,14 +52,14 @@ if (isset($_SESSION['email'])) {
 <div class="flex mb-2 md:mb-0 justify-center">
   <div class="mx-1  bg-white p-2 md:p-4 md:rounded-lg">
     <h1 class="font-medium pb-3 text-md md:text-[#9249ff]">FROM</h1>
-    <input autocomplete="off" placeholder="lucknow" name="pickup" id="loc_search" class="px-4 py-2  border border-solid border-[#9249ff] w-full md:w-52 rounded-lg relative  focus-none" type="text">
+    <input required autocomplete="off" placeholder="lucknow" name="pickup" id="loc_search" class="px-4 py-2  border border-solid border-[#9249ff] w-full md:w-52 rounded-lg relative  focus-none" type="text">
     <div id="search-result" class="bg-white absolute w-40 md:w-52 rounded-lg"></div>
   </div>
   
 
   <div class="mx-1  bg-white p-2 md:p-4 md:rounded-lg">
     <h1 class="font-medium pb-3 text-md md:text-[#9249ff]">TO</h1>
-    <input autocomplete="off" placeholder="Mumbai" name="dropoff" id="loc_search_d" class="px-4 py-2  border border-solid border-[#9249ff] w-full md:w-52 rounded-lg relative " type="text">
+    <input required autocomplete="off" placeholder="Mumbai" name="dropoff" id="loc_search_d" class="px-4 py-2  border border-solid border-[#9249ff] w-full md:w-52 rounded-lg relative " type="text">
     <div id="search-result_d"  class="bg-white absolute w-40 md:w-52 rounded-lg"></div>
   </div>
   </div>
@@ -70,7 +70,7 @@ if (isset($_SESSION['email'])) {
     
     <div>
      
-      <input name="pickupdate" type="date" class="bg-white border border-solid border-[#9249ff]  text-gray-900 sm:text-sm rounded-lg w-full md:w-52  px-4 py-2  datepicker-input" placeholder="Select date">
+      <input required name="pickupdate" type="date" class="bg-white border border-solid border-[#9249ff]  text-gray-900 sm:text-sm rounded-lg w-full md:w-52  px-4 py-2  datepicker-input" placeholder="Select date">
     </div>
   </div>
   </div>
@@ -78,56 +78,56 @@ if (isset($_SESSION['email'])) {
   <div class="bg-white p-2.5 md:p-4 mx-1 md:rounded-lg">
 <label for="trip" class="block font-medium pb-3 text-md text-[#9249ff]  text-sm  ">PICKUP-TIME</label>
 <select id="pickuptime" name="pickuptime" class="bg-white cursor-pointer font-semibold border border-solid border-[#9249ff]  text-gray-900 text-sm rounded-lg  block w-full md:w-52 px-4 py-3 md:py-2.5 ">
-<option  value="12:00 AM" selected>12:00 AM</option>
-  <option  value="12:30 AM" selected>12:30 AM</option>
-  <option  value="1:00 AM" selected>1:00 AM</option>
-  <option  value="1:30 AM" selected>1:30 AM</option>
-  <option  value="2:00 AM" selected>2:00 AM</option>
-  <option  value="2:30 AM" selected>2:30 AM</option>
-  <option  value="3:00 AM" selected>3:00 AM</option>
-  <option  value="3:30 AM" selected>3:30 AM</option>
-  <option  value="4:00 AM" selected>4:00 AM</option>
-  <option  value="4:30 AM" selected>4:30 AM</option>
-  <option  value="5:00 AM" selected>5:00 AM</option>
-  <option  value="5:30 AM" selected>5:30 AM</option>
-  <option  value="6:00 AM" selected>6:00 AM</option>
-  <option  value="6:30 AM" selected>6:30 AM</option>
-  <option  value="7:00 AM" selected>7:00 AM</option>
-  <option  value="7:30 AM" selected>7:30 AM</option>
-  <option  value="8:00 AM" selected>8:00 AM</option>
-  <option  value="8:30 AM" selected>8:30 AM</option>
-  <option  value="9:00 AM" selected>9:00 AM</option>
-  <option  value="9:30 AM" selected>9:30 AM</option>
-  <option  value="10:00 AM" selected>10:00 AM</option>
-  <option  value="10:30 AM" selected>10:30 AM</option>
-  <option  value="11:00 AM" selected>11:00 AM</option>
-  <option  value="11:30 AM" selected>11:30 AM</option>
-  <option  value="12:00 PM" selected>12:00 PM</option>
-  <option  value="12:30 PM" selected>12:30 PM</option>
-  <option  value="1:00 PM" selected>1:00 PM</option>
-  <option  value="1:30 PM" selected>1:30 PM</option>
-  <option  value="2:00 PM" selected>2:00 PM</option>
-  <option  value="2:30 PM" selected>2:30 PM</option>
-  <option  value="3:00 PM" selected>3:00 PM</option>
-  <option  value="3:30 PM" selected>3:30 PM</option>
-  <option  value="4:00 PM" selected>4:00 PM</option>
-  <option  value="4:30 PM" selected>4:30 PM</option>
-  <option  value="5:00 PM" selected>5:00 PM</option>
-  <option  value="5:30 PM" selected>5:30 PM</option>
-  <option  value="6:00 PM" selected>6:00 PM</option>
-  <option  value="6:30 PM" selected>6:30 PM</option>
-  <option  value="7:00 PM" selected>7:00 PM</option>
-  <option  value="7:30 PM" selected>7:30 PM</option>
-  <option  value="8:00 PM" selected>8:00 PM</option>
-  <option  value="8:30 PM" selected>8:30 PM</option>
-  <option  value="9:00 PM" selected>9:00 PM</option>
-  <option  value="9:30 PM" selected>9:30 PM</option>
-  <option  value="10:00 PM" selected>10:00 PM</option>
-  <option  value="10:30 PM" selected>10:30 PM</option>
-  <option  value="11:00 PM" selected>11:00 PM</option>
-  <option  value="11:30 PM" selected>11:30 PM</option>
-  <option  value="12:00 PM" selected>12:00 PM</option>
-  <option  value="12:30 PM" selected>12:30 PM</option>
+<option  value="12:00 AM" >12:00 AM</option>
+  <option  value="12:30 AM" >12:30 AM</option>
+  <option  value="1:00 AM" >1:00 AM</option>
+  <option  value="1:30 AM" >1:30 AM</option>
+  <option  value="2:00 AM" >2:00 AM</option>
+  <option  value="2:30 AM" >2:30 AM</option>
+  <option  value="3:00 AM" >3:00 AM</option>
+  <option  value="3:30 AM" >3:30 AM</option>
+  <option  value="4:00 AM" >4:00 AM</option>
+  <option  value="4:30 AM" >4:30 AM</option>
+  <option  value="5:00 AM" >5:00 AM</option>
+  <option  value="5:30 AM" >5:30 AM</option>
+  <option  value="6:00 AM" >6:00 AM</option>
+  <option  value="6:30 AM" >6:30 AM</option>
+  <option  value="7:00 AM" >7:00 AM</option>
+  <option  value="7:30 AM" >7:30 AM</option>
+  <option  value="8:00 AM" >8:00 AM</option>
+  <option  value="8:30 AM" >8:30 AM</option>
+  <option  value="9:00 AM" >9:00 AM</option>
+  <option  value="9:30 AM" >9:30 AM</option>
+  <option  value="10:00 AM" >10:00 AM</option>
+  <option  value="10:30 AM" >10:30 AM</option>
+  <option  value="11:00 AM" >11:00 AM</option>
+  <option  value="11:30 AM" >11:30 AM</option>
+  <option  value="12:00 PM" >12:00 PM</option>
+  <option  value="12:30 PM" >12:30 PM</option>
+  <option  value="1:00 PM" >1:00 PM</option>
+  <option  value="1:30 PM" >1:30 PM</option>
+  <option  value="2:00 PM" >2:00 PM</option>
+  <option  value="2:30 PM" >2:30 PM</option>
+  <option  value="3:00 PM" >3:00 PM</option>
+  <option  value="3:30 PM" >3:30 PM</option>
+  <option  value="4:00 PM" >4:00 PM</option>
+  <option  value="4:30 PM" >4:30 PM</option>
+  <option  value="5:00 PM" >5:00 PM</option>
+  <option  value="5:30 PM" >5:30 PM</option>
+  <option  value="6:00 PM" >6:00 PM</option>
+  <option  value="6:30 PM" >6:30 PM</option>
+  <option  value="7:00 PM" >7:00 PM</option>
+  <option  value="7:30 PM" >7:30 PM</option>
+  <option  value="8:00 PM" >8:00 PM</option>
+  <option  value="8:30 PM" >8:30 PM</option>
+  <option  value="9:00 PM" >9:00 PM</option>
+  <option  value="9:30 PM" >9:30 PM</option>
+  <option  value="10:00 PM" >10:00 PM</option>
+  <option  value="10:30 PM" >10:30 PM</option>
+  <option  value="11:00 PM" >11:00 PM</option>
+  <option  value="11:30 PM" >11:30 PM</option>
+  <option  value="12:00 PM" >12:00 PM</option>
+  <option  value="12:30 PM" >12:30 PM</option>
   
 </select>
   </div>

@@ -11,7 +11,7 @@ if(!$conn){
     echo "error";
 }
 
- ?>
+//  ?>
 
 <?php 
  

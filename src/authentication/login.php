@@ -134,6 +134,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         required=""
                       />
                     </div>
+                    <div class="flex items-center">
+                    <input class="mx-2 cursor-pointer w-4 h-4 border border-gray-300 rounded bg-gray-50" type="checkbox" onclick="myFunction()">Show Password
+                    </div>
                     <div class="flex items-center justify-between">
                       <div class="flex items-start">
                         <div class="flex items-center h-5">
@@ -183,5 +186,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../public/script.js"></script>
+
+    <script>
+function myFunction() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
   </body>
 </html>

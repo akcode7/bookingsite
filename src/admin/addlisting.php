@@ -758,7 +758,7 @@ $conn->close();
             <h4 class="mb-4 mt-4 text-lg font-semibold text-gray-800 ">
              Add cab booking listing
             </h4>
-            <form action="" method="post">
+            <form action="" method="POST">
             <div class="px-4 py-3 mb-8 bg-gray-800 rounded-lg shadow-md">
               <label class="block text-sm">
                 <span class="text-white font-bold">Car Company name</span>
