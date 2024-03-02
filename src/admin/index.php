@@ -599,6 +599,7 @@ mysqli_close($conn);
                       <th class="px-4 py-3">To</th>
                       <th class="px-4 py-3">Pick-up time</th>
                       <th class="px-4 py-3">Pick-Up date</th>
+                      <th class="px-4 py-3">Amount</th>
                       <th class="px-4 py-3">Booking Status</th>
                       <th class="px-4 py-3">Action</th>
                     </tr>
@@ -664,6 +665,10 @@ if (isset($_SESSION['user_id'])) {
                     $formatbookdate = new DateTime($booking_date);
                     $formattedbookDate = $formatbookdate->format('d-m-Y H:i:s');
                     echo $formattedbookDate;?>
+                      </td>
+
+                      <td class="px-2 py-3 text-sm">Rs
+                      <?php echo $row['book_amount']?>
                       </td>
                       <td class="px-2 py-3 text-xs">
                         <span
