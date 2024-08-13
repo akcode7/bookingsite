@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $userid) {
     
    
     // Get input data
-    $purchaseid = "CAB".rand(1111111,9999999).substr($phone_number,-4);
+    $purchaseid = "CAB".rand(1111111,9999999).substr($phonenumber,-4);
    
     $pickupadd =  $_POST['pickup_add']; 
     $dropoffadd =  $_POST['dropoff_add']; 
