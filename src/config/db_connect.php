@@ -2,9 +2,9 @@
 <?php 
 
 $server = "localhost";
-$username = "u135205580_root";
-$password = "j!xFxlW6A4lk##@a";
-$database = "u135205580_bookingsite";
+$username = "";
+$password = "";
+$database = "";
 
 $conn = mysqli_connect($server, $username, $password, $database);
 if(!$conn){
